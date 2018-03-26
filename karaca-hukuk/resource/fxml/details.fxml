@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<JFXDialogLayout fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141"
+                 xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="500.0" prefWidth="700.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="700.0"
+                       text="Dava Detayları"/>
+                <Label layoutX="30.0" layoutY="40.0" prefHeight="25.0" prefWidth="150.0" text="Dava Numarası"/>
+                <Label layoutX="30.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" text="Avukat"/>
+                <Label layoutX="30.0" layoutY="110.0" prefHeight="25.0" prefWidth="150.0" text="Durumu"/>
+                <Label layoutX="30.0" layoutY="145.0" prefHeight="25.0" prefWidth="150.0" text="Açılış Tarihi"/>
+                <Label layoutX="30.0" layoutY="180.0" prefHeight="25.0" prefWidth="150.0" text="Tipi"/>
+                <Label layoutX="30.0" layoutY="215.0" prefHeight="25.0" prefWidth="150.0" text="Yargı Yolu"/>
+                <Label layoutX="30.0" layoutY="250.0" prefHeight="25.0" prefWidth="150.0" text="Müvekkil"/>
+                <Label layoutX="30.0" layoutY="285.0" prefHeight="25.0" prefWidth="150.0" text="Müvekkil Adresi"/>
+                <Label layoutX="30.0" layoutY="320.0" prefHeight="25.0" prefWidth="150.0" text="Müvekkil T.C."/>
+                <Label layoutX="30.0" layoutY="355.0" prefHeight="25.0" prefWidth="150.0" text="Müvekkil Telefonu"/>
+                <Label layoutX="30.0" layoutY="390.0" prefHeight="25.0" prefWidth="150.0" text="Karşı Taraf"/>
+                <Label layoutX="30.0" layoutY="425.0" prefHeight="25.0" prefWidth="150.0" text="Karşı Taraf T.C."/>
+                <Label layoutX="30.0" layoutY="460.0" prefHeight="25.0" prefWidth="150.0" text="Karşı Taraf Adresi"/>
+                <Label layoutX="30.0" layoutY="495.0" prefHeight="25.0" prefWidth="150.0" text="Karşı Taraf Telefonu"/>
+            </children>
+        </AnchorPane>
+    </children>
+</JFXDialogLayout>

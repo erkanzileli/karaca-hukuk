@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+   <left>
+      <Pane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" BorderPane.alignment="CENTER">
+         <children>
+            <FontAwesomeIconView fill="#e8e8e8" fontSmoothingType="LCD" glyphName="USER" layoutX="75.0" layoutY="100.0" size="75" />
+            <JFXButton fx:id="btnDashboard" buttonType="RAISED" focusTraversable="false" layoutX="25.0" layoutY="150.0" onAction="#showDashboard" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8;" text="Anasayfa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnLawsuits" alignment="CENTER" buttonType="RAISED" focusTraversable="false" layoutX="25.0" layoutY="213.0" onAction="#showLawsuits" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8;" text="Davalar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow height="61.03" radius="25.197499999999998" width="41.76" />
+         </effect>
+      </Pane>
+   </left>
+   <center>
+      <Pane fx:id="paneCenter" prefHeight="700.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

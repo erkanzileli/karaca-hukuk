@@ -4,6 +4,27 @@
 	<groupId>karaca-hukuk</groupId>
 	<artifactId>karaca-hukuk</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>resource</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -28,6 +49,12 @@
 			<groupId>com.jfoenix</groupId>
 			<artifactId>jfoenix</artifactId>
 			<version>8.0.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
+		<dependency>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx</artifactId>
+			<version>8.9</version>
 		</dependency>
 	</dependencies>
 </project>
