@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +30,6 @@ public class HomeController implements Initializable {
     @FXML
     private Pane paneCenter;
 
-
     @FXML
     void showLawsuits() {
         Parent lawsuits = null;
@@ -41,6 +39,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         root.setCenter(lawsuits);
+        System.gc();
         //paneCenter.getChildren().setAll(lawsuits);
     }
 
@@ -53,6 +52,7 @@ public class HomeController implements Initializable {
             System.out.println(e.getMessage());
         }
         root.setCenter(dashboard);
+        System.gc();
         //paneCenter.getChildren().setAll(dashboard);
     }
 
@@ -65,17 +65,17 @@ public class HomeController implements Initializable {
             System.out.println(e.getMessage());
         }
         root.setCenter(accounting);
+        System.gc();
     }
-
+    
     @FXML
     void powerOff(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Sistemden Çıkış Yapılıyor!");
         alert.setContentText("Sistemi kapatmak istediğinize emin misiniz?");
         alert.headerTextProperty().setValue("Uyarı!");
-        alert.initStyle(StageStyle.TRANSPARENT);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             System.exit(1);
         }
     }

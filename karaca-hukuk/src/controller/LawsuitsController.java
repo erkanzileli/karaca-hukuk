@@ -61,21 +61,21 @@ public class LawsuitsController implements Initializable {
         }
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setBody(lawsuitFormDialog);
-        JFXDialog dialog = new JFXDialog(root,dialogLayout, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.CENTER);
         dialog.show();
     }
 
     @FXML
     void openFilterDialog(ActionEvent event) {
         Parent filterDialog = null;
-        try{
+        try {
             filterDialog = FXMLLoader.load(getClass().getResource("/fxml/lawsuitFilter.fxml"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        JFXDialogLayout dialogLayout =new JFXDialogLayout();
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setBody(filterDialog);
-        JFXDialog  dialog = new JFXDialog(root,dialogLayout,JFXDialog.DialogTransition.RIGHT);
+        JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.RIGHT);
         dialog.show();
     }
 
@@ -88,7 +88,7 @@ public class LawsuitsController implements Initializable {
     void listDetails() {
         Parent parent = null;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/fxml/details.fxml"));
+            parent = FXMLLoader.load(getClass().getResource("/fxml/lawsuitsDetails.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

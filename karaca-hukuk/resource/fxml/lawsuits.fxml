@@ -1,51 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LawsuitsController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LawsuitsController">
     <children>
         <AnchorPane prefHeight="700.0" prefWidth="1000.0">
             <children>
-            <Label layoutX="25.0" layoutY="50.0" text="Davalar">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btnCreateLawsuit" focusTraversable="false" layoutX="430.0" layoutY="50.0" onAction="#create" prefHeight="30.0" style="-fx-background-color: #9FA8DA;" text="Dava Kaydı Oluştur">
-               <graphic>
-                  <FontAwesomeIconView glyphName="PLUS" size="20" />
-               </graphic>
-            </JFXButton>
-                <JFXButton fx:id="btnFilter" focusTraversable="false" layoutX="600.0" layoutY="50.0" onAction="#openFilterDialog" prefHeight="30.0" style="-fx-background-color: #9FA8DA;" text="Filtrele">
-               <graphic>
-                  <FontAwesomeIconView glyphName="FILTER" size="20" />
-               </graphic>
+                <Label layoutX="25.0" layoutY="50.0" text="Davalar">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <JFXButton fx:id="btnCreateLawsuit" focusTraversable="false" layoutX="430.0" layoutY="50.0"
+                           onAction="#create" prefHeight="30.0" style="-fx-background-color: #9FA8DA;"
+                           text="Dava Kaydı Oluştur">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="PLUS" size="20"/>
+                    </graphic>
                 </JFXButton>
-            <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="775.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" promptText="Arama Kelimesi" />
-            <JFXButton fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0" layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView glyphName="SEARCH" size="19" />
-               </graphic>
-            </JFXButton>
-                <JFXTreeTableView fx:id="tableViewDavalar" layoutX="25.0" layoutY="100.0" prefHeight="550.0" prefWidth="950.0">
+                <JFXButton fx:id="btnFilter" focusTraversable="false" layoutX="600.0" layoutY="50.0"
+                           onAction="#openFilterDialog" prefHeight="30.0" style="-fx-background-color: #9FA8DA;"
+                           text="Filtrele">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="FILTER" size="20"/>
+                    </graphic>
+                </JFXButton>
+                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="775.0" layoutY="50.0" prefHeight="30.0"
+                              prefWidth="150.0" promptText="Arama Kelimesi"/>
+                <JFXButton fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0"
+                           layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" size="19"/>
+                    </graphic>
+                </JFXButton>
+                <JFXTreeTableView fx:id="tableViewDavalar" layoutX="25.0" layoutY="100.0" prefHeight="550.0"
+                                  prefWidth="950.0">
                     <columns>
-                        <TreeTableColumn fx:id="columnBeginDate" maxWidth="150.0" minWidth="50.0" prefWidth="150.0" text="Açılış Tarihi" />
-                        <TreeTableColumn fx:id="columnStatus" maxWidth="200.0" minWidth="100.0" prefWidth="150.0" text="Durumu" />
-                        <TreeTableColumn fx:id="columnCourt" maxWidth="200.0" minWidth="100.0" prefWidth="150.0" text="MahkemeAdı" />
-                  <TreeTableColumn fx:id="columnLawsuitType" maxWidth="300.0" minWidth="100.0" prefWidth="150.0" text="Dava Tipi" />
-                        <TreeTableColumn fx:id="columnAlly" maxWidth="300.0" minWidth="100.0" prefWidth="175.0" text="Müvekkil" />
-                        <TreeTableColumn fx:id="columnOpponent" maxWidth="300.0" minWidth="100.0" prefWidth="175.0" text="Karşı Taraf" />
+                        <TreeTableColumn fx:id="columnBeginDate" maxWidth="150.0" minWidth="50.0" prefWidth="150.0"
+                                         text="Açılış Tarihi"/>
+                        <TreeTableColumn fx:id="columnStatus" maxWidth="200.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Durumu"/>
+                        <TreeTableColumn fx:id="columnCourt" maxWidth="200.0" minWidth="100.0" prefWidth="150.0"
+                                         text="MahkemeAdı"/>
+                        <TreeTableColumn fx:id="columnLawsuitType" maxWidth="300.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Dava Tipi"/>
+                        <TreeTableColumn fx:id="columnAlly" maxWidth="300.0" minWidth="100.0" prefWidth="175.0"
+                                         text="Müvekkil"/>
+                        <TreeTableColumn fx:id="columnOpponent" maxWidth="300.0" minWidth="100.0" prefWidth="175.0"
+                                         text="Karşı Taraf"/>
                     </columns>
                 </JFXTreeTableView>
             </children>

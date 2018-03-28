@@ -49,7 +49,7 @@ public class MainClass extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
         Scene scene = new Scene(root);
         arg0.setScene(scene);
-        arg0.setTitle("HBO");
+        arg0.setTitle("Hukuk Bürosu Otomasyonu");
         arg0.setWidth(1200);
         arg0.setHeight(700);
         arg0.setResizable(false);

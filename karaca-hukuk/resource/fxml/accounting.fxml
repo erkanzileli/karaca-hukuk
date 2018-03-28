@@ -4,54 +4,58 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountingController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountingController">
     <children>
         <AnchorPane prefHeight="700.0" prefWidth="1000.0">
             <children>
+                <Label layoutX="25.0" layoutY="50.0" text="Yaklaşan Ödemeler">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="780.0" layoutY="50.0" prefHeight="30.0"
+                              prefWidth="150.0" promptText="Arama Kelimesi"/>
+                <JFXButton fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0"
+                           layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" size="19"/>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnCreate" focusTraversable="false" layoutX="600.0" layoutY="50.0" onAction="#create"
+                           prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #9FA8DA;"
+                           text="Yeni Ödeme Kaydı">
+                    <font>
+                        <Font size="13.0"/>
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView glyphName="PLUS" size="20"/>
+                    </graphic>
+                </JFXButton>
                 <JFXTreeTableView fx:id="tableView" layoutX="25.0" layoutY="100.0" prefHeight="550.0" prefWidth="950.0">
                     <columns>
-                        <TreeTableColumn fx:id="columnDate" maxWidth="150.0" prefWidth="100.0" text="Tarih" />
-                        <TreeTableColumn fx:id="columnCustomer" maxWidth="150.0" prefWidth="90.0" text="Müşteri Adı" />
-                        <TreeTableColumn fx:id="columnLawsuitNumber" maxWidth="200.0" prefWidth="110.0" text="Dava Numarası" />
-                        <TreeTableColumn fx:id="columnAmount" maxWidth="300.0" prefWidth="100.0" text="Tutar" />
+                        <TreeTableColumn fx:id="columnDate" maxWidth="150.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Tarih"/>
+                        <TreeTableColumn fx:id="columnCustomer" maxWidth="300.0" minWidth="100.0" prefWidth="200.0"
+                                         text="Müşteri Adı"/>
+                        <TreeTableColumn fx:id="columnLawsuitNumber" maxWidth="200.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Dava Numarası"/>
+                        <TreeTableColumn fx:id="columnStatus" maxWidth="200.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Durum"/>
+                        <TreeTableColumn fx:id="columnPaidAmount" maxWidth="200.0" minWidth="100.0" prefWidth="150.0"
+                                         text="Ödenen Tutar"/>
+                        <TreeTableColumn fx:id="columnRemainingAmount" maxWidth="200.0" minWidth="100.0"
+                                         prefWidth="150.0" text="Kalan Tutar"/>
                     </columns>
                 </JFXTreeTableView>
-                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="780.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" promptText="Arama Kelimesi" />
-                <JFXButton fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0" layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView glyphName="SEARCH" size="19" />
-               </graphic></JFXButton>
-            <JFXButton fx:id="btnCreate" focusTraversable="false" layoutX="450.0" layoutY="50.0" onAction="#create" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #9FA8DA;" text="Yeni Ödeme Kaydı">
-               <graphic>
-                  <MaterialDesignIconView glyphName="PLUS_CIRCLE_OUTLINE" size="20" />
-               </graphic>
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </JFXButton>
-                <JFXButton fx:id="btnPay" focusTraversable="false" layoutX="625.0" layoutY="50.0" onAction="#pay" prefHeight="30.0" style="-fx-background-color: #9FA8DA;" text="Ödeme Al">
-                    <graphic>
-                        <MaterialDesignIconView glyphName="NOTE_PLUS_OUTLINE" size="20" />
-                    </graphic>
-               <font>
-                  <Font size="13.0" />
-               </font>
-                </JFXButton>
-            <Label layoutX="25.0" layoutY="50.0" text="Yaklaşan Ödemeler">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
             </children>
         </AnchorPane>
     </children>

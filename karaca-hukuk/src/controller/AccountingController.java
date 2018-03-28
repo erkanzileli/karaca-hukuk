@@ -1,14 +1,15 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,13 +47,18 @@ public class AccountingController implements Initializable {
 
     @FXML
     void create(ActionEvent event) {
-
+        Parent createPayRecord = null;
+        try {
+            createPayRecord = FXMLLoader.load(getClass().getResource("/fxml/createPayRecord.fxml"));
+        } catch (IOException ignored) {
+            System.out.println(ignored.getMessage());
+        }
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setBody(createPayRecord);
+        JFXDialog dialog = new JFXDialog(root, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialog.show();
     }
 
-    @FXML
-    void pay(ActionEvent event) {
-
-    }
 
     @FXML
     void search(ActionEvent event) {
