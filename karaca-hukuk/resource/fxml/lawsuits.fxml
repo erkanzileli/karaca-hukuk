@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #C5CAE9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LawsuitsController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LawsuitsController">
     <children>
         <AnchorPane prefHeight="700.0" prefWidth="1000.0">
             <children>
-            <JFXButton fx:id="btnCreateLawsuit" focusTraversable="false" layoutX="825.0" layoutY="50.0" prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #9FA8DA;" text="Dava Kaydı Oluştur">
+            <Label layoutX="25.0" layoutY="50.0" text="Davalar">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnCreateLawsuit" focusTraversable="false" layoutX="430.0" layoutY="50.0" onAction="#create" prefHeight="30.0" style="-fx-background-color: #9FA8DA;" text="Dava Kaydı Oluştur">
                <graphic>
-                  <MaterialDesignIconView glyphName="PLUS" />
+                  <FontAwesomeIconView glyphName="PLUS" size="20" />
                </graphic>
             </JFXButton>
-                <JFXTreeTableView fx:id="tableViewDavalar" layoutX="300.0" layoutY="50.0" prefHeight="600.0" prefWidth="500.0">
+                <JFXButton fx:id="btnFilter" focusTraversable="false" layoutX="600.0" layoutY="50.0" onAction="#openFilterDialog" prefHeight="30.0" style="-fx-background-color: #9FA8DA;" text="Filtrele">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FILTER" size="20" />
+               </graphic>
+                </JFXButton>
+            <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="775.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" promptText="Arama Kelimesi" />
+            <JFXButton fx:id="btnSearch" contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0" layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="SEARCH" size="19" />
+               </graphic>
+            </JFXButton>
+                <JFXTreeTableView fx:id="tableViewDavalar" layoutX="25.0" layoutY="100.0" prefHeight="550.0" prefWidth="950.0">
                     <columns>
-                        <TreeTableColumn fx:id="columnAcilisTarihi" maxWidth="150.0" prefWidth="100.0" text="Açılış Tarihi" />
-                        <TreeTableColumn fx:id="columnDurumu" maxWidth="150.0" prefWidth="90.0" text="Durumu" />
-                        <TreeTableColumn fx:id="columnMahkemeAdi" maxWidth="200.0" prefWidth="110.0" text="MahkemeAdı" />
-                        <TreeTableColumn fx:id="columnMuvekkilAdi" maxWidth="300.0" prefWidth="100.0" text="Müvekkil" />
-                        <TreeTableColumn fx:id="columnKarsiTaraf" maxWidth="300.0" prefWidth="100.0" text="Karşı Taraf" />
+                        <TreeTableColumn fx:id="columnBeginDate" maxWidth="150.0" minWidth="50.0" prefWidth="150.0" text="Açılış Tarihi" />
+                        <TreeTableColumn fx:id="columnStatus" maxWidth="200.0" minWidth="100.0" prefWidth="150.0" text="Durumu" />
+                        <TreeTableColumn fx:id="columnCourt" maxWidth="200.0" minWidth="100.0" prefWidth="150.0" text="MahkemeAdı" />
+                  <TreeTableColumn fx:id="columnLawsuitType" maxWidth="300.0" minWidth="100.0" prefWidth="150.0" text="Dava Tipi" />
+                        <TreeTableColumn fx:id="columnAlly" maxWidth="300.0" minWidth="100.0" prefWidth="175.0" text="Müvekkil" />
+                        <TreeTableColumn fx:id="columnOpponent" maxWidth="300.0" minWidth="100.0" prefWidth="175.0" text="Karşı Taraf" />
                     </columns>
                 </JFXTreeTableView>
-                <Label alignment="CENTER" layoutX="50.0" layoutY="50.0" prefHeight="30.0" prefWidth="200.0" text="Filtreleme Seçenekleri" />
-                <Label layoutX="35.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" text="Açılış Tarihi" />
-                <JFXDatePicker fx:id="dateStart" layoutX="35.0" layoutY="125.0" prefHeight="30.0" prefWidth="115.0" />
-                <JFXDatePicker fx:id="dateEnd" layoutX="150.0" layoutY="125.0" prefHeight="30.0" prefWidth="115.0" />
-                <Label layoutX="35.0" layoutY="175.0" prefHeight="30.0" prefWidth="75.0" text="Durumu:" />
-                <JFXComboBox fx:id="comboBoxStatus" focusColor="#009688" layoutX="100.0" layoutY="175.0" prefHeight="30.0" prefWidth="150.0" />
-                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="35.0" layoutY="250.0" prefHeight="30.0" prefWidth="220.0" promptText="Arama Kelimesi" />
-                <JFXButton fx:id="btnSearch" defaultButton="true" layoutX="100.0" layoutY="300.0" onAction="#listDetails" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #9FA8DA;" text="Ara" />
-                <Line endX="250.0" endY="650.0" layoutX="25.0" startX="250.0" startY="50.0" />
-
             </children>
         </AnchorPane>
     </children>

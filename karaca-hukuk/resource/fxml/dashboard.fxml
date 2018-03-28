@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #C5CAE9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="contentRoot" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <Pane layoutX="700.0" prefHeight="700.0" prefWidth="300.0">
+            <Pane prefHeight="200.0" prefWidth="1000.0">
                <children>
-                  <Label alignment="CENTER" layoutY="25.0" prefHeight="25.0" prefWidth="300.0" text="Yaklaşan Etkinlikler">
-                     <font>
-                        <Font name="Century" size="18.0" />
-                     </font>
-                  </Label>
-                  <Line endY="600.0" startY="50.0" />
-               </children>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="700.0">
-               <children>
-                  <Label alignment="CENTER" layoutY="25.0" prefHeight="25.0" prefWidth="350.0" text="Devam Eden Davalar">
-                     <font>
-                        <Font name="Century" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="350.0" layoutY="25.0" prefHeight="25.0" prefWidth="350.0" text="Tamamlanan Davalar">
-                     <font>
-                        <Font name="Century" size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXButton alignment="CENTER" focusTraversable="false" graphicTextGap="10.0" layoutX="50.0" layoutY="75.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #9FA8DA;" text="4">
+                  <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="10.0" layoutX="50.0" layoutY="25.0" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #ffb74d;" text="4">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="CHART_ARC" size="50" />
+                        <Pane prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Devam Eden Davalar" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Century" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="15.0" layoutY="35.0" prefHeight="30.0" prefWidth="75.0" text="4">
+                                 <font>
+                                    <Font name="Century" size="48.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIconView glyphName="EXTERNAL_LINK" layoutX="100.0" layoutY="85.0" size="50" />
+                           </children>
+                        </Pane>
                      </graphic>
                   </JFXButton>
-                  <JFXButton alignment="CENTER" focusTraversable="false" graphicTextGap="10.0" layoutX="400.0" layoutY="75.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #9FA8DA;" text="2" textAlignment="RIGHT">
+                  <JFXButton alignment="CENTER" contentDisplay="TOP" focusTraversable="false" graphicTextGap="10.0" layoutX="400.0" layoutY="25.0" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #81c784;" text="2">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="CHECK" size="50" />
+                        <Pane prefHeight="28.0" prefWidth="250.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="250.0" text="Tamamlanan Davalar">
+                                 <font>
+                                    <Font name="Century" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </graphic>
                   </JFXButton>
                </children>

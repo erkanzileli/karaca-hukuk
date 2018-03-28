@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="400.0" text="Filtreler" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="50.0" prefHeight="30.0" prefWidth="400.0" text="Tarih">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="185.0" layoutY="80.0" prefHeight="25.0" prefWidth="25.0" text="-">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXDatePicker layoutX="25.0" layoutY="80.0" prefHeight="25.0" prefWidth="150.0" />
+            <JFXDatePicker layoutX="225.0" layoutY="80.0" prefHeight="25.0" prefWidth="150.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="120.0" prefHeight="30.0" prefWidth="400.0" text="Durum">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox focusColor="#009688" layoutX="25.0" layoutY="150.0" prefHeight="25.0" prefWidth="350.0" />
+         </children>
+      </Pane>
+   </children>
+</JFXDialogLayout>

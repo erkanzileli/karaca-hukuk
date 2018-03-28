@@ -19,37 +19,70 @@ public class LawsuitsController implements Initializable {
     private StackPane root;
 
     @FXML
-    private JFXTreeTableView<?> tableViewDavalar;
+    private JFXButton btnCreateLawsuit;
 
     @FXML
-    private TreeTableColumn<?, ?> columnAcilisTarihi;
-
-    @FXML
-    private TreeTableColumn<?, ?> columnDurumu;
-
-    @FXML
-    private TreeTableColumn<?, ?> columnMahkemeAdi;
-
-    @FXML
-    private TreeTableColumn<?, ?> columnMuvekkilAdi;
-
-    @FXML
-    private TreeTableColumn<?, ?> columnKarsiTaraf;
-
-    @FXML
-    private JFXDatePicker dateStart;
-
-    @FXML
-    private JFXDatePicker dateEnd;
-
-    @FXML
-    private JFXComboBox<String> comboBoxStatus;
+    private JFXButton btnFilter;
 
     @FXML
     private JFXTextField textSearch;
 
     @FXML
     private JFXButton btnSearch;
+
+    @FXML
+    private JFXTreeTableView<?> tableViewDavalar;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnBeginDate;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnStatus;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnCourt;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnLawsuitType;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnAlly;
+
+    @FXML
+    private TreeTableColumn<?, ?> columnOpponent;
+
+    @FXML
+    void create(ActionEvent event) {
+        Parent lawsuitFormDialog = null;
+        try {
+            lawsuitFormDialog = FXMLLoader.load(getClass().getResource("/fxml/createLawsuit.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        dialogLayout.setBody(lawsuitFormDialog);
+        JFXDialog dialog = new JFXDialog(root,dialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialog.show();
+    }
+
+    @FXML
+    void openFilterDialog(ActionEvent event) {
+        Parent filterDialog = null;
+        try{
+            filterDialog = FXMLLoader.load(getClass().getResource("/fxml/lawsuitFilter.fxml"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        JFXDialogLayout dialogLayout =new JFXDialogLayout();
+        dialogLayout.setBody(filterDialog);
+        JFXDialog  dialog = new JFXDialog(root,dialogLayout,JFXDialog.DialogTransition.RIGHT);
+        dialog.show();
+    }
+
+    @FXML
+    void search(ActionEvent event) {
+
+    }
 
     @FXML
     void listDetails() {
