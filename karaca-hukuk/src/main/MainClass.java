@@ -51,8 +51,6 @@ public class MainClass extends Application {
         Scene scene = new Scene(root);
         arg0.setScene(scene);
         arg0.setTitle("Hukuk Bürosu Otomasyonu");
-       // arg0.setWidth(1200);
-       // arg0.setHeight(700);
         arg0.initStyle(StageStyle.TRANSPARENT);
         arg0.setResizable(false);
         arg0.show();
