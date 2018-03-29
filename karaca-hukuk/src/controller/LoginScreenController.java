@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
@@ -22,16 +23,6 @@ public class LoginScreenController {
 
     @FXML
     private PasswordField login_screen_pw_in;
-
-    @FXML
-    private JFXButton login_screen_login_btn;
-
-    @FXML
-    private JFXButton login_screen_forget_btn;
-
-    @FXML
-    private MaterialDesignIconView login_screen_close;
-
 
     @FXML
     private AnchorPane login_screen_root_pane;
@@ -62,5 +53,16 @@ public class LoginScreenController {
             login_screen_warning_lbl.setText("Lütfen girdilerinizden emin olun !");
         }
     }
+
+    @FXML
+    void forget(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sifre Hatırlatması");
+        alert.headerTextProperty().setValue("İşlem tamamlandı !!");
+        alert.setContentText("Mail adresinizi kontrol ediniz. ");
+        alert.show();
+
+    }
+
 
 }
