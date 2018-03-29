@@ -19,6 +19,15 @@ public class AccountingController implements Initializable {
     private StackPane root;
 
     @FXML
+    private JFXTextField textSearch;
+
+    @FXML
+    private JFXButton btnSearch;
+
+    @FXML
+    private JFXButton btnCreate;
+
+    @FXML
     private JFXTreeTableView<?> tableView;
 
     @FXML
@@ -31,19 +40,20 @@ public class AccountingController implements Initializable {
     private TreeTableColumn<?, ?> columnLawsuitNumber;
 
     @FXML
-    private TreeTableColumn<?, ?> columnAmount;
+    private TreeTableColumn<?, ?> columnStatus;
 
     @FXML
-    private JFXTextField textSearch;
+    private TreeTableColumn<?, ?> columnPaidAmount;
 
     @FXML
-    private JFXButton btnSearch;
+    private TreeTableColumn<?, ?> columnRemainingAmount;
+
 
     @FXML
-    private JFXButton btnCreate;
+    void search(ActionEvent event) {
 
-    @FXML
-    private JFXButton btnPay;
+    }
+
 
     @FXML
     void create(ActionEvent event) {
@@ -60,10 +70,6 @@ public class AccountingController implements Initializable {
     }
 
 
-    @FXML
-    void search(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
