@@ -1,13 +1,14 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -85,9 +86,16 @@ public class CalendarController implements Initializable {
         while (!localDate.getDayOfWeek().toString().equals("MONDAY")) {
             localDate = localDate.minusDays(1);
         }
+        LocalDate today = LocalDate.now();
         //Takvimi günlerin numaraları ile doldurma
         for (Pane allCalendarDay : allCalendarDays) {
-            allCalendarDay.getChildren().setAll(new Text(5, 90, String.valueOf(localDate.getDayOfMonth())));
+            Text text = new Text(5, 90, String.valueOf(localDate.getDayOfMonth()));
+            //bugünün yeşil yazılması
+            if (localDate.equals(today)) {
+                text.setFill(Color.GREEN);
+            }
+            text.setFont(new Font(18));
+            allCalendarDay.getChildren().setAll(text);
             localDate = localDate.plusDays(1);
         }
         lblYear.setText(String.valueOf(yearMonth.getYear()));
@@ -95,25 +103,25 @@ public class CalendarController implements Initializable {
     }
 
     @FXML
-    void minusMonth(ActionEvent event) {
+    void minusMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
         updateCalendar(currentYearMonth);
     }
 
     @FXML
-    void minusYear(ActionEvent event) {
+    void minusYear() {
         currentYearMonth = currentYearMonth.minusYears(1);
         updateCalendar(currentYearMonth);
     }
 
     @FXML
-    void plusMonth(ActionEvent event) {
+    void plusMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
         updateCalendar(currentYearMonth);
     }
 
     @FXML
-    void plusYear(ActionEvent event) {
+    void plusYear() {
         currentYearMonth = currentYearMonth.plusYears(1);
         updateCalendar(currentYearMonth);
     }
