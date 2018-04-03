@@ -62,6 +62,8 @@ public class LawsuitsController implements Initializable {
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setBody(lawsuitFormDialog);
         JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialog.setOverlayClose(false);
+        CreateLawsuitController.fxd=dialog;
         dialog.show();
     }
 

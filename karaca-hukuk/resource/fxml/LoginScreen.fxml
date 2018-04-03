@@ -10,11 +10,11 @@
 
 <AnchorPane fx:id="login_screen_root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" style="-fx-background-color: #2A2C37; -fx-border-color: #efefef; -fx-border-radius: 0.5em; -fx-background-radius: 0.5em; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <children>
-      <JFXTextField fx:id="login_screen_un_in" alignment="TOP_CENTER" focusColor="WHITE" focusTraversable="false" layoutX="105.0" layoutY="144.0" prefHeight="30.0" prefWidth="200.0" promptText="KullanıcıAdı" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" unFocusColor="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="144.0">
+      <JFXTextField fx:id="login_screen_un_in" alignment="TOP_CENTER" focusColor="WHITE" layoutX="105.0" layoutY="144.0" prefHeight="30.0" prefWidth="200.0" promptText="KullanıcıAdı" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" text="admin" unFocusColor="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="144.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXTextField>
-      <JFXPasswordField fx:id="login_screen_pw_in" alignment="TOP_CENTER" focusTraversable="false" layoutX="105.0" layoutY="194.0" prefHeight="30.0" prefWidth="200.0" promptText="Sifre" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="194.0">
+      <JFXPasswordField fx:id="login_screen_pw_in" alignment="TOP_CENTER" layoutX="105.0" layoutY="194.0" prefHeight="30.0" prefWidth="200.0" promptText="Sifre" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" text="admin" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="194.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
