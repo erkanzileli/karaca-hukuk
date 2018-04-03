@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.CalendarPaneModel;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -43,7 +43,7 @@ public class CalendarController implements Initializable {
     @FXML
     private JFXButton btnForwardMonth;
 
-    private ArrayList<Pane> allCalendarDays = new ArrayList<>(35);
+    private ArrayList<CalendarPaneModel> allCalendarDays = new ArrayList<>(35);
 
     private YearMonth currentYearMonth;
     private HashMap<Integer, String> months;
@@ -72,7 +72,7 @@ public class CalendarController implements Initializable {
         //GridPane içine  35 adet Pane yerleştirme
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
-                Pane pane = new Pane();
+                CalendarPaneModel pane = new CalendarPaneModel();
                 pane.setPrefSize(130, 120);
                 calendarGridPane.add(pane, j, i);
                 allCalendarDays.add(pane);
@@ -88,14 +88,18 @@ public class CalendarController implements Initializable {
         }
         LocalDate today = LocalDate.now();
         //Takvimi günlerin numaraları ile doldurma
-        for (Pane allCalendarDay : allCalendarDays) {
+        for (CalendarPaneModel pane : allCalendarDays) {
             Text text = new Text(5, 90, String.valueOf(localDate.getDayOfMonth()));
             //bugünün yeşil yazılması
             if (localDate.equals(today)) {
                 text.setFill(Color.GREEN);
             }
             text.setFont(new Font(18));
-            allCalendarDay.getChildren().setAll(text);
+            pane.getChildren().setAll(text);
+            pane.setDay(localDate.getDayOfMonth());
+            pane.setOnMouseClicked(e -> {
+                System.out.println(pane.getDay());
+            });
             localDate = localDate.plusDays(1);
         }
         lblYear.setText(String.valueOf(yearMonth.getYear()));
