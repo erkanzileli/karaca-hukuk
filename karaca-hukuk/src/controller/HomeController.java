@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.YearMonth;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -87,7 +88,14 @@ public class HomeController implements Initializable {
 
     @FXML
     void showDiary(ActionEvent event) {
-
+        Parent diary = null;
+        try {
+            diary = FXMLLoader.load(getClass().getResource("/fxml/diary.fxml"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        root.setCenter(diary);
+        System.gc();
     }
 
     @Override

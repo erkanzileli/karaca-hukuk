@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<JFXDialogLayout fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<JFXDialogLayout fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="500.0" prefWidth="800.0">
          <children>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="800.0" text="Yeni Ödeme Kaydı Oluşturun">
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="400.0" text="Yeni Ödeme Kaydı Oluşturun">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField alignment="CENTER" focusColor="#4d4d4d" labelFloat="true" layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="350.0" promptText="Müşteri Adı">
                <font>
                   <Font size="18.0" />
                </font>
-            </Label>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" focusColor="#4d4d4d" labelFloat="true" layoutX="25.0" layoutY="150.0" prefHeight="25.0" prefWidth="350.0" promptText="Taksit Sayısı">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" focusColor="#4d4d4d" labelFloat="true" layoutX="25.0" layoutY="225.0" prefColumnCount="2" prefHeight="30.0" prefWidth="350.0" promptText="Ödeme Günü">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" focusColor="#4d4d4d" labelFloat="true" layoutX="25.0" layoutY="300.0" prefColumnCount="15" prefHeight="30.0" prefWidth="350.0" promptText="Tutar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="225.0" layoutY="400.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #9FA8DA;" text="Kaydet" />
          </children>
       </Pane>
    </children>

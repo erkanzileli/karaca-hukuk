@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane fx:id="contentRoot" prefHeight="700.0" prefWidth="1000.0">
+        <Pane fx:id="contentRoot" prefHeight="650.0" prefWidth="1000.0">
             <children>
                 <Pane layoutY="50.0" prefHeight="325.0" prefWidth="350.0">
                     <children>
@@ -59,7 +62,36 @@
                         </JFXButton>
                     </children>
                 </Pane>
-                <Pane layoutX="650.0" layoutY="50.0" prefHeight="650.0" prefWidth="350.0" />
+                <Pane layoutX="350.0" layoutY="50.0" prefHeight="325.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="TOP_LEFT" layoutX="25.0" prefHeight="50.0" prefWidth="200.0" text="Bildirimler">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ListView layoutX="25.0" layoutY="50.0" prefHeight="275.0" prefWidth="550.0" />
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="10.0" layoutX="500.0" prefHeight="50.0" prefWidth="75.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="REFRESH" size="40" />
+                     </graphic>
+                  </JFXButton>
+               </children></Pane>
+            <Pane layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
+               <children>
+                  <Label layoutX="50.0" prefHeight="50.0" prefWidth="201.0" text="En Son Ajanda Etkinlikleri">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXTreeTableView layoutX="50.0" layoutY="50.0" prefHeight="175.0" prefWidth="900.0">
+                     <columns>
+                        <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Tarih" />
+                        <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Başlık" />
+                        <TreeTableColumn maxWidth="300.0" minWidth="500.0" prefWidth="500.0" text="İçerik" />
+                     </columns>
+                  </JFXTreeTableView>
+               </children>
+            </Pane>
             </children>
         </Pane>
     </children>
