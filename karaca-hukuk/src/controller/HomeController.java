@@ -13,7 +13,6 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.YearMonth;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -82,8 +81,15 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void showCompanyManagement(ActionEvent event) {
-
+    void showReporting(ActionEvent event) {
+        Parent reporting = null;
+        try {
+            reporting = FXMLLoader.load(getClass().getResource("/fxml/reporting.fxml"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        root.setCenter(reporting);
+        System.gc();
     }
 
     @FXML
