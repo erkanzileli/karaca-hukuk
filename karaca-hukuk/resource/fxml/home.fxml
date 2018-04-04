@@ -37,7 +37,7 @@
                         <Insets left="15.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="232.0" onAction="#showAccounting" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Muhasebe" textFill="WHITE">
+                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="232.0" onAction="#showCustomers" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Müşteriler" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -48,7 +48,7 @@
                         <Insets left="15.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="314.0" onAction="#showReporting" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Şirket Yönetimi" textFill="WHITE">
+                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="273.0" onAction="#showReporting" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Raporlar" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -56,7 +56,7 @@
                         <OctIconView fill="WHITE" glyphName="SETTINGS" size="25" />
                     </graphic>
                 </JFXButton>
-                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="273.0" onAction="#showDiary" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Ajandam" textFill="WHITE">
+                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="314.0" onAction="#showDiary" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Ajandam" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>

@@ -57,14 +57,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void showAccounting() {
-        Parent accounting = null;
+    void showCustomers() {
+        Parent customers = null;
         try {
-            accounting = FXMLLoader.load(getClass().getResource("/fxml/accounting.fxml"));
+            customers = FXMLLoader.load(getClass().getResource("/fxml/customers.fxml"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(accounting);
+        root.setCenter(customers);
         System.gc();
     }
     
