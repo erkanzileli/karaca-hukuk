@@ -93,6 +93,18 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    void showProfile(){
+        Parent profile = null;
+        try {
+            profile = FXMLLoader.load(getClass().getResource("/fxml/profile.fxml"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        root.setCenter(profile);
+        System.gc();
+    }
+
+    @FXML
     void showDiary(ActionEvent event) {
         Parent diary = null;
         try {

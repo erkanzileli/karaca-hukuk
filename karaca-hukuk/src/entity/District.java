@@ -17,6 +17,9 @@ public class District {
     @Column(name = "isim")
     private String isim;
 
+    @Column(name = "il")
+    private String il;
+
     public District() {
     }
 
@@ -47,5 +50,13 @@ public class District {
 
     public void setIsim(String isim) {
         this.isim = isim;
+    }
+
+    public String getIl() {
+        return il;
+    }
+
+    public void setIl(String il) {
+        this.il = il;
     }
 }

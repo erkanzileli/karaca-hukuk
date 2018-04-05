@@ -93,8 +93,10 @@ public class CalendarController implements Initializable {
             //bugünün yeşil yazılması
             if (localDate.equals(today)) {
                 text.setFill(Color.GREEN);
+                text.setFont(new Font(26));
+            }else{
+                text.setFont(new Font(20));
             }
-            text.setFont(new Font(18));
             pane.getChildren().setAll(text);
             pane.setDay(localDate.getDayOfMonth());
             pane.setOnMouseClicked(e -> {

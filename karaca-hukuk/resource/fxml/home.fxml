@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,8 +13,8 @@
     <left>
         <Pane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" BorderPane.alignment="CENTER">
             <children>
-                <FontAwesomeIconView fill="#e8e8e8" fontSmoothingType="LCD" glyphName="USER" layoutX="75.0" layoutY="100.0" size="75" />
-                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="150.0" onAction="#showDashboard" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599; -fx-background-radius: 0;" text="Anasayfa" textFill="WHITE">
+                <FontAwesomeIconView fill="#e8e8e8" fontSmoothingType="LCD" glyphName="USER" layoutX="75.0" layoutY="100.0" onMouseClicked="#showProfile" size="75" />
+                <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="150.0" onAction="#showDashboard" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Anasayfa" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -41,20 +40,23 @@
                     <font>
                         <Font size="18.0" />
                     </font>
-                    <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CASH_MULTIPLE" size="25" />
-                    </graphic>
                     <padding>
                         <Insets left="15.0" />
                     </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="25" />
+               </graphic>
                 </JFXButton>
                 <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="273.0" onAction="#showReporting" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Raporlar" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
-                    <graphic>
-                        <OctIconView fill="WHITE" glyphName="SETTINGS" size="25" />
-                    </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="FILE_DOCUMENT" size="25" />
+               </graphic>
                 </JFXButton>
                 <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="314.0" onAction="#showDiary" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Ajandam" textFill="WHITE">
                     <font>
@@ -63,6 +65,9 @@
                     <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="25" />
                     </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
                 </JFXButton>
                 <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="360.0" onAction="#powerOff" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Çıkış" textFill="WHITE">
                     <font>
@@ -71,6 +76,9 @@
                     <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25" />
                     </graphic>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
                 </JFXButton>
             </children>
             <effect>
