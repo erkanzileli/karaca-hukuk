@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="login_screen_root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" style="-fx-background-color: #2A2C37; -fx-border-color: #efefef; -fx-border-radius: 0.5em; -fx-background-radius: 0.5em; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
+   <children>
+      <JFXTextField fx:id="login_screen_un_in" alignment="TOP_CENTER" focusColor="WHITE" layoutX="105.0" layoutY="144.0" prefHeight="30.0" prefWidth="200.0" promptText="KullanıcıAdı" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" text="admin" unFocusColor="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="144.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></JFXTextField>
+      <JFXPasswordField fx:id="login_screen_pw_in" alignment="TOP_CENTER" layoutX="105.0" layoutY="194.0" prefHeight="30.0" prefWidth="200.0" promptText="Sifre" style="-fx-border-color: #efefef; -fx-background-color: #efefef;" text="admin" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="194.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <MaterialDesignIconView fill="#dddddd" glyphName="LOCK" layoutX="182.0" layoutY="114.0" size="45" />
+      <MaterialDesignIconView fill="#cdcdcd" glyphName="ACCOUNT" layoutX="66.0" layoutY="165.0" size="24" AnchorPane.topAnchor="144.0" />
+      <MaterialDesignIconView fill="#d0d0d0" glyphName="KEY" layoutX="66.0" layoutY="215.0" size="24" AnchorPane.topAnchor="194.0" />
+      <JFXButton fx:id="login_screen_login_btn" buttonType="RAISED" focusTraversable="false" layoutX="120.0" layoutY="248.0" onAction="#login" prefHeight="32.0" prefWidth="170.0" style="-fx-border-color: #efefef; -fx-background-radius: 2em; -fx-border-radius: 2em;" text="GIRIS YAP" textFill="#cdcdcd" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="login_screen_forget_btn" buttonType="RAISED" focusTraversable="false" layoutX="109.0" layoutY="294.0" onAction="#forget" prefHeight="24.0" prefWidth="190.0" style="-fx-border-color: #efefef; -fx-border-radius: 2em; -fx-background-radius: 2em;" text="Sifreni hatırlat !" textFill="#cdcdcd" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="121.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="74.0" layoutY="32.0" prefHeight="27.0" prefWidth="264.0" text="KARACA HUKUK BÜROSU" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="66.0">
+         <font>
+            <Font name="Arial Black" size="17.0" />
+         </font>
+      </Label>
+      <MaterialDesignIconView fx:id="login_screen_close" fill="WHITE" glyphName="CLOSE_BOX_OUTLINE" layoutX="374.0" layoutY="25.0" onMouseClicked="#exit" size="20" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+      <Label fx:id="login_screen_warning_lbl" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="237.0" textAlignment="CENTER" textFill="#eb1a1a" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

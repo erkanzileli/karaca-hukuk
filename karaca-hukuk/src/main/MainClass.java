@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Stack;
 
@@ -46,12 +47,11 @@ public class MainClass extends Application {
         System.gc();
         */
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
         Scene scene = new Scene(root);
         arg0.setScene(scene);
         arg0.setTitle("Hukuk Bürosu Otomasyonu");
-        arg0.setWidth(1200);
-        arg0.setHeight(700);
+        arg0.initStyle(StageStyle.TRANSPARENT);
         arg0.setResizable(false);
         arg0.show();
     }
