@@ -11,11 +11,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CreateLawsuitController implements Initializable {
     public static JFXDialog fxd;
@@ -58,6 +61,9 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     private JFXTextField name;
+
+    @FXML
+    private Label uyari;
 
     @FXML
     private JFXTextField numara;
@@ -151,8 +157,27 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     void search_customer() {
+        if(kimlikNo.getText().equals("12345678910")){
+        name.setText("admin");
+        numara.setText("10");
+        adress.setText("Namık Kemal Universitesi");
+        }else {
+
+            uyari.setVisible(true);
+            uyari.setText("-->  BULUNAMADI ");
+            Timer timer=new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    uyari.setVisible(false);
+                }
+            },3000);
+        }
+
+
 
     }
+
 
     @FXML
     void submit() {
@@ -194,10 +219,12 @@ public class CreateLawsuitController implements Initializable {
             tg.setUserData("tgId"+i);
             JFXRadioButton rbE=new JFXRadioButton();
             rbE.setLayoutX(525);
+            rbE.setStyle("-jfx-selected-color : #9fa8da");
             rbE.setUserData("rbE"+i);
             rbE.setToggleGroup(tg);
             JFXRadioButton rbH=new JFXRadioButton();
             rbH.setLayoutX(560);
+            rbH.setStyle("-jfx-selected-color : #9fa8da");
             rbH.setUserData("rbH"+i);
             rbH.setToggleGroup(tg);
 
@@ -219,8 +246,16 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     void toogle() {
-        System.out.println(
-                t1.getSelectedToggle().getUserData().toString());
+        if (t1.getSelectedToggle().getUserData().toString().equals("davalıId")){
+            cleanInput();
+            complainant_name.setText(name.getText().toString());
+            complainant_adress.setText(adress.getText().toString());
+            complainant_no.setText(numara.getText().toString());
+        }else if (t1.getSelectedToggle().getUserData().toString().equals("davacıId")){
+            defandant_name.setText(name.getText().toString());
+            defandant_adress.setText(adress.getText().toString());
+            defandant_no.setText(numara.getText().toString());
+        }
 
     }
 
