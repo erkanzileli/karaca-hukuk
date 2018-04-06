@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class CalendarController implements Initializable {
+public class DiaryController implements Initializable {
 
     @FXML
     private StackPane root;
@@ -94,7 +94,7 @@ public class CalendarController implements Initializable {
             if (localDate.equals(today)) {
                 text.setFill(Color.GREEN);
                 text.setFont(new Font(26));
-            }else{
+            } else {
                 text.setFont(new Font(20));
             }
             pane.getChildren().setAll(text);
