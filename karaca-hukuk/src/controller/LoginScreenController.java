@@ -43,10 +43,9 @@ public class LoginScreenController {
             Scene scene=new Scene(root);
             Stage stage= (Stage) login_screen_root_pane.getScene().getWindow();
             stage.setWidth(1200);
-            stage.setHeight(700);
+            stage.setHeight(650);
             stage.centerOnScreen();
             stage.setScene(scene);
-
         }
         else {
             login_screen_root_pane.setStyle("-fx-border-color : red ; -fx-background-color :  #2A2C37 ; -fx-border-radius : 0.5em ; -fx-background-radius : 0.5em ; -fx-border-width : 2 ; ");

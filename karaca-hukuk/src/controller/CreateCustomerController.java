@@ -186,6 +186,5 @@ public class CreateCustomerController implements Initializable {
     @FXML
     public void closeDialog() {
         CustomerController.createCustomerDialog.close();
-
     }
 }

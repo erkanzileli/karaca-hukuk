@@ -1,8 +1,12 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -11,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.CalendarPaneModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -100,7 +105,16 @@ public class DiaryController implements Initializable {
             pane.getChildren().setAll(text);
             pane.setDay(localDate.getDayOfMonth());
             pane.setOnMouseClicked(e -> {
-                System.out.println(pane.getDay());
+                Parent createDiaryRecord = null;
+                try {
+                    createDiaryRecord = FXMLLoader.load(getClass().getResource("/fxml/createDiaryRecord.fxml"));
+                } catch (IOException ignored) {
+                    System.out.println(ignored.getMessage());
+                }
+                JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+                jfxDialogLayout.setBody(createDiaryRecord);
+                JFXDialog dialog = new JFXDialog(root, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+                dialog.show();
             });
             localDate = localDate.plusDays(1);
         }
