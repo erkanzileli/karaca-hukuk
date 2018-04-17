@@ -1,6 +1,7 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,16 +20,10 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
-    private JFXButton btnDashboard;
+    private BorderPane borderPane;
 
     @FXML
-    private BorderPane root;
-
-    @FXML
-    private JFXButton btnLawsuits;
-
-    @FXML
-    private Pane paneCenter;
+    private StackPane root;
 
     @FXML
     void showLawsuits() {
@@ -38,7 +33,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        root.setCenter(lawsuits);
+        borderPane.setCenter(lawsuits);
         System.gc();
         //paneCenter.getChildren().setAll(lawsuits);
     }
@@ -51,7 +46,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(dashboard);
+        borderPane.setCenter(dashboard);
         System.gc();
         //paneCenter.getChildren().setAll(dashboard);
     }
@@ -64,10 +59,10 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(customers);
+        borderPane.setCenter(customers);
         System.gc();
     }
-    
+
     @FXML
     void powerOff(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -88,19 +83,33 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(reporting);
+        borderPane.setCenter(reporting);
         System.gc();
     }
 
     @FXML
-    void showProfile(){
+    void showProfile() {
         Parent profile = null;
         try {
             profile = FXMLLoader.load(getClass().getResource("/fxml/profile.fxml"));
+        } catch (IOException ignored) {
+            System.out.println(ignored.getMessage());
+        }
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setBody(profile);
+        JFXDialog dialog = new JFXDialog(root, jfxDialogLayout, JFXDialog.DialogTransition.LEFT);
+        dialog.show();
+    }
+
+    @FXML
+    public void showEmployees() {
+        Parent employees = null;
+        try {
+            employees = FXMLLoader.load(getClass().getResource("/fxml/employees.fxml"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(profile);
+        borderPane.setCenter(employees);
         System.gc();
     }
 
@@ -112,7 +121,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        root.setCenter(diary);
+        borderPane.setCenter(diary);
         System.gc();
     }
 

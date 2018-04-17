@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportingController">
    <children>
       <Pane prefHeight="650.0" prefWidth="1000.0">
          <children>
-            <PieChart fx:id="pieChart" layoutX="500.0" layoutY="50.0" prefHeight="400.0" prefWidth="500.0" />
+            <Label layoutX="25.0" layoutY="25.0" text="Sistem Raporu">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <PieChart fx:id="pieChart" layoutX="525.0" layoutY="75.0" prefHeight="400.0" prefWidth="450.0" />
+            <LineChart fx:id="lineChart" animated="false" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="500.0" title="Zamana Bağlı İstatistikler">
+              <xAxis>
+                <NumberAxis fx:id="axisX" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="axisY" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <JFXCheckBox fx:id="checkLawsuits" checkedColor="#9fa8da" focusTraversable="false" layoutX="50.0" layoutY="525.0" onAction="#setCheckLawsuits" prefWidth="100.0" text="Davalar" />
+            <JFXCheckBox fx:id="checkIncoming" checkedColor="#9fa8da" focusTraversable="false" layoutX="150.0" layoutY="525.0" onAction="#setCheckIncoming" prefWidth="100.0" text="Gelir" />
+            <JFXCheckBox fx:id="checkCustomers" checkedColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="525.0" onAction="#setCheckCustomers" prefWidth="100.0" text="Müşteriler" />
          </children></Pane>
    </children>
 </StackPane>

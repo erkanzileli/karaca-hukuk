@@ -8,92 +8,62 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfileController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfileController">
     <children>
         <Label layoutX="25.0" layoutY="25.0" text="Kişisel Bilgileriniz">
             <font>
                 <Font size="30.0" />
             </font>
         </Label>
-        <Label layoutX="50.0" layoutY="125.0" text="Ad">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label layoutX="550.0" layoutY="125.0" text="Soyad">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label layoutX="50.0" layoutY="210.0" text="T.C.">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label layoutX="50.0" layoutY="295.0" text="Eski Şifre">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label fx:id="root" layoutX="550.0" layoutY="210.0" text="E-Posta">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <JFXToggleButton fx:id="toggleReplaceMode" contentDisplay="RIGHT" layoutX="750.0" onAction="#toggleReplace" prefWidth="250.0" size="15.0" text="Düzenleme Modu" toggleColor="#9fa8da" toggleLineColor="#9fa8da">
+        <JFXToggleButton fx:id="toggleReplaceMode" contentDisplay="RIGHT" focusTraversable="false" layoutX="300.0" onAction="#toggleReplace" prefWidth="250.0" size="15.0" text="Düzenleme Modu" toggleColor="#9fa8da" toggleLineColor="#9fa8da">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXToggleButton>
-        <JFXTextField fx:id="txtName" focusColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="115.0" prefWidth="225.0">
+        <JFXTextField fx:id="txtName" focusColor="#9fa8da" focusTraversable="false" layoutX="50.0" layoutY="115.0" prefWidth="200.0" promptText="Ad">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <JFXTextField fx:id="txtSurname" focusColor="#9fa8da" focusTraversable="false" layoutX="700.0" layoutY="115.0" prefWidth="200.0">
+        <JFXTextField fx:id="txtSurname" focusColor="#9fa8da" focusTraversable="false" layoutX="300.0" layoutY="115.0" prefWidth="200.0" promptText="Soyad">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <JFXTextField fx:id="txtTC" focusColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="200.0" prefWidth="225.0">
+        <JFXTextField fx:id="txtTC" focusColor="#9fa8da" focusTraversable="false" layoutX="50.0" layoutY="200.0" prefWidth="200.0" promptText="T.C.">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <Label layoutX="50.0" layoutY="390.0" text="Yeni Şifre">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label layoutX="50.0" layoutY="480.0" text="Yeni Şifre Tekar">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="txtEmail" focusColor="#9fa8da" focusTraversable="false" layoutX="700.0" layoutY="200.0" prefWidth="200.0">
+        <JFXTextField fx:id="txtEmail" focusColor="#9fa8da" focusTraversable="false" layoutX="300.0" layoutY="200.0" prefWidth="200.0" promptText="E-Posta">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXTextField>
-        <JFXPasswordField fx:id="txtOldPasswd" focusColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="285.0" prefWidth="225.0">
+        <JFXPasswordField fx:id="txtOldPasswd" focusColor="#9fa8da" focusTraversable="false" layoutX="300.0" layoutY="285.0" prefWidth="200.0" promptText="Eski Şifre">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXPasswordField>
-        <JFXPasswordField fx:id="txtNewPasswd" focusColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="380.0" prefWidth="225.0">
+        <JFXPasswordField fx:id="txtNewPasswd" focusColor="#9fa8da" focusTraversable="false" layoutX="50.0" layoutY="380.0" prefWidth="200.0" promptText="Yeni Şifre">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXPasswordField>
-        <JFXPasswordField fx:id="txtNewPasswdAgain" focusColor="#9fa8da" focusTraversable="false" layoutX="250.0" layoutY="470.0" prefWidth="225.0">
+        <JFXPasswordField fx:id="txtNewPasswdAgain" focusColor="#9fa8da" focusTraversable="false" layoutX="300.0" layoutY="380.0" prefWidth="200.0" promptText="Yeni Şifre Tekar">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXPasswordField>
-        <JFXButton fx:id="btnSave" focusTraversable="false" layoutX="750.0" layoutY="600.0" onAction="#save" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #9FA8DA;" text="Kaydet">
+        <JFXButton fx:id="btnSave" focusTraversable="false" layoutX="300.0" layoutY="470.0" onAction="#save" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #9FA8DA;" text="Kaydet">
             <font>
                 <Font size="18.0" />
             </font>
         </JFXButton>
+      <JFXTextField fx:id="txtEmail1" focusColor="#9fa8da" focusTraversable="false" layoutX="50.0" layoutY="285.0" prefWidth="200.0" promptText="Telefon Numarası">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXTextField>
     </children>
 </Pane>
