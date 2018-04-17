@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LawsuitsController implements Initializable {
+
     public static BorderPane rootpane;
 
 
@@ -81,7 +82,7 @@ public class LawsuitsController implements Initializable {
     }
 
     @FXML
-    void listDetails() {
+    void search() {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(getClass().getResource("/fxml/lawsuitsDetails.fxml"));
