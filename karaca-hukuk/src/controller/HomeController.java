@@ -38,6 +38,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LawsuitsController.rootpane=root;
         root.setCenter(lawsuits);
         System.gc();
         //paneCenter.getChildren().setAll(lawsuits);

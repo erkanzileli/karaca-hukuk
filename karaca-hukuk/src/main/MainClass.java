@@ -10,24 +10,8 @@ import javafx.stage.StageStyle;
 import java.util.Stack;
 
 public class MainClass extends Application {
-
-    private static Stage primaryStage;
-
-    private static Stack<Scene> listOfScenes = new Stack<>();
-
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public static void closeAndReturnLast() {
-        listOfScenes.pop();
-        System.gc();
-        primaryStage.setScene(listOfScenes.peek());
-    }
-
-    public static void createNew(Scene scene) {
-        primaryStage.setScene(scene);
-        listOfScenes.push(scene);
     }
 
     @Override

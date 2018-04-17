@@ -43,5 +43,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <Label fx:id="afterDialog" layoutX="305.0" layoutY="188.0" prefHeight="30.0" prefWidth="34.0" textAlignment="CENTER" textFill="#e4dddd">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
