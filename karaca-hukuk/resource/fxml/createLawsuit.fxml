@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXDialogLayout?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
@@ -16,15 +15,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<JFXDialogLayout maxHeight="700.0" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateLawsuitController">
+<StackPane fx:id="rootStack" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateLawsuitController">
    <children>
       <AnchorPane fx:id="createLawsuit_basePane">
          <children>
-            <FontAwesomeIconView fx:id="create_lawsuit_screen_close" glyphName="CLOSE" layoutX="969.0" layoutY="30.0" onMouseClicked="#closeCreateLawsuit" size="24" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-            <JFXToggleButton fx:id="customer_type" layoutX="843.0" layoutY="32.0" onAction="#customer_type" size="7.0" text="Bireysel" toggleColor="#ff9d00" toggleLineColor="#ff9d00" AnchorPane.topAnchor="30.0" />
+            <JFXToggleButton fx:id="customer_type" layoutX="843.0" layoutY="32.0" onAction="#customer_type" size="7.0" text="Bireysel" toggleColor="#9fa8da" toggleLineColor="#9fa8da" AnchorPane.topAnchor="30.0" />
             <Label alignment="CENTER" layoutX="438.0" layoutY="67.0" prefHeight="27.0" prefWidth="139.0" text="TEMEL BİLGİLER" underline="true" AnchorPane.leftAnchor="438.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="65.0">
                <font>
                   <Font name="Apple Chancery" size="14.0" />
@@ -40,21 +40,40 @@
                   <Font name="Apple Chancery" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="complainant_name" alignment="CENTER" layoutX="193.0" layoutY="290.0" prefHeight="25.0" prefWidth="220.0" promptText="Davacı Adı" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="290.0" />
-            <JFXTextField fx:id="defandant_name" alignment="CENTER" layoutX="418.0" layoutY="290.0" prefHeight="25.0" prefWidth="220.0" promptText="Davalı Adı" AnchorPane.leftAnchor="418.0" AnchorPane.topAnchor="290.0" />
-            <JFXTextField fx:id="complainant_no" alignment="CENTER" layoutX="193.0" layoutY="325.0" prefHeight="25.0" prefWidth="220.0" promptText="Davacı Numarası" AnchorPane.bottomAnchor="349.0" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="325.0" />
-            <JFXTextField fx:id="defandant_no" alignment="CENTER" layoutX="418.0" layoutY="325.0" prefHeight="25.0" prefWidth="220.0" promptText="Davalı Numarası" AnchorPane.bottomAnchor="349.0" AnchorPane.topAnchor="325.0" />
+            <JFXTextField fx:id="complainant_name" alignment="CENTER" layoutX="193.0" layoutY="290.0" prefHeight="25.0" prefWidth="220.0" promptText="Davacı Adı" AnchorPane.leftAnchor="123.0" AnchorPane.topAnchor="290.0" />
+            <JFXTextField fx:id="defandant_name" alignment="CENTER" layoutX="418.0" layoutY="290.0" prefHeight="25.0" prefWidth="220.0" promptText="Davalı Adı" AnchorPane.leftAnchor="348.0" AnchorPane.topAnchor="290.0" />
+            <JFXTextField fx:id="complainant_no" alignment="CENTER" layoutX="193.0" layoutY="325.0" prefHeight="25.0" prefWidth="220.0" promptText="Davacı Numarası" AnchorPane.bottomAnchor="349.0" AnchorPane.leftAnchor="123.0" AnchorPane.topAnchor="325.0" />
+            <JFXTextField fx:id="defandant_no" alignment="CENTER" layoutX="418.0" layoutY="325.0" prefHeight="25.0" prefWidth="220.0" promptText="Davalı Numarası" AnchorPane.bottomAnchor="349.0" AnchorPane.leftAnchor="348.0" AnchorPane.topAnchor="325.0" />
             <JFXTextField fx:id="complainant_adress" alignment="CENTER" layoutX="193.0" layoutY="360.0" prefHeight="25.0" prefWidth="220.0" promptText="Davacı Adresi" AnchorPane.topAnchor="360.0" />
             <JFXTextField fx:id="defandant_adress" alignment="CENTER" layoutX="418.0" layoutY="360.0" prefHeight="25.0" prefWidth="220.0" promptText="Davalı Adresi" AnchorPane.topAnchor="360.0" />
-            <JFXDatePicker fx:id="lawsuit_start_date" layoutX="647.0" layoutY="290.0" promptText="Dava Baslangıç Tarihi" AnchorPane.leftAnchor="647.0" AnchorPane.rightAnchor="183.0" />
-            <JFXComboBox fx:id="lawsuit_status" layoutX="647.0" layoutY="325.0" prefHeight="26.0" prefWidth="170.0" promptText="Dava Durumu" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="325.0" />
+            <JFXDatePicker fx:id="lawsuit_start_date" layoutX="577.0" layoutY="290.0" promptText="Dava Baslangıç Tarihi" AnchorPane.leftAnchor="577.0" AnchorPane.topAnchor="290.0" />
+            <JFXComboBox fx:id="lawsuit_status" layoutX="647.0" layoutY="325.0" prefHeight="26.0" prefWidth="170.0" promptText="Dava Durumu" AnchorPane.leftAnchor="577.0" AnchorPane.topAnchor="325.0" />
             <JFXCheckBox fx:id="checkbox_evidence" layoutX="680.0" layoutY="368.0" onAction="#checkbox_evidence" text="Kanıt " />
-            <Label alignment="CENTER" layoutX="432.0" layoutY="414.0" text="DAVA SORULARI" underline="true" AnchorPane.leftAnchor="438.0">
+            <FontAwesomeIconView fx:id="add_evidence" glyphName="PLUS" layoutX="747.0" layoutY="383.0" onMouseClicked="#add_evidence" size="14" visible="false" />
+            <Pane fx:id="evidence_pane" layoutX="188.0" layoutY="399.0" prefHeight="36.0" prefWidth="640.0" visible="false">
+               <children>
+                  <JFXTextField fx:id="info_evidence" layoutX="14.0" layoutY="5.0" prefHeight="22.0" prefWidth="139.0" promptText="Kanıt Ön Bilgisi">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXComboBox fx:id="type_evidence" layoutX="181.0" layoutY="1.0" prefHeight="26.0" prefWidth="124.0" promptText="Kanıt Türü" />
+                  <JFXDatePicker fx:id="date_evidence" layoutX="317.0" layoutY="1.0" promptText="Kanıt Tarihi" />
+                  <JFXButton fx:id="add_evidence_hide" layoutX="501.0" layoutY="1.0" onAction="#add_evidence_hide" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: efefef;" text="EKLE" />
+               </children>
+            </Pane>
+            <Label fx:id="evidence_count" layoutX="763.0" layoutY="370.0" text="0" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fx:id="show_evidence" glyphName="EYE" layoutX="787.0" layoutY="381.0" onMouseClicked="#show_evidence" visible="false" />
+            <Label alignment="CENTER" layoutX="438.0" layoutY="449.0" text="DAVA SORULARI" underline="true" AnchorPane.leftAnchor="438.0">
                <font>
                   <Font name="Apple Chancery" size="14.0" />
                </font>
             </Label>
-            <JFXButton fx:id="q_add_button" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="3.0" layoutX="753.0" layoutY="416.0" onAction="#q_add" text="Soru Ekle">
+            <JFXButton fx:id="q_add_button" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="3.0" layoutX="753.0" layoutY="451.0" onAction="#q_add" text="Soru Ekle">
                <graphic>
                   <FontAwesomeIconView fx:id="q_add_icon" glyphName="PLUS_CIRCLE" size="12" />
                </graphic>
@@ -62,7 +81,7 @@
                   <Font size="11.0" />
                </font>
             </JFXButton>
-            <ScrollPane fx:id="scrollPane" layoutX="188.0" layoutY="441.0" prefHeight="166.0" prefWidth="640.0">
+            <ScrollPane fx:id="scrollPane" layoutX="188.0" layoutY="476.0" pannable="true" prefHeight="166.0" prefWidth="640.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -75,24 +94,32 @@
                         <Label layoutX="575.0" text="H" AnchorPane.topAnchor="0.0" />
                         <Label layoutX="540.0" text="E" AnchorPane.topAnchor="0.0" />
                         <GridPane fx:id="gridpane_in_scrollpane" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                         </GridPane>
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <JFXButton fx:id="submit" layoutX="451.0" layoutY="619.0" onAction="#submit" prefHeight="36.0" prefWidth="122.0" style="-fx-border-color: black; -fx-border-radius: 1em; -fx-background-radius: 1em;" text="KAYDET" />
-            <JFXRadioButton fx:id="which_customer_complainant" layoutX="412.0" layoutY="230.0" onAction="#toogle" text="Davacı">
+            <JFXButton fx:id="submit" layoutX="451.0" layoutY="654.0" onAction="#submit" prefHeight="36.0" prefWidth="122.0" style="-fx-border-color: black; -fx-border-radius: 1em; -fx-background-radius: 1em;" text="KAYDET" />
+            <JFXRadioButton fx:id="which_customer_complainant" layoutX="412.0" layoutY="230.0" onAction="#toogle" style="-jfx-selected-color: #9fa8da;" text="Davacı">
                <toggleGroup>
                   <ToggleGroup fx:id="t1" />
-               </toggleGroup></JFXRadioButton>
-            <JFXRadioButton fx:id="which_customer_defendant" layoutX="489.0" layoutY="230.0" onAction="#toogle" text="Davalı" toggleGroup="$t1" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="which_customer_defendant" layoutX="489.0" layoutY="230.0" onAction="#toogle" style="-jfx-selected-color: #9fa8da;" text="Davalı" toggleGroup="$t1" />
+            <Label fx:id="uyari" layoutX="638.0" layoutY="110.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="753.0" layoutY="290.0" prefHeight="26.0" prefWidth="170.0" promptText="Dava Ücreti" AnchorPane.topAnchor="290.0" />
+            <JFXComboBox layoutX="753.0" layoutY="337.0" prefWidth="170.0" promptText="Ödeme Türü" AnchorPane.topAnchor="325.0" />
          </children>
       </AnchorPane>
    </children>
-</JFXDialogLayout>
+</StackPane>

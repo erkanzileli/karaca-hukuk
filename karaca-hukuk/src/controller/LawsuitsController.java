@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LawsuitsController implements Initializable {
+    public static BorderPane rootpane;
+
 
     @FXML
     private StackPane root;
@@ -52,18 +55,15 @@ public class LawsuitsController implements Initializable {
     private TreeTableColumn<?, ?> columnOpponent;
 
     @FXML
-    void create(ActionEvent event) {
+    void create() {
         Parent lawsuitFormDialog = null;
         try {
             lawsuitFormDialog = FXMLLoader.load(getClass().getResource("/fxml/createLawsuit.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JFXDialogLayout dialogLayout = new JFXDialogLayout();
-        dialogLayout.setBody(lawsuitFormDialog);
-        JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.RIGHT);
-        CreateLawsuitController.fxd=dialog;
-        dialog.show();
+        rootpane.setCenter(lawsuitFormDialog);
+
     }
 
     @FXML
@@ -78,11 +78,6 @@ public class LawsuitsController implements Initializable {
         dialogLayout.setBody(filterDialog);
         JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.RIGHT);
         dialog.show();
-    }
-
-    @FXML
-    void search() {
-
     }
 
     @FXML
