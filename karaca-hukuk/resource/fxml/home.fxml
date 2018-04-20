@@ -102,7 +102,7 @@
                         </JFXButton>
                         <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
                                    layoutY="355.0" onAction="#showEmployees" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Çalışanlar" textFill="WHITE">
+                                   style="-fx-background-color: #2F6599;" text="Personeller" textFill="WHITE">
                             <font>
                                 <Font size="18.0"/>
                             </font>

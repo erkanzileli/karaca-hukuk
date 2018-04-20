@@ -3,59 +3,67 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
-
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Pane fx:id="contentRoot" prefHeight="650.0" prefWidth="1000.0">
             <children>
                 <Pane layoutY="50.0" prefHeight="325.0" prefWidth="350.0">
                     <children>
-                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="10.0" layoutX="50.0" prefHeight="150.0" prefWidth="250.0" ripplerFill="WHITE" style="-fx-background-color: #ffb74d;">
+                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false"
+                                   graphicTextGap="10.0" layoutX="50.0" prefHeight="150.0" prefWidth="250.0"
+                                   ripplerFill="WHITE" style="-fx-background-color: #ffb74d;">
                             <font>
-                                <Font name="Cambria" size="36.0" />
+                                <Font name="Cambria" size="36.0"/>
                             </font>
                             <graphic>
                                 <Pane prefHeight="80.0" prefWidth="200.0">
                                     <children>
-                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Devam Eden Davalar" textAlignment="CENTER">
+                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0"
+                                               prefWidth="200.0" text="Devam Eden Davalar" textAlignment="CENTER">
                                             <font>
-                                                <Font name="Century" size="18.0" />
+                                                <Font name="Century" size="18.0"/>
                                             </font>
                                         </Label>
-                                        <Label alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="30.0" prefWidth="100.0" text="4">
+                                        <Label alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="30.0"
+                                               prefWidth="100.0" text="4">
                                             <font>
-                                                <Font name="Century" size="48.0" />
+                                                <Font name="Century" size="48.0"/>
                                             </font>
                                         </Label>
-                                        <MaterialDesignIconView fill="#282828" glyphName="TIMETABLE" layoutX="100.0" layoutY="100.0" size="50" />
+                                        <MaterialDesignIconView fill="#282828" glyphName="TIMETABLE" layoutX="100.0"
+                                                                layoutY="100.0" size="50"/>
                                     </children>
                                 </Pane>
                             </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="10.0" layoutX="50.0" layoutY="175.0" prefHeight="150.0" prefWidth="250.0" ripplerFill="WHITE" style="-fx-background-color: #81c784;">
+                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false"
+                                   graphicTextGap="10.0" layoutX="50.0" layoutY="175.0" prefHeight="150.0"
+                                   prefWidth="250.0" ripplerFill="WHITE" style="-fx-background-color: #81c784;">
                             <font>
-                                <Font name="Cambria" size="36.0" />
+                                <Font name="Cambria" size="36.0"/>
                             </font>
                             <graphic>
                                 <Pane prefHeight="28.0" prefWidth="250.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="200.0" text="Tamamlanan Davalar">
+                                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="200.0"
+                                               text="Tamamlanan Davalar">
                                             <font>
-                                                <Font name="Century" size="18.0" />
+                                                <Font name="Century" size="18.0"/>
                                             </font>
                                         </Label>
-                                        <Label alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="30.0" prefWidth="100.0" text="1">
+                                        <Label alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="30.0"
+                                               prefWidth="100.0" text="1">
                                             <font>
-                                                <Font name="Century" size="48.0" />
+                                                <Font name="Century" size="48.0"/>
                                             </font>
                                         </Label>
-                                        <MaterialDesignIconView fill="#282828" glyphName="CHECK" layoutX="100.0" layoutY="100.0" size="50" />
+                                        <MaterialDesignIconView fill="#282828" glyphName="CHECK" layoutX="100.0"
+                                                                layoutY="100.0" size="50"/>
                                     </children>
                                 </Pane>
                             </graphic>
@@ -64,31 +72,33 @@
                 </Pane>
                 <Pane layoutX="350.0" layoutY="50.0" prefHeight="325.0" prefWidth="600.0">
                     <children>
-                        <Label alignment="TOP_LEFT" layoutX="25.0" prefHeight="50.0" text="Sistemdeki En Son Etkinlikler">
+                        <Label alignment="TOP_LEFT" layoutX="25.0" prefHeight="50.0"
+                               text="Sistemdeki En Son Etkinlikler">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
-                        <ListView layoutX="25.0" layoutY="50.0" prefHeight="275.0" prefWidth="550.0" />
-                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="10.0" layoutX="500.0" prefHeight="50.0" prefWidth="75.0">
+                        <ListView layoutX="25.0" layoutY="50.0" prefHeight="275.0" prefWidth="550.0"/>
+                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="10.0" layoutX="500.0" prefHeight="50.0"
+                                   prefWidth="75.0">
                             <graphic>
-                                <MaterialDesignIconView glyphName="REFRESH" size="40" />
+                                <MaterialDesignIconView glyphName="REFRESH" size="40"/>
                             </graphic>
                         </JFXButton>
                     </children>
                 </Pane>
                 <Pane layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
                     <children>
-                        <Label layoutX="50.0" prefHeight="50.0" prefWidth="201.0" text="En Son Ajanda Etkinlikleri">
+                        <Label layoutX="50.0" prefHeight="50.0" text="En Son Ajanda Etkinlikleri">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </Label>
                         <JFXTreeTableView layoutX="50.0" layoutY="50.0" prefHeight="175.0" prefWidth="900.0">
                             <columns>
-                                <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Tarih" />
-                                <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Başlık" />
-                                <TreeTableColumn maxWidth="300.0" minWidth="500.0" prefWidth="500.0" text="İçerik" />
+                                <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Tarih"/>
+                                <TreeTableColumn maxWidth="300.0" minWidth="200.0" prefWidth="200.0" text="Başlık"/>
+                                <TreeTableColumn maxWidth="300.0" minWidth="500.0" prefWidth="500.0" text="İçerik"/>
                             </columns>
                         </JFXTreeTableView>
                     </children>

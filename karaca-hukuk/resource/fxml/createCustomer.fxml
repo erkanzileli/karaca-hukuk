@@ -1,108 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDialogLayout?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
-<JFXDialogLayout fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateCustomerController">
-   <children>
-      <Pane fx:id="rootPane" prefHeight="475.0" prefWidth="800.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" graphicTextGap="6.0" prefHeight="25.0" prefWidth="800.0" text="Yeni Müşteri Kaydı Oluşturun" underline="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="25.0" layoutY="75.0" prefWidth="350.0" text="Adres Bilgisi">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="25.0" layoutY="125.0" text="İl">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="comboProvince" layoutX="175.0" layoutY="125.0" onAction="#listDistrictsOfProvince" prefWidth="200.0" />
-            <Label layoutX="25.0" layoutY="175.0" text="İlçe">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="comboDistrict" layoutX="175.0" layoutY="175.0" prefWidth="200.0" />
-            <Label layoutX="25.0" layoutY="225.0" text="Mahalle">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="textQuarter" focusColor="#9fa8da" layoutX="175.0" layoutY="225.0" prefWidth="200.0" />
-            <Label layoutX="25.0" layoutY="275.0" text="Sokak">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="textStreet" focusColor="#9fa8da" layoutX="175.0" layoutY="275.0" prefWidth="200.0" />
-            <Label layoutX="25.0" layoutY="325.0" text="Kapı Numarası">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="textDoorNumber" focusColor="#9fa8da" layoutX="175.0" layoutY="325.0" prefWidth="200.0" />
-            <Label layoutX="25.0" layoutY="375.0" text="Posta Kodu">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="doorPostalCode" focusColor="#9fa8da" layoutX="175.0" layoutY="375.0" prefWidth="200.0" />
-            <JFXButton layoutX="450.0" layoutY="360.0" onAction="#save" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #9FA8DA;" text="Kaydet">
-               <font>
-                  <Font size="24.0" />
-               </font></JFXButton>
-            <Label layoutX="450.0" layoutY="125.0" text="Ad">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="textName" layoutX="550.0" layoutY="125.0" prefHeight="25.0" prefWidth="200.0" />
-            <Label layoutX="450.0" layoutY="175.0" text="Soyad">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="textPhone" layoutX="550.0" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" />
-            <Label layoutX="450.0" layoutY="225.0" text="Telefon">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField layoutX="550.0" layoutY="225.0" prefHeight="25.0" prefWidth="200.0" />
-            <JFXRadioButton fx:id="radioSingular" layoutX="450.0" layoutY="300.0" prefWidth="150.0" style="-jfx-selected-color: #9FA8DA;" text="Bireysel">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXRadioButton>
-            <JFXRadioButton fx:id="radioEnterprise" layoutX="600.0" layoutY="300.0" prefWidth="150.0" style="-jfx-selected-color: #9FA8DA;" text="Kurumsal">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXRadioButton>
-            <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="760.0" onAction="#closeDialog">
-               <graphic>
-                  <MaterialDesignIconView glyphName="WINDOW_CLOSE" size="25" />
-               </graphic>
-            </JFXButton>
-            <Label layoutX="425.0" layoutY="75.0" prefWidth="350.0" text="Genel Bilgiler">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-   </children>
+<?import javafx.scene.text.*?>
+<JFXDialogLayout fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="475.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141"
+                 xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateCustomerController">
+    <children>
+        <Pane fx:id="rootPane" prefHeight="475.0" prefWidth="800.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="TEXT_ONLY" graphicTextGap="6.0" prefHeight="25.0"
+                       prefWidth="800.0" text="Yeni Müşteri Kaydı Oluşturun" underline="true">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="75.0" prefWidth="350.0" text="Adres Bilgisi">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="125.0" text="İl">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXComboBox fx:id="comboProvince" layoutX="175.0" layoutY="125.0" onAction="#listDistrictsOfProvince"
+                             prefWidth="200.0"/>
+                <Label layoutX="25.0" layoutY="175.0" text="İlçe">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXComboBox fx:id="comboDistrict" layoutX="175.0" layoutY="175.0" prefWidth="200.0"/>
+                <Label layoutX="25.0" layoutY="225.0" text="Mahalle">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textQuarter" focusColor="#9fa8da" layoutX="175.0" layoutY="225.0"
+                              prefWidth="200.0"/>
+                <Label layoutX="25.0" layoutY="275.0" text="Sokak">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textStreet" focusColor="#9fa8da" layoutX="175.0" layoutY="275.0"
+                              prefWidth="200.0"/>
+                <Label layoutX="25.0" layoutY="325.0" text="Kapı Numarası">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textDoorNumber" focusColor="#9fa8da" layoutX="175.0" layoutY="325.0"
+                              prefWidth="200.0"/>
+                <Label layoutX="25.0" layoutY="375.0" text="Posta Kodu">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="doorPostalCode" focusColor="#9fa8da" layoutX="175.0" layoutY="375.0"
+                              prefWidth="200.0"/>
+                <JFXButton layoutX="450.0" layoutY="360.0" onAction="#save" prefHeight="50.0" prefWidth="300.0"
+                           style="-fx-background-color: #9FA8DA;" text="Kaydet">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </JFXButton>
+                <Label layoutX="450.0" layoutY="125.0" text="Ad">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textName" layoutX="550.0" layoutY="125.0" prefHeight="25.0" prefWidth="200.0"/>
+                <Label layoutX="450.0" layoutY="175.0" text="Soyad">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textPhone" layoutX="550.0" layoutY="175.0" prefHeight="25.0" prefWidth="200.0"/>
+                <Label layoutX="450.0" layoutY="225.0" text="Telefon">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <JFXTextField layoutX="550.0" layoutY="225.0" prefHeight="25.0" prefWidth="200.0"/>
+                <JFXRadioButton fx:id="radioSingular" layoutX="450.0" layoutY="300.0" prefWidth="150.0"
+                                style="-jfx-selected-color: #9FA8DA;" text="Bireysel">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </JFXRadioButton>
+                <JFXRadioButton fx:id="radioEnterprise" layoutX="600.0" layoutY="300.0" prefWidth="150.0"
+                                style="-jfx-selected-color: #9FA8DA;" text="Kurumsal">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </JFXRadioButton>
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="760.0" onAction="#closeDialog">
+                    <graphic>
+                        <MaterialDesignIconView glyphName="WINDOW_CLOSE" size="25"/>
+                    </graphic>
+                </JFXButton>
+                <Label layoutX="425.0" layoutY="75.0" prefWidth="350.0" text="Genel Bilgiler">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
 </JFXDialogLayout>

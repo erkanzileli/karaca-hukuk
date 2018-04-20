@@ -1,9 +1,8 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,18 +10,13 @@ import java.util.ResourceBundle;
 public class CreateEmployeeController implements Initializable {
 
     @FXML
-    private RadioButton radioLawyer;
-
-    @FXML
-    private RadioButton radioSecretary;
-
-    private ToggleGroup lawyerOrSecretary;
+    private JFXComboBox<String> comboPosition;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lawyerOrSecretary = new ToggleGroup();
-        radioLawyer.setToggleGroup(lawyerOrSecretary);
-        radioSecretary.setToggleGroup(lawyerOrSecretary);
+        comboPosition.getItems().addAll("Avukat", "Sekreter");
+
+
     }
 
     @FXML

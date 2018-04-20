@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
+           prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
     <children>
-        <Pane prefHeight="200.0" prefWidth="200.0">
+        <Pane prefHeight="700.0" prefWidth="1000.0">
             <children>
-                <JFXTreeTableView layoutX="25.0" layoutY="100.0" prefHeight="550.0" prefWidth="950.0">
+                <JFXTreeTableView layoutX="25.0" layoutY="100.0" prefHeight="575.0" prefWidth="950.0">
                     <columns>
                         <TreeTableColumn minWidth="50.0" prefWidth="150.0" text="İsim"/>
                         <TreeTableColumn minWidth="50.0" prefWidth="150.0" text="Soyisim"/>
@@ -24,7 +24,7 @@
                         <TreeTableColumn minWidth="75.0" prefWidth="150.0" text="Telefon Numarası"/>
                     </columns>
                 </JFXTreeTableView>
-                <Label layoutX="25.0" layoutY="50.0" text="Çalışanlar">
+                <Label layoutX="25.0" layoutY="50.0" text="Personeller">
                     <font>
                         <Font size="24.0"/>
                     </font>

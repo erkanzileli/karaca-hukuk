@@ -9,7 +9,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.effect.Effect;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
@@ -91,12 +90,12 @@ public class ReportingController implements Initializable {
 
     private void setLawsuitSeries() {
         //Verilerin çekilmesi ve düzene sokulması
-        lawsuitSeries.getData().add(new XYChart.Data<>(1,1));
-        lawsuitSeries.getData().add(new XYChart.Data<>(2,2));
-        lawsuitSeries.getData().add(new XYChart.Data<>(3,3));
-        lawsuitSeries.getData().add(new XYChart.Data<>(4,2));
-        lawsuitSeries.getData().add(new XYChart.Data<>(5,5));
-        lawsuitSeries.getData().add(new XYChart.Data<>(6,4));
+        lawsuitSeries.getData().add(new XYChart.Data<>(1, 1));
+        lawsuitSeries.getData().add(new XYChart.Data<>(2, 2));
+        lawsuitSeries.getData().add(new XYChart.Data<>(3, 3));
+        lawsuitSeries.getData().add(new XYChart.Data<>(4, 2));
+        lawsuitSeries.getData().add(new XYChart.Data<>(5, 5));
+        lawsuitSeries.getData().add(new XYChart.Data<>(6, 4));
     }
 
     @FXML
@@ -110,11 +109,10 @@ public class ReportingController implements Initializable {
     }
 
     private void setIncomingSeries() {
-        incomingSeries.getData().add(new XYChart.Data<>(1,5));
-        incomingSeries.getData().add(new XYChart.Data<>(2,10));
-        incomingSeries.getData().add(new XYChart.Data<>(3,12));
+        incomingSeries.getData().add(new XYChart.Data<>(1, 5));
+        incomingSeries.getData().add(new XYChart.Data<>(2, 10));
+        incomingSeries.getData().add(new XYChart.Data<>(3, 12));
     }
-
 
 
     @FXML
@@ -128,12 +126,12 @@ public class ReportingController implements Initializable {
     }
 
     private void setCustomerSeries() {
-        customerSeries.getData().add(new XYChart.Data<>(1,2));
-        customerSeries.getData().add(new XYChart.Data<>(2,4));
-        customerSeries.getData().add(new XYChart.Data<>(3,5));
-        customerSeries.getData().add(new XYChart.Data<>(4,6));
-        customerSeries.getData().add(new XYChart.Data<>(5,7));
-        customerSeries.getData().add(new XYChart.Data<>(6,10));
+        customerSeries.getData().add(new XYChart.Data<>(1, 2));
+        customerSeries.getData().add(new XYChart.Data<>(2, 4));
+        customerSeries.getData().add(new XYChart.Data<>(3, 5));
+        customerSeries.getData().add(new XYChart.Data<>(4, 6));
+        customerSeries.getData().add(new XYChart.Data<>(5, 7));
+        customerSeries.getData().add(new XYChart.Data<>(6, 10));
     }
 
 }

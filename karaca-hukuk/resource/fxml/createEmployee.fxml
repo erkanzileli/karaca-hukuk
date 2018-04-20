@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDialogLayout?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
-<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateEmployeeController">
+<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141"
+                 xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateEmployeeController">
     <children>
         <Pane prefHeight="200.0" prefWidth="200.0">
             <children>
                 <Label layoutX="15.0" layoutY="15.0" text="Yeni Personel Kaydı">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                 </Label>
-                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="İsim" />
-                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="Soyisim" />
-                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="T.C." />
-                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="E-Posta Adresi" />
-                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Telefon Numarası" />
-                <JFXRadioButton fx:id="radioLawyer" layoutX="75.0" layoutY="225.0" style="-jfx-selected-color: #9FA8DA;" text="Avukat">
+                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="75.0" prefHeight="25.0"
+                              prefWidth="150.0" promptText="İsim"/>
+                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="75.0"
+                              prefHeight="25.0" prefWidth="150.0" promptText="Soyisim"/>
+                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="125.0"
+                              prefHeight="25.0" prefWidth="150.0" promptText="T.C."/>
+                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="125.0"
+                              prefHeight="25.0" prefWidth="150.0" promptText="E-Posta Adresi"/>
+                <JFXTextField focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="175.0"
+                              prefHeight="25.0" prefWidth="150.0" promptText="Telefon Numarası"/>
+                <JFXButton focusTraversable="false" layoutX="50.0" layoutY="550.0" prefHeight="25.0" prefWidth="300.0"
+                           style="-fx-background-color: #9FA8DA;" text="Kaydet">
                     <font>
-                        <Font size="15.0" />
-                    </font>
-                </JFXRadioButton>
-                <JFXRadioButton fx:id="radioSecretary" layoutX="200.0" layoutY="225.0" style="-jfx-selected-color: #9FA8DA;" text="Sekreter">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                </JFXRadioButton>
-                <JFXButton focusTraversable="false" layoutX="50.0" layoutY="275.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #9FA8DA;" text="Kaydet">
-                    <font>
-                        <Font size="15.0" />
+                        <Font size="15.0"/>
                     </font>
                 </JFXButton>
                 <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="360.0" onAction="#closeDialog">
                     <graphic>
-                        <MaterialDesignIconView glyphName="WINDOW_CLOSE" size="25" />
+                        <MaterialDesignIconView glyphName="WINDOW_CLOSE" size="25"/>
                     </graphic>
                 </JFXButton>
+                <JFXComboBox fx:id="comboPosition" focusTraversable="false" labelFloat="true" layoutX="200.0"
+                             layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Pozisyon"/>
             </children>
         </Pane>
     </children>
