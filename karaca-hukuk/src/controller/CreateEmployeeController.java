@@ -12,15 +12,18 @@ public class CreateEmployeeController implements Initializable {
     @FXML
     private JFXComboBox<String> comboPosition;
 
+    @FXML
+    private JFXComboBox<String> comboSex;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         comboPosition.getItems().addAll("Avukat", "Sekreter");
-
+        comboSex.getItems().addAll("Kadın","Erkek");
 
     }
 
     @FXML
     public void closeDialog() {
-        EmployeesController.createEmployeeDialog.close();
+        EmployeeController.createEmployeeDialog.close();
     }
 }
