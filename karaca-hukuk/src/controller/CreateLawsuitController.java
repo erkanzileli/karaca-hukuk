@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,15 +19,20 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.Timer;
 
 public class CreateLawsuitController implements Initializable {
     private ArrayList<String> tmpDb = new ArrayList<>();
     private ArrayList<ToggleGroup> toggleGroups = new ArrayList<>();
     private ArrayList<String> tmpDbEvidence = new ArrayList<>();
     JFXDialog dialog;
+    ObservableList observableListTypePay;
 
     @FXML
     private StackPane rootStack;
@@ -68,6 +75,9 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     private JFXTextField complainant_adress;
+
+    @FXML
+    private JFXTextField payOfLawsuit;
 
     @FXML
     private JFXTextField defandant_adress;
@@ -131,11 +141,18 @@ public class CreateLawsuitController implements Initializable {
 
 
     @FXML
+    private JFXComboBox<?> typePay;
+
+    @FXML
     private FontAwesomeIconView show_evidence;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList observableListStatus =FXCollections.observableArrayList("Aktif","Beklemede","Pasif");
+        lawsuit_status.setItems(observableListStatus);
+        observableListTypePay= FXCollections.observableArrayList("Nakit","KrediKartı (Tek Çekim)","KrediKartı (3 Taksit)","KrediKartı (6 Taksit)","KrediKartı (9 Taksit)");
+        typePay.setItems(observableListTypePay);
         //davalı-davacı secimi için
         which_customer_defendant.setUserData("davalıId");
         which_customer_complainant.setUserData("davacıId");
@@ -344,10 +361,46 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     void add_evidence_hide() {
-        tmpDbEvidence.add(info_evidence.getText().toString());
-        EvidenceDetailsController.tmpEvidencesDb.add(info_evidence.getText().toString());
+        tmpDbEvidence.add(info_evidence.getText());
+        EvidenceDetailsController.tmpEvidencesDb.add(info_evidence.getText());
         evidence_count.setText(EvidenceDetailsController.tmpEvidencesDb.size() + "");
     }
+
+    @FXML
+    void editForLawsuit() {
+
+        kimlikNo.setText("12345678910");
+        name.setText("Admin");
+        numara.setText("02122123212");
+        adress.setText("Resadiye Mah. 20.Sok.");
+        which_customer_complainant.setSelected(true);
+        toogle();
+        defandant_adress.setText("Muhittin Mah. 11.Sok.");
+        defandant_name.setText("Mod");
+        defandant_no.setText("02824329921");
+        lawsuit_start_date.setValue(LocalDate.of(2018,01,12));
+        payOfLawsuit.setText("7000");
+        checkbox_evidence.setSelected(true);
+        checkbox_evidence();
+        evidence_count.setText(""+3);
+        typePay.getSelectionModel().select(2);
+        lawsuit_status.getSelectionModel().select(0);
+        for (int i = 0; i < toggleGroups.size(); i++) {
+            if(i%2==0){
+            toggleGroups.get(i).getToggles().get(0).setSelected(true);
+
+            }else{
+
+                toggleGroups.get(i).getToggles().get(1).setSelected(true);
+            }
+        }
+
+
+    }
+
+
+
+
 
 
 }
