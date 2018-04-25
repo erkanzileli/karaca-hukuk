@@ -4,46 +4,43 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
     <children>
-        <Pane prefHeight="200.0" prefWidth="200.0">
+        <Pane prefHeight="700.0" prefWidth="1000.0">
             <children>
-                <JFXTreeTableView layoutX="25.0" layoutY="100.0" prefHeight="550.0" prefWidth="950.0">
+                <JFXTreeTableView fx:id="tableOfEmployees" layoutX="25.0" layoutY="100.0" prefHeight="575.0" prefWidth="950.0">
                     <columns>
-                        <TreeTableColumn minWidth="50.0" prefWidth="150.0" text="İsim"/>
-                        <TreeTableColumn minWidth="50.0" prefWidth="150.0" text="Soyisim"/>
-                        <TreeTableColumn minWidth="75.0" prefWidth="150.0" text="T.C."/>
-                        <TreeTableColumn minWidth="75.0" prefWidth="150.0" text="Tip"/>
-                        <TreeTableColumn minWidth="75.0" prefWidth="200.0" text="E-Posta"/>
-                        <TreeTableColumn minWidth="75.0" prefWidth="150.0" text="Telefon Numarası"/>
+                        <TreeTableColumn fx:id="columnName" minWidth="50.0" prefWidth="150.0" text="İsim" />
+                        <TreeTableColumn fx:id="columnSurname" minWidth="50.0" prefWidth="150.0" text="Soyisim" />
+                        <TreeTableColumn fx:id="columnTC" minWidth="75.0" prefWidth="150.0" text="T.C." />
+                        <TreeTableColumn fx:id="columnType" minWidth="75.0" prefWidth="150.0" text="Tip" />
+                        <TreeTableColumn fx:id="columnEmail" minWidth="75.0" prefWidth="200.0" text="E-Posta" />
+                        <TreeTableColumn fx:id="columnMobilePhone" minWidth="75.0" prefWidth="150.0" text="Telefon Numarası" />
                     </columns>
                 </JFXTreeTableView>
-                <Label layoutX="25.0" layoutY="50.0" text="Çalışanlar">
+                <Label layoutX="25.0" layoutY="50.0" text="Personeller">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <JFXButton layoutX="600.0" layoutY="50.0" onAction="#showCreateEmployee"
-                           style="-fx-background-color: #9FA8DA;" text="Yeni Personel Ekle">
+                <JFXButton layoutX="600.0" layoutY="50.0" onAction="#showCreateEmployee" style="-fx-background-color: #9FA8DA;" text="Yeni Personel Ekle">
                     <graphic>
-                        <FontAwesomeIconView glyphName="PLUS" size="25"/>
+                        <FontAwesomeIconView glyphName="PLUS" size="25" />
                     </graphic>
                 </JFXButton>
-                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="780.0" layoutY="50.0" prefHeight="30.0"
-                              prefWidth="150.0" promptText="Arama Kelimesi"/>
-                <JFXButton contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0" layoutY="50.0"
-                           onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
+                <JFXTextField fx:id="textSearch" labelFloat="true" layoutX="780.0" layoutY="50.0" prefHeight="30.0" prefWidth="150.0" promptText="Arama Kelimesi" />
+                <JFXButton contentDisplay="GRAPHIC_ONLY" defaultButton="true" layoutX="935.0" layoutY="50.0" onAction="#search" style="-fx-background-color: #9FA8DA;" text="Ara">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                     <graphic>
-                        <FontAwesomeIconView glyphName="SEARCH" size="19"/>
+                        <FontAwesomeIconView glyphName="SEARCH" size="19" />
                     </graphic>
                 </JFXButton>
             </children>
