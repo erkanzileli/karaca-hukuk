@@ -4,17 +4,13 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import entity.District;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -58,25 +54,81 @@ public class CreateCustomerController implements Initializable {
     @FXML
     private JFXRadioButton radioEnterprise;
 
-    private EntityManagerFactory entityManagerFactory;
+    @FXML
+    private Label lblIdentityNo;
 
-    private EntityManager entityManager;
+    @FXML
+    private JFXTextField txtIdentityNo;
+
+    @FXML
+    private Label lblSex;
+
+    @FXML
+    private JFXComboBox<String> comboSex;
+
+    @FXML
+    private Label lblCompanyName;
+
+    @FXML
+    private JFXTextField txtCompanyName;
 
     private HashMap<Integer, String> provinces;
 
+    private HashMap<Integer,List<String>> districtsOfProvinces;
+
     private ToggleGroup singularPlural;
+
+    @FXML
+    void selectEnterprise() {
+        lblIdentityNo.setText("Vergi no");
+        lblSex.setVisible(false);
+        comboSex.setVisible(false);
+        lblCompanyName.setVisible(true);
+        txtCompanyName.setVisible(true);
+    }
+
+    @FXML
+    void selectIndividual() {
+        lblIdentityNo.setText("T.C.");
+        lblSex.setVisible(true);
+        comboSex.setVisible(true);
+        lblCompanyName.setVisible(false);
+        txtCompanyName.setVisible(false);
+    }
+
+    @FXML
+    public void save() {
+        RadioButton selected = (RadioButton) singularPlural.selectedToggleProperty().getValue();
+        System.out.println(selected.getText());
+    }
+
+    @FXML
+    public void listDistrictsOfProvince() {
+
+    }
+
+    @FXML
+    public void closeDialog() {
+        CustomerController.createCustomerDialog.close();
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         provinces = new HashMap<>();
+        districtsOfProvinces = new HashMap<>();
         singularPlural = new ToggleGroup();
         radioEnterprise.setToggleGroup(singularPlural);
         radioSingular.setToggleGroup(singularPlural);
         fillComboProvince();
-
+        fillDistricts();
     }
 
-    public void fillComboProvince() {
+    private void fillDistricts(){
+        
+    }
+
+    private void fillComboProvince() {
         provinces.put(1, "Adana");
         provinces.put(2, "Adıyaman");
         provinces.put(3, "Afyonkarahisar");
@@ -159,29 +211,5 @@ public class CreateCustomerController implements Initializable {
         provinces.put(80, "Osmaniye");
         provinces.put(81, "Düzce");
         comboProvince.getItems().addAll(provinces.values());
-    }
-
-    @FXML
-    public void save() {
-        RadioButton selected = (RadioButton) singularPlural.selectedToggleProperty().getValue();
-        System.out.println(selected.getText());
-    }
-
-    @FXML
-    public void listDistrictsOfProvince() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("mysqlPersistenceUnit");
-        entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<District> typedQuery = (TypedQuery<District>) entityManager.createNativeQuery("SELECT * FROM ilceler", District.class);
-        List<District> districtsOfProvince = typedQuery.getResultList();
-        System.out.println("HashMap<String,String> districtsofProvinces = HashMap<>();");
-        for (District dis :
-                districtsOfProvince) {
-            System.out.println("districtsofProvinces.put(\"" + dis.getIl() + "\",\"" + dis.getIsim() + "\");");
-        }
-    }
-
-    @FXML
-    public void closeDialog() {
-        CustomerController.createCustomerDialog.close();
     }
 }
