@@ -5,16 +5,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 
-import entity.Provinces;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -22,7 +19,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import main.MainClass;
-import utility.EntityManagerUtility;
 
 public class CreateCustomerController implements Initializable {
 
@@ -94,6 +90,7 @@ public class CreateCustomerController implements Initializable {
 		individualOrEnterprise = new ToggleGroup();
 		radioEnterprise.setToggleGroup(individualOrEnterprise);
 		radioSingular.setToggleGroup(individualOrEnterprise);
+		fillComboProvinces();
 	}
 
 	@FXML
@@ -121,18 +118,19 @@ public class CreateCustomerController implements Initializable {
 	}
 
 	private void fillComboProvinces() {
-		TypedQuery<Provinces> query = (TypedQuery<Provinces>) entityManager
-				.createNativeQuery("SELECT DISTINCT il_isim FROM ilceler ORDER BY il_isim;", Provinces.class);
-		query.getResultList().forEach(p -> {
-			provinces.add(p.getProvinceName());
-		});
-		comboProvince.getItems().addAll(provinces);
+		Query query = entityManager.createNativeQuery("SELECT DISTINCT il_isim FROM ilceler ORDER BY il_isim ASC");
+		provinces = query.getResultList();
+		comboProvince.getItems().setAll(provinces);
 	}
 
 	@FXML
 	public void listDistrictsOfProvince() {
 		// ile göre ilçe listeleme
-
+		Query query = entityManager.createNativeQuery("SELECT ilce_isim FROM ilceler WHERE il_isim = ?1");
+		query.setParameter(1, comboProvince.getValue());
+		districts = query.getResultList();
+		comboDistrict.getItems().clear();
+		comboDistrict.getItems().addAll(districts);
 	}
 
 	@FXML

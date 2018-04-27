@@ -6,6 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
+          <factory-entry name="test" />
           <factory-entry name="test-droplet" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/META-INF/persistence.xml" />
@@ -22,26 +23,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.antlr:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.0.4" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.2" level="project" />
-    <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.antlr:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.0.4" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.2" level="project" />
-    <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
     <orderEntry type="library" name="karaca-hukuk-0.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.persistence:eclipselink:2.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.2" level="project" />
+    <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
   </component>
 </module>
