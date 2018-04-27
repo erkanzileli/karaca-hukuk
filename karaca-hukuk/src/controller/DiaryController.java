@@ -55,6 +55,7 @@ public class DiaryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("DiaryController.initialize");
         months = new HashMap<>();
         months.put(1, "Ocak");
         months.put(2, "Şubat");

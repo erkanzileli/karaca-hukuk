@@ -6,9 +6,9 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="MySQLPersistenceUnit" />
+          <factory-entry name="test-droplet" />
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
@@ -42,5 +42,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.2" level="project" />
     <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
+    <orderEntry type="library" name="karaca-hukuk-0.0.1-SNAPSHOT" level="project" />
   </component>
 </module>
