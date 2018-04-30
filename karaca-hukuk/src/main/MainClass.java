@@ -1,9 +1,5 @@
 package main;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,13 +9,7 @@ import javafx.stage.StageStyle;
 
 public class MainClass extends Application {
 
-	private static EntityManagerFactory entityManagerFactory;
-
-	public static EntityManager entityManager;
-
 	public static void main(String[] args) {
-		entityManagerFactory = Persistence.createEntityManagerFactory("test");
-		entityManager = entityManagerFactory.createEntityManager();
 		launch(args);
 	}
 

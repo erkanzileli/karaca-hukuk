@@ -19,123 +19,126 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import main.MainClass;
+import utility.EntityManagerUtility;
 
 public class CreateCustomerController implements Initializable {
 
-	@FXML
-	private JFXDialogLayout root;
+    @FXML
+    private JFXDialogLayout root;
 
-	@FXML
-	private Pane rootPane;
+    @FXML
+    private Pane rootPane;
 
-	@FXML
-	private JFXComboBox<String> comboProvince;
+    @FXML
+    private JFXComboBox<String> comboProvince;
 
-	@FXML
-	private JFXComboBox<String> comboDistrict;
+    @FXML
+    private JFXComboBox<String> comboDistrict;
 
-	@FXML
-	private JFXTextField textQuarter;
+    @FXML
+    private JFXTextField textQuarter;
 
-	@FXML
-	private JFXTextField textStreet;
+    @FXML
+    private JFXTextField textStreet;
 
-	@FXML
-	private JFXTextField textDoorNumber;
+    @FXML
+    private JFXTextField textDoorNumber;
 
-	@FXML
-	private JFXTextField doorPostalCode;
+    @FXML
+    private JFXTextField doorPostalCode;
 
-	@FXML
-	private JFXTextField textName;
+    @FXML
+    private JFXTextField textName;
 
-	@FXML
-	private JFXTextField textPhone;
+    @FXML
+    private JFXTextField textPhone;
 
-	@FXML
-	private JFXRadioButton radioSingular;
+    @FXML
+    private JFXRadioButton radioSingular;
 
-	@FXML
-	private JFXRadioButton radioEnterprise;
+    @FXML
+    private JFXRadioButton radioEnterprise;
 
-	@FXML
-	private Label lblIdentityNo;
+    @FXML
+    private Label lblIdentityNo;
 
-	@FXML
-	private JFXTextField txtIdentityNo;
+    @FXML
+    private JFXTextField txtIdentityNo;
 
-	@FXML
-	private Label lblSex;
+    @FXML
+    private Label lblSex;
 
-	@FXML
-	private JFXComboBox<String> comboSex;
+    @FXML
+    private JFXComboBox<String> comboSex;
 
-	@FXML
-	private Label lblCompanyName;
+    @FXML
+    private Label lblCompanyName;
 
-	@FXML
-	private JFXTextField txtCompanyName;
+    @FXML
+    private JFXTextField txtCompanyName;
 
-	private List<String> provinces;
+    private List<String> provinces;
 
-	private List<String> districts;
+    private List<String> districts;
 
-	private EntityManager entityManager;
+    private EntityManager entityManager;
 
-	private ToggleGroup individualOrEnterprise;
+    private ToggleGroup individualOrEnterprise;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		entityManager = MainClass.entityManager;
-		individualOrEnterprise = new ToggleGroup();
-		radioEnterprise.setToggleGroup(individualOrEnterprise);
-		radioSingular.setToggleGroup(individualOrEnterprise);
-		fillComboProvinces();
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //entityManager = EntityManagerUtility.getEntityManager();
+        individualOrEnterprise = new ToggleGroup();
+        radioEnterprise.setToggleGroup(individualOrEnterprise);
+        radioSingular.setToggleGroup(individualOrEnterprise);
+        //  fillComboProvinces();
+    }
 
-	@FXML
-	void selectEnterprise() {
-		lblIdentityNo.setText("Vergi no");
-		lblSex.setVisible(false);
-		comboSex.setVisible(false);
-		lblCompanyName.setVisible(true);
-		txtCompanyName.setVisible(true);
-	}
+    @FXML
+    void selectEnterprise() {
+        lblIdentityNo.setText("Vergi no");
+        lblSex.setVisible(false);
+        comboSex.setVisible(false);
+        lblCompanyName.setVisible(true);
+        txtCompanyName.setVisible(true);
+    }
 
-	@FXML
-	void selectIndividual() {
-		lblIdentityNo.setText("T.C.");
-		lblSex.setVisible(true);
-		comboSex.setVisible(true);
-		lblCompanyName.setVisible(false);
-		txtCompanyName.setVisible(false);
-	}
+    @FXML
+    void selectIndividual() {
+        lblIdentityNo.setText("T.C.");
+        lblSex.setVisible(true);
+        comboSex.setVisible(true);
+        lblCompanyName.setVisible(false);
+        txtCompanyName.setVisible(false);
+    }
 
-	@FXML
-	public void save() {
-		RadioButton selected = (RadioButton) individualOrEnterprise.selectedToggleProperty().getValue();
-		System.out.println(selected.getText());
-	}
+    @FXML
+    public void save() {
+        RadioButton selected = (RadioButton) individualOrEnterprise.selectedToggleProperty().getValue();
+        System.out.println(selected.getText());
+    }
 
-	private void fillComboProvinces() {
-		Query query = entityManager.createNativeQuery("SELECT DISTINCT il_isim FROM ilceler ORDER BY il_isim ASC");
-		provinces = query.getResultList();
-		comboProvince.getItems().setAll(provinces);
-	}
+    private void fillComboProvinces() {
+        Query query = entityManager.createNativeQuery("SELECT DISTINCT il_isim FROM ilceler ORDER BY il_isim ASC");
+        provinces = query.getResultList();
+        comboProvince.getItems().setAll(provinces);
+    }
 
-	@FXML
-	public void listDistrictsOfProvince() {
-		// ile göre ilçe listeleme
-		Query query = entityManager.createNativeQuery("SELECT ilce_isim FROM ilceler WHERE il_isim = ?1");
-		query.setParameter(1, comboProvince.getValue());
-		districts = query.getResultList();
-		comboDistrict.getItems().clear();
-		comboDistrict.getItems().addAll(districts);
-	}
+    @FXML
+    public void listDistrictsOfProvince() {
+        // ile göre ilçe listeleme
+        /*
+        Query query = entityManager.createNativeQuery("SELECT ilce_isim FROM ilceler WHERE il_isim = ?1");
+        query.setParameter(1, comboProvince.getValue());
+        districts = query.getResultList();
+        comboDistrict.getItems().clear();
+        comboDistrict.getItems().addAll(districts);
+        */
+    }
 
-	@FXML
-	public void closeDialog() {
-		CustomerController.createCustomerDialog.close();
-	}
+    @FXML
+    public void closeDialog() {
+        CustomerController.createCustomerDialog.close();
+    }
 
 }
