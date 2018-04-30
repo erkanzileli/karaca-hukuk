@@ -21,7 +21,6 @@ public class LoginScreenController {
     @FXML
     private PasswordField login_screen_pw_in;
 
-
     @FXML
     private AnchorPane login_screen_root_pane;
 
