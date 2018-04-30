@@ -1,7 +1,9 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import entity.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import main.MainClass;
+import sun.applet.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +28,54 @@ public class HomeController implements Initializable {
 
     @FXML
     private StackPane root;
+
+    @FXML
+    private JFXButton btnHome;
+
+    @FXML
+    private JFXButton btnLawsuits;
+
+    @FXML
+    private JFXButton btnCustomers;
+
+    @FXML
+    private JFXButton btnReports;
+
+    @FXML
+    private JFXButton btnAgenda;
+
+    @FXML
+    private JFXButton btnQuit;
+
+    @FXML
+    private JFXButton btnEmployees;
+
+    private Member member;
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        showDashboard();
+        member = MainClass.member;
+        System.out.println("HomeController.initialize");
+        setButtonsForUser();
+    }
+
+    private void setButtonsForUser() {
+        //Butonların ayarlanması
+        /** if lawyer
+         * agenda -> 0,273
+         * quit ->
+         */
+        if ("LAWYER".equals(member.getType()) || "SECRETARY".equals(member.getType())) {
+            btnReports.setVisible(false);
+            btnAgenda.setLayoutY(273);
+            btnEmployees.setVisible(false);
+            btnQuit.setLayoutY(314);
+        }
+        /** if secretary
+         *
+         */
+    }
 
     @FXML
     void showLawsuits() {
@@ -124,12 +176,6 @@ public class HomeController implements Initializable {
         }
         borderPane.setCenter(diary);
         System.gc();
-    }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        showDashboard();
-        System.out.println("HomeController.initialize");
     }
 
 
