@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,7 +18,6 @@ public class Lawsuit {
 
     private int idOpponent;
 
-    private int idQuestionPack;
 
     private String type;
 
@@ -27,21 +27,18 @@ public class Lawsuit {
 
     private String description;
 
-    private String judicalWay;
 
     public Lawsuit() {
     }
 
-    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, int idQuestionPack, String type, String status, LocalDate date, String description, String judicalWay) {
+    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, String type, String status, LocalDate date, String description) {
         this.idLawyer = idLawyer;
         this.idCustomer = idCustomer;
         this.idOpponent = idOpponent;
-        this.idQuestionPack = idQuestionPack;
         this.type = type;
         this.status = status;
         this.date = date;
         this.description = description;
-        this.judicalWay = judicalWay;
     }
 
     public int getIdLawsuit() {
@@ -76,13 +73,6 @@ public class Lawsuit {
         this.idOpponent = idOpponent;
     }
 
-    public int getIdQuestionPack() {
-        return idQuestionPack;
-    }
-
-    public void setIdQuestionPack(int idQuestionPack) {
-        this.idQuestionPack = idQuestionPack;
-    }
 
     public String getType() {
         return type;
@@ -116,11 +106,4 @@ public class Lawsuit {
         this.description = description;
     }
 
-    public String getJudicalWay() {
-        return judicalWay;
-    }
-
-    public void setJudicalWay(String judicalWay) {
-        this.judicalWay = judicalWay;
-    }
 }

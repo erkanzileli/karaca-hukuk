@@ -14,12 +14,12 @@ public class Question {
 
     private String question;
 
-    private boolean ansver;
+    private String ansver;
 
     public Question() {
     }
 
-    public Question(int idLawsuit, String question, boolean ansver) {
+    public Question(int idLawsuit, String question, String  ansver) {
         this.idLawsuit = idLawsuit;
         this.question = question;
         this.ansver = ansver;
@@ -49,11 +49,11 @@ public class Question {
         this.question = question;
     }
 
-    public boolean isAnsver() {
+    public String isAnsver() {
         return ansver;
     }
 
-    public void setAnsver(boolean ansver) {
+    public void setAnsver(String ansver) {
         this.ansver = ansver;
     }
 }

@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,12 +20,12 @@ public class Opponent {
 
     private String type;
 
-    private LocalDateTime createDate;
+    private LocalDate createDate;
 
     public Opponent() {
     }
 
-    public Opponent(int idLawsuit, String name, String surname, String type, LocalDateTime createDate) {
+    public Opponent(int idLawsuit, String name, String surname, String type, LocalDate createDate) {
         this.idLawsuit = idLawsuit;
         this.name = name;
         this.surname = surname;
@@ -72,11 +73,11 @@ public class Opponent {
         this.type = type;
     }
 
-    public LocalDateTime getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 }

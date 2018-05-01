@@ -33,8 +33,8 @@
                 </Label>
                 <JFXTextField fx:id="kimlikNo" alignment="CENTER" layoutX="380.0" layoutY="100.0" prefHeight="25.0" prefWidth="228.0" promptText="T.C" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="100.0" />
                 <FontAwesomeIconView fx:id="search_customer" glyphName="SEARCH" layoutX="603.857141494751" layoutY="123.0" onMouseClicked="#search_customer" size="17" AnchorPane.rightAnchor="380.3571443557739" AnchorPane.topAnchor="108.4285717010498" />
-                <JFXTextField fx:id="name" alignment="CENTER" layoutX="380.0" layoutY="130.0" prefHeight="25.0" prefWidth="175.0" promptText="İsim" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="130.0" />
-                <JFXTextField fx:id="numara" alignment="CENTER" layoutX="380.0" layoutY="160.0" prefHeight="25.0" prefWidth="175.0" promptText="Soyisim" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="160.0" />
+                <JFXTextField fx:id="name" alignment="CENTER" layoutX="232.0" layoutY="131.0" prefHeight="25.0" prefWidth="175.0" promptText="İsim" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="131.0" />
+                <JFXTextField fx:id="numara" alignment="CENTER" layoutX="489.0" layoutY="131.0" prefHeight="25.0" prefWidth="175.0" promptText="Soyisim" AnchorPane.leftAnchor="489.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="131.0" />
                 <Label alignment="CENTER" layoutX="423.0" layoutY="251.0" text="DAVA BİLGİLERİ" underline="true" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="255.0">
                     <font>
                         <Font name="Apple Chancery" size="14.0" />
@@ -142,6 +142,7 @@
                   <Font name="Times New Roman Bold" size="14.0" />
                </font>
             </Label>
+            <JFXTextField fx:id="phoneNumber" alignment="CENTER" layoutX="383.0" layoutY="168.0" prefHeight="27.0" prefWidth="205.0" promptText="Numara" />
             </children>
         </AnchorPane>
     </children>
