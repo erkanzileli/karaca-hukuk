@@ -1,6 +1,10 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Member")
@@ -11,8 +15,6 @@ public class Member {
 	private int idMember;
 
 	private long tc;
-
-	private int idAdress;
 
 	private String name;
 
@@ -25,9 +27,8 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(long tc, int idAdress, String name, String surname, String type, String password) {
+	public Member(long tc, String name, String surname, String type, String password) {
 		this.tc = tc;
-		this.idAdress = idAdress;
 		this.name = name;
 		this.surname = surname;
 		this.type = type;
@@ -48,14 +49,6 @@ public class Member {
 
 	public void setTc(long tc) {
 		this.tc = tc;
-	}
-
-	public int getIdAdress() {
-		return idAdress;
-	}
-
-	public void setIdAdress(int idAdress) {
-		this.idAdress = idAdress;
 	}
 
 	public String getName() {

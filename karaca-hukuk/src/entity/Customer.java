@@ -1,104 +1,97 @@
 package entity;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Customer")
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCustomer;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idCustomer;
 
-    private long tc;
+	private long tc;
 
-    private long taxNumber;
+	private long taxNumber;
 
-    private int idAdress;
+	private String type;
 
-    private String type;
+	private String name;
 
-    private String name;
+	private String surname;
 
-    private String surname;
+	private long phoneNumber;
 
-    private LocalDateTime createDate;
+	public Customer() {
+	}
 
-    public Customer() {
-    }
+	public Customer(long tc, long taxNumber, String type, String name, String surname, long phoneNumber) {
+		this.tc = tc;
+		this.taxNumber = taxNumber;
+		this.type = type;
+		this.name = name;
+		this.surname = surname;
+		this.setPhoneNumber(phoneNumber);
+	}
 
-    public Customer(long tc, long taxNumber, int idAdress, String type, String name, String surname, LocalDateTime createDate) {
-        this.tc = tc;
-        this.taxNumber = taxNumber;
-        this.idAdress = idAdress;
-        this.type = type;
-        this.name = name;
-        this.surname = surname;
-        this.createDate = createDate;
-    }
+	public int getIdCustomer() {
+		return idCustomer;
+	}
 
-    public int getIdCustomer() {
-        return idCustomer;
-    }
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
+	}
 
-    public void setIdCustomer(int idCustomer) {
-        this.idCustomer = idCustomer;
-    }
+	public long getTc() {
+		return tc;
+	}
 
-    public long getTc() {
-        return tc;
-    }
+	public void setTc(long tc) {
+		this.tc = tc;
+	}
 
-    public void setTc(long tc) {
-        this.tc = tc;
-    }
+	public long getTaxNumber() {
+		return taxNumber;
+	}
 
-    public long getTaxNumber() {
-        return taxNumber;
-    }
+	public void setTaxNumber(long taxNumber) {
+		this.taxNumber = taxNumber;
+	}
 
-    public void setTaxNumber(long taxNumber) {
-        this.taxNumber = taxNumber;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public int getIdAdress() {
-        return idAdress;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setIdAdress(int idAdress) {
-        this.idAdress = idAdress;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public String getSurname() {
+		return surname;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getSurname() {
-        return surname;
-    }
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
 }
