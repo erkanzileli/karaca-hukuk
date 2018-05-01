@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import entity.Lawsuit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,10 +19,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import utility.EntityManagerUtility;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.Timer;
 
@@ -174,9 +179,12 @@ public class CreateLawsuitController implements Initializable {
     @FXML
     private Label wrongForValidate;
 
+    private EntityManager entityManager;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        entityManager = EntityManagerUtility.getEntityManager();
         lawsuit_start_date.setValue(LocalDate.now());
         date_evidence.setValue(LocalDate.now());
         ObservableList observableListTmpil = FXCollections.observableArrayList("İstanbul", "Ankara", "İzmir");
@@ -353,7 +361,9 @@ public class CreateLawsuitController implements Initializable {
                 if (!validationForNumericInput()) {
                     wrongForValidate.setText("Lütfen rakam olması gereken yerlere harf girmeyelim :)");
                 } else {
-                    //////////////////              EKLEME SORGUSU            ////////////////////
+                    //////////////////              EKLEME SORGUSU FONKSİYONU           ////////////////////
+                    addLawsuit();
+
                 }
             }
 
@@ -365,7 +375,22 @@ public class CreateLawsuitController implements Initializable {
 
     }
 
+    ///// VERİTABANINA DAVA KAYDI
 
+    private void addLawsuit() {
+
+        try {
+            entityManager.persist(new Lawsuit(0,0,0,0,lawsuitType.getSelectionModel().getSelectedItem().toString().trim(),lawsuit_status.getSelectionModel().getSelectedItem().toString().trim(),lawsuit_start_date.getValue(),lawsuitDesc.toString(),"null"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+
+
+
+    }
 
 
     /// SAYI İÇERİĞİ KONTROLU
@@ -385,7 +410,7 @@ public class CreateLawsuitController implements Initializable {
     ///  INPUT DOLU-BOS KONTROLU
 
     private boolean validationForEmpty() {
-        if (customeril.getSelectionModel().getSelectedItem() == null || customerilce.getSelectionModel().getSelectedItem() == null || customerkapino.getText().isEmpty() || customerMahalle.getText().isEmpty() || customerpostakodu.getText().isEmpty() || customersokak.getText().isEmpty() || payOfLawsuit.getText().isEmpty() || kimlikNo.getText().isEmpty() || name.getText().isEmpty() || numara.getText().isEmpty() || t1.getSelectedToggle() == null || defandant_name.getText().isEmpty() || complainant_name.getText().isEmpty() || defandant_surname.getText().isEmpty() || complainant_surname.getText().isEmpty() || defandant_name.getText().isEmpty() || lawsuitType.getSelectionModel().getSelectedItem() == null || lawsuit_status.getSelectionModel().getSelectedItem() == null || opponentType.getSelectionModel().getSelectedItem() == null || typePay.getSelectionModel().getSelectedItem() == null) {
+        if (lawsuitDesc.getText().isEmpty() || customeril.getSelectionModel().getSelectedItem() == null || customerilce.getSelectionModel().getSelectedItem() == null || customerkapino.getText().isEmpty() || customerMahalle.getText().isEmpty() || customerpostakodu.getText().isEmpty() || customersokak.getText().isEmpty() || payOfLawsuit.getText().isEmpty() || kimlikNo.getText().isEmpty() || name.getText().isEmpty() || numara.getText().isEmpty() || t1.getSelectedToggle() == null || defandant_name.getText().isEmpty() || complainant_name.getText().isEmpty() || defandant_surname.getText().isEmpty() || complainant_surname.getText().isEmpty() || defandant_name.getText().isEmpty() || lawsuitType.getSelectionModel().getSelectedItem() == null || lawsuit_status.getSelectionModel().getSelectedItem() == null || opponentType.getSelectionModel().getSelectedItem() == null || typePay.getSelectionModel().getSelectedItem() == null) {
             wrongForValidate.setText("Az çok demeyelim boş geçmeyelim :)");
             return false;
 
@@ -407,6 +432,7 @@ public class CreateLawsuitController implements Initializable {
     }
 
 
+    // KANIT TİKİ SONRASI EKLEME PANE AÇILIŞI
     @FXML
     void add_evidence() {
 
@@ -414,7 +440,7 @@ public class CreateLawsuitController implements Initializable {
 
     }
 
-
+    // KANIT TİKİ
     @FXML
     void checkbox_evidence() {
         if (checkbox_evidence.isSelected()) {
@@ -430,6 +456,7 @@ public class CreateLawsuitController implements Initializable {
         }
     }
 
+    // EKLENEN KANIT GÖRÜNTÜLENMESİ
 
     @FXML
     void show_evidence() {
@@ -450,7 +477,7 @@ public class CreateLawsuitController implements Initializable {
 
     }
 
-    
+    // KANI PANEDE EKLEME
     @FXML
     void add_evidence_hide() {
         tmpDbEvidence.add(info_evidence.getText());
@@ -458,6 +485,7 @@ public class CreateLawsuitController implements Initializable {
         evidence_count.setText(EvidenceDetailsController.tmpEvidencesDb.size() + "");
     }
 
+    ////////////////////////////////////////////////////////////////////////////
     @FXML
     void editForLawsuit() {
 

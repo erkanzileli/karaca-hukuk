@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Lawsuit {
 
     private String status;
 
-    private LocalDateTime date;
+    private LocalDate date;
 
     private String description;
 
@@ -34,7 +35,7 @@ public class Lawsuit {
     public Lawsuit() {
     }
 
-    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, int idQuestionPack, String type, String status, LocalDateTime date, String description, String judicalWay) {
+    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, int idQuestionPack, String type, String status, LocalDate date, String description, String judicalWay) {
         this.idLawyer = idLawyer;
         this.idCustomer = idCustomer;
         this.idOpponent = idOpponent;
@@ -102,11 +103,11 @@ public class Lawsuit {
         this.status = status;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
