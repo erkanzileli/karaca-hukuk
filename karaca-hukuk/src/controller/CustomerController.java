@@ -10,17 +10,18 @@ import javax.persistence.TypedQuery;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import entity.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import utility.EntityManagerUtility;
 
@@ -36,21 +37,29 @@ public class CustomerController implements Initializable {
 	private JFXButton btnCreate;
 
 	@FXML
-	private JFXTreeTableView<CustomerModel> tableView;
+	private TableView<Customer> tableView;
 
 	@FXML
-	private TreeTableColumn<CustomerModel, String> columnCustomerName;
+	private TableColumn<Customer, String> columnName;
 
 	@FXML
-	private TreeTableColumn<CustomerModel, String> columnCustomerPhone;
+	private TableColumn<Customer, String> columnSurname;
 
 	@FXML
-	private TreeTableColumn<CustomerModel, String> columnCustomerType;
+	private TableColumn<Customer, String> columnType;
 
 	@FXML
-	private TreeTableColumn<CustomerModel, String> columnDate;
+	private TableColumn<Customer, Long> columnPhone;
+
+	@FXML
+	private TableColumn<Customer, Long> columnTC;
+
+	@FXML
+	private TableColumn<Customer, Long> columnTaxNumber;
 
 	public static JFXDialog createCustomerDialog;
+
+	public static JFXDialog customerDetailsDialog;
 
 	private EntityManager entityManager;
 
@@ -60,38 +69,45 @@ public class CustomerController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("CustomerController.initialize");
 		entityManager = EntityManagerUtility.getEntityManager();
-		customers = getData();
-		/*
-		 * getData().forEach(c -> { System.out.println(c.getTc()); list.add(new
-		 * CustomerModel(c.getName(),"",c.getType(),"")); });
-		 */
-		/*
-		 * final TreeItem<CustomerModel> treeItem = new
-		 * RecursiveTreeItem<>(list,RecursiveTreeObject::getChildren);
-		 * tableView.getColumns().setAll(columnCustomerName,columnCustomerPhone,
-		 * columnCustomerType,columnDate); tableView.setRoot(treeItem);
-		 * tableView.setShowRoot(false);
-		 */
+
+		columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		columnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+		columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
+		columnPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+		columnTC.setCellValueFactory(new PropertyValueFactory<>("tc"));
+		columnTaxNumber.setCellValueFactory(new PropertyValueFactory<>("taxNumber"));
+		getData();
+
+		tableView.getItems().setAll(customers);
+
+		tableView.setOnMouseClicked(e -> {
+			if (e.getClickCount() == 2) {
+				CustomerDetailController.selectedCustomer = tableView.getSelectionModel().getSelectedItem();
+				showCustomerDetails();
+			}
+		});
 	}
 
-	private List<Customer> getData() {
-		TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer");
-		return query.getResultList();
-
+	private void getData() {
+		TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer",
+				Customer.class);
+		customers = query.getResultList();
 	}
 
-	class CustomerModel extends RecursiveTreeObject<CustomerModel> {
-		String customerName;
-		String customerPhone;
-		String customerType;
-		String registerDate;
-
-		public CustomerModel(String customerName, String customerPhone, String customerType, String registerDate) {
-			this.customerName = customerName;
-			this.customerPhone = customerPhone;
-			this.customerType = customerType;
-			this.registerDate = registerDate;
+	void showCustomerDetails() {
+		Parent details = null;
+		try {
+			details = FXMLLoader.load(getClass().getResource("/fxml/customerDetail.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		JFXDialogLayout dialogLayout = new JFXDialogLayout();
+		dialogLayout.setBody(details);
+		JFXDialog dialog = new JFXDialog(root, dialogLayout, DialogTransition.CENTER);
+		dialog.setOverlayClose(false);
+		customerDetailsDialog = dialog;
+		dialog.show();
 	}
 
 	@FXML

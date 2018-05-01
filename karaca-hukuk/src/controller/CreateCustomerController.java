@@ -95,6 +95,7 @@ public class CreateCustomerController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		entityManager = EntityManagerUtility.getEntityManager();
 		fillComboProvinces();
+		comboSex.getItems().addAll("Kadın", "Erkek");
 		individualOrEnterprise = new ToggleGroup();
 		radioEnterprise.setToggleGroup(individualOrEnterprise);
 		radioSingular.setToggleGroup(individualOrEnterprise);
@@ -124,53 +125,71 @@ public class CreateCustomerController implements Initializable {
 		// adress
 		String province = comboProvince.getValue();
 		String district = comboDistrict.getValue();
-		String adressPhone = textAdressPhone.getText().trim();
 		String street = textStreet.getText().trim();
 		String doorNumber = textDoorNumber.getText().trim();
 		// general
 		String type = selected.getText();
-		String name = textName.getText().trim() == null ? "" : textName.getText().trim();
-		String surname = textSurname.getText().trim() == null ? "" : textSurname.getText().trim();
+		String name = textName.getText().trim();
+		String surname = textSurname.getText().trim();
 
 		int postalCode = 0;
-		try {
-			postalCode = Integer.parseInt(txtPostalCode.getText().trim());
-		} catch (Exception e) {
-			// int değil
+		if (txtPostalCode.getText().trim().length() > 0) {
+			try {
+				postalCode = Integer.parseInt(txtPostalCode.getText().trim());
+			} catch (Exception e) {
+				// int değil
+				createAlertDialog(AlertType.ERROR, "Hata", "Hatalı değer girildi.", "Posta kodu nümerik olmalıdır.")
+						.show();
+			}
 		}
 		long phoneNumber = 0;
-		try {
-			phoneNumber = Long.parseLong(textPhone.getText().trim());
-		} catch (Exception e) {
-			// long değil
+		if (textPhone.getText().trim().length() > 0) {
+
+			try {
+				phoneNumber = Long.parseLong(textPhone.getText().trim());
+			} catch (Exception e) {
+				// long değil
+				createAlertDialog(AlertType.ERROR, "Hata", "Hatalı değer girildi.",
+						"Telefon numarası nümerik olmalıdır.").show();
+			}
 		}
 		long adressPhoneNumber = 0;
-		try {
-			adressPhoneNumber = Long.parseLong(adressPhone);
-		} catch (Exception e) {
-			// long değil
+		if (textAdressPhone.getText().trim().length() > 0) {
+			try {
+				adressPhoneNumber = Long.parseLong(textAdressPhone.getText().trim());
+			} catch (Exception e) {
+				// long değil
+				createAlertDialog(AlertType.ERROR, "Hata", "Hatalı değer girildi.",
+						"Telefon numarası nümerik olmalıdır.").show();
+			}
 		}
-		if (postalCode != 0 || phoneNumber != 0 || adressPhoneNumber != 0) {
-			// bireysel
-			if ("Bireysel".equals(type)) {
+		// bireysel
+		if ("Bireysel".equals(type)) {
+			String tcString = txtIdentityNo.getText().trim();
+			// T.C. 11 haneli olmalı
+			if (tcString.length() != 11) {
+				createAlertDialog(AlertType.INFORMATION, "Bilgi", null,
+						"T.C. numarası 11 haneli olmalı nümerik olmalıdır.").show();
+			} else { // T.C. 11 haneli
 				long tc = 0;
 				String sex = comboSex.getValue();
-
 				try {
-					tc = Long.parseLong(txtIdentityNo.getText().trim());
+					tc = Long.parseLong(tcString);
 				} catch (Exception e) {
 					createAlertDialog(AlertType.INFORMATION, "Bilgi", null, "T.C. nümerik olmalıdır.").show();
 				}
-				if (tc != 0) {
-					// save
+				if (tc != 0) { // T.C. doğru alındı
+					// Müşteri kaydedilir
 					entityManager.getTransaction().begin();
 					entityManager.persist(new Customer(tc, 0, type, name, surname, phoneNumber));
 					entityManager.getTransaction().commit();
+
+					// oluşturulan musterinin idCustomer degeri idAdress tablosuna yazilir
 					Query query = entityManager.createNativeQuery("SELECT idCustomer FROM Customer WHERE tc=?1");
 					query.setParameter(1, tc);
 					List<Integer> result = query.getResultList();
-					// oluşturulan musterinin idCustomer degeri idAdress tablosuna yazilir
-					entityManager.getTransaction().begin();
+
+					// Adress bilgilerinin nesneye aktarılması
 					Adress adress = new Adress();
 					adress.setCountry("Turkey");
 					adress.setCounty(province);
@@ -181,17 +200,56 @@ public class CreateCustomerController implements Initializable {
 					adress.setIdCustomer(result.get(0));
 					adress.setPhoneNumber(adressPhoneNumber);
 					adress.setType(type);
+					// adres bilgisinin kaydedilmesi
+					entityManager.getTransaction().begin();
 					entityManager.persist(adress);
 					entityManager.getTransaction().commit();
+					closeDialog();
 				}
-			} else { // kurumsal
-				String taxNumber = txtIdentityNo.getText().trim();
-				String companyName = txtCompanyName.getText().trim();
-
 			}
-		} else {
-			createAlertDialog(AlertType.INFORMATION, "Bilgi", null,
-					"Posta kodu veya telefon numaralarından biri boş geçiliyor!").show();
+		} else { // kurumsal
+			String taxNumberString = txtIdentityNo.getText().trim();
+			if (taxNumberString.length() != 10) {
+				createAlertDialog(AlertType.ERROR, "Eksik bilgi.", null, "Vergi numarası 10 haneden daha az olamaz.")
+						.show();
+			} else {
+				long taxNumber = 0;
+				String companyName = txtCompanyName.getText().trim();
+				try {
+					taxNumber = Long.parseLong(txtIdentityNo.getText().trim());
+				} catch (Exception e) {
+					createAlertDialog(AlertType.INFORMATION, "Bilgi", null, "Verigi numarası nümerik olmalıdır.")
+							.show();
+				}
+				if (taxNumber != 0) {
+					// Müşteri kaydedilir
+					entityManager.getTransaction().begin();
+					entityManager.persist(new Customer(0, taxNumber, type, name, surname, phoneNumber));
+					entityManager.getTransaction().commit();
+
+					// oluşturulan musterinin idCustomer degeri idAdress tablosuna yazilir
+					Query query = entityManager.createNativeQuery("SELECT idCustomer FROM Customer WHERE taxNumber=?1");
+					query.setParameter(1, taxNumber);
+					List<Integer> result = query.getResultList();
+
+					// Adress bilgilerinin nesneye aktarılması
+					Adress adress = new Adress();
+					adress.setCountry("Turkey");
+					adress.setCounty(province);
+					adress.setCity(district);
+					adress.setStreet(street);
+					adress.setDoorNumber(doorNumber);
+					adress.setPostalCode(postalCode);
+					adress.setIdCustomer(result.get(0));
+					adress.setPhoneNumber(adressPhoneNumber);
+					adress.setType(type);
+					// adres bilgisinin kaydedilmesi
+					entityManager.getTransaction().begin();
+					entityManager.persist(adress);
+					entityManager.getTransaction().commit();
+					closeDialog();
+				}
+			}
 		}
 	}
 

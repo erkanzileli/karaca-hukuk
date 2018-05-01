@@ -1,40 +1,46 @@
 package controller;
 
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javax.persistence.EntityManager;
+
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+
+import entity.Agenda;
+import entity.Member;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
+import main.MainClass;
+import utility.EntityManagerUtility;
 
 public class CreateDiaryRecordController implements Initializable {
+
+	private Member currentMember;
+
+	private EntityManager entityManager;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("CreateDiaryRecordController.initialize");
-	}
-
-	@FXML
-	void createToDo() {
-		
-		TextInputDialog textInputDialog = new TextInputDialog();
-		textInputDialog.headerTextProperty().setValue(null);
-		textInputDialog.contentTextProperty().setValue("İçerik");
-		textInputDialog.titleProperty().set("Hatırlatma Ekleyin");
-		Optional<String> stringOptional = textInputDialog.showAndWait();
-		
-		// System.out.println(stringOptional.get());
-		
+		currentMember = MainClass.member;
+		entityManager = EntityManagerUtility.getEntityManager();
 	}
 
 	@FXML
@@ -65,8 +71,6 @@ public class CreateDiaryRecordController implements Initializable {
 
 		dialog.getDialogPane().setContent(gridPane);
 
-		// Convert the result to a username-password-pair when the login button is
-		// clicked.
 		dialog.setResultConverter(dialogButton -> {
 			if (dialogButton == okButtonType) {
 				return new Pair<>(title.getText(), content.getText());
@@ -77,8 +81,27 @@ public class CreateDiaryRecordController implements Initializable {
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 
 		result.ifPresent(pair -> {
-			// System.out.println(pair.getKey() + " " + pair.getValue());
-			// todo:add-database
+			System.out.println(pair.getKey() + " " + pair.getValue());
+
+			String titleText = pair.getKey().trim();
+			String contentText = pair.getValue().trim();
+
+			if (!"".equals(titleText) && !"".equals(contentText)) {
+				Agenda record = new Agenda();
+				record.setIdMember(currentMember.getIdMember());
+				record.setHeader(titleText);
+				record.setDescription(contentText);
+				record.setDate(Date.valueOf(LocalDate.now()));
+				entityManager.getTransaction().begin();
+				entityManager.persist(record);
+				entityManager.getTransaction().commit();
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Eksik veri girişi.");
+				alert.setHeaderText(null);
+				alert.setContentText("Eksik kısım bırakmayınız.");
+				alert.show();
+			}
 		});
 	}
 

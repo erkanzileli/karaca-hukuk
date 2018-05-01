@@ -68,7 +68,7 @@ public class EmployeeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    //todo:tablodaki elemanlardan birine tıklandığında
+    //TODO:tablodaki elemanlardan birine tıklandığında
     private void showEmployeeDetails() {
         employeeDetailsDialog = createDialog("employeeDetails", JFXDialog.DialogTransition.CENTER);
         employeeDetailsDialog.setOverlayClose(false);
