@@ -1,6 +1,8 @@
 package entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Lawsuit {
 
 	private int idOpponent;
 
-	private int idQuestionPack;
+    private int idQuestionPack;
 
 	private String type;
 
@@ -32,23 +34,20 @@ public class Lawsuit {
 
 	private String description;
 
-	private String judicalWay;
+    private String judicalWay;
 
 	public Lawsuit() {
 	}
 
-	public Lawsuit(int idLawyer, int idCustomer, int idOpponent, int idQuestionPack, String type, String status,
-			LocalDate date, String description, String judicalWay) {
-		this.idLawyer = idLawyer;
-		this.idCustomer = idCustomer;
-		this.idOpponent = idOpponent;
-		this.idQuestionPack = idQuestionPack;
-		this.type = type;
-		this.status = status;
-		this.date = date;
-		this.description = description;
-		this.judicalWay = judicalWay;
-	}
+    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, String type, String status, LocalDate date, String description) {
+        this.idLawyer = idLawyer;
+        this.idCustomer = idCustomer;
+        this.idOpponent = idOpponent;
+        this.type = type;
+        this.status = status;
+        this.date = date;
+        this.description = description;
+    }
 
 	public int getIdLawsuit() {
 		return idLawsuit;
@@ -82,17 +81,13 @@ public class Lawsuit {
 		this.idOpponent = idOpponent;
 	}
 
-	public int getIdQuestionPack() {
-		return idQuestionPack;
-	}
+    public int getIdQuestionPack() {
+        return idQuestionPack;
+    }
 
-	public void setIdQuestionPack(int idQuestionPack) {
-		this.idQuestionPack = idQuestionPack;
-	}
-
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
 	public void setType(String type) {
 		this.type = type;
@@ -122,11 +117,11 @@ public class Lawsuit {
 		this.description = description;
 	}
 
-	public String getJudicalWay() {
-		return judicalWay;
-	}
+    public String getJudicalWay() {
+        return judicalWay;
+    }
 
-	public void setJudicalWay(String judicalWay) {
-		this.judicalWay = judicalWay;
-	}
+    public void setJudicalWay(String judicalWay) {
+        this.judicalWay = judicalWay;
+    }
 }

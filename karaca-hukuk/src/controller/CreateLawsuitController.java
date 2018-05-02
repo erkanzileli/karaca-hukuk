@@ -1,8 +1,9 @@
 package controller;
 
 import com.jfoenix.controls.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import entity.Lawsuit;
+import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +20,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import main.MainClass;
+import model.EvidenceModel;
+import sun.applet.Main;
 import utility.EntityManagerUtility;
 
 import javax.persistence.EntityManager;
@@ -33,9 +37,8 @@ import java.util.Timer;
 public class CreateLawsuitController implements Initializable {
     private ArrayList<String> tmpDb = new ArrayList<>();
     private ArrayList<ToggleGroup> toggleGroups = new ArrayList<>();
-    private ArrayList<String> tmpDbEvidence = new ArrayList<>();
+    public static ArrayList<EvidenceModel> tmpDbEvidence = new ArrayList<>();
     JFXDialog dialog;
-    ObservableList observableListTypePay;
 
     @FXML
     private StackPane rootStack;
@@ -147,7 +150,6 @@ public class CreateLawsuitController implements Initializable {
     @FXML
     private Label evidence_count;
 
-
     @FXML
     private JFXComboBox<?> typePay;
 
@@ -168,13 +170,14 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     private JFXTextField customerkapino;
+    @FXML
+    private JFXTextField phoneNumber;
 
     @FXML
     private JFXTextField customerpostakodu;
 
     @FXML
     private JFXTextArea lawsuitDesc;
-
 
     @FXML
     private Label wrongForValidate;
@@ -192,6 +195,7 @@ public class CreateLawsuitController implements Initializable {
         ObservableList observableListStatus = FXCollections.observableArrayList("Aktif", "Beklemede", "Pasif");
         ObservableList observableListOpponentType = FXCollections.observableArrayList("Bireysel", "Kurumsal");
         ObservableList observableListLawsuitType = FXCollections.observableArrayList("Ceza", "İcra", "Hukuk");
+        ObservableList observableListTypePay = FXCollections.observableArrayList("Nakit", "KrediKartı (Tek Çekim)", "KrediKartı (3 Taksit)", "KrediKartı (6 Taksit)", "KrediKartı (9 Taksit)");
         ObservableList observableListEvidenceType = FXCollections.observableArrayList("Döküman", "Görüntü", "Ses Kaydı", "Suç Aleti");
         customeril.setItems(observableListTmpil);
         customerilce.setItems(observableListTmpilce);
@@ -199,7 +203,6 @@ public class CreateLawsuitController implements Initializable {
         lawsuitType.setItems(observableListLawsuitType);
         opponentType.setItems(observableListOpponentType);
         lawsuit_status.setItems(observableListStatus);
-        observableListTypePay = FXCollections.observableArrayList("Nakit", "KrediKartı (Tek Çekim)", "KrediKartı (3 Taksit)", "KrediKartı (6 Taksit)", "KrediKartı (9 Taksit)");
         typePay.setItems(observableListTypePay);
         //davalı-davacı secimi için
         which_customer_defendant.setUserData("davalıId");
@@ -212,8 +215,6 @@ public class CreateLawsuitController implements Initializable {
         tmpDb.add(tmpString);
         tmpDb.add(tmpString);
         tmpDb.add(tmpString);
-        tmpDb.add(tmpString);
-        tmpDb.add(tmpString);
         // Sorular kısmı için gridpane oluşturma
         fillGridPane();
     }
@@ -221,7 +222,7 @@ public class CreateLawsuitController implements Initializable {
     // Bireysel - Kurumsal seçimi
     @FXML
     void customer_type() {
-        if (customer_type.getText().toString().equals("Bireysel")) {
+        if (customer_type.getText().equals("Bireysel")) {
             customer_type.setText("Kurumsal");
             kimlikNo.setPromptText("Vergi Numarası");
         } else {
@@ -236,6 +237,12 @@ public class CreateLawsuitController implements Initializable {
         if (kimlikNo.getText().equals("12345678910")) {
             name.setText("admin");
             numara.setText("10");
+            phoneNumber.setText("05350248022");
+            defandant_name.setText("asdas");
+            defandant_surname.setText("asdasdas");
+            payOfLawsuit.setText("123");
+            lawsuitDesc.setText("asdasd");
+
         } else {
 
             uyari.setVisible(true);
@@ -307,13 +314,13 @@ public class CreateLawsuitController implements Initializable {
         JFXRadioButton rbE = new JFXRadioButton();
         rbE.setLayoutX(525);
         rbE.setStyle("-jfx-selected-color : #9fa8da");
-        rbE.setUserData(i + " EVET");
+        rbE.setUserData("EVET");
         rbE.setToggleGroup(tg);
 
         JFXRadioButton rbH = new JFXRadioButton();
         rbH.setLayoutX(560);
         rbH.setStyle("-jfx-selected-color : #9fa8da");
-        rbH.setUserData(i + " HAYIR");
+        rbH.setUserData("HAYIR");
         rbH.setToggleGroup(tg);
 
         toggleGroups.add(tg);
@@ -344,24 +351,40 @@ public class CreateLawsuitController implements Initializable {
     // Kaydın tamamlanması
     @FXML
     void submit() {
+        int kimlik = 0;
+        int tax = 0;
 
-        for (int i = 0; i < toggleGroups.size(); i++) {
-            if (toggleGroups.get(i).getSelectedToggle() == null) {
-                System.out.println(toggleGroups.get(i).getUserData() + "  Secim Yapılmamıs");
-            } else {
-                System.out.println(toggleGroups.get(i).getSelectedToggle().getUserData());
-            }
+        if (customer_type.getText().equals("Bireysel")) {
+            kimlik = kimlikNo.getText().trim().length();
+            tax = 10;
+        } else {
+            tax = kimlikNo.getText().trim().length();
+            kimlik = 11;
         }
 
+
         if (validationForEmpty()) {
-            System.out.println("dolu");
-            if (kimlikNo.getText().trim().length() != 11) {
-                wrongForValidate.setText("T.C. 11 HANELİ OLMALI :)");
+            System.out.println(kimlikNo.getText().trim().length() + "");
+            if (kimlik != 11 || tax != 10 || phoneNumber.getText().length() != 11) {
+                System.out.println("BAYRAK 1");
+                if (kimlik != 11) {
+                    wrongForValidate.setText("T.C. 11 HANELİ OLMALI :)");
+                } else if (tax != 10) {
+                    wrongForValidate.setText("VERGİ NUMARASI 10 HANELİ OLMALI :)");
+                } else {
+                    wrongForValidate.setText("Numara 11 haneli olmalıdır");
+                }
+
+
             } else {
+                System.out.println("BAYRAK 2");
                 if (!validationForNumericInput()) {
                     wrongForValidate.setText("Lütfen rakam olması gereken yerlere harf girmeyelim :)");
                 } else {
+                    System.out.println("BAYRAK 2.2");
                     //////////////////              EKLEME SORGUSU FONKSİYONU           ////////////////////
+                    wrongForValidate.setText("");
+                    answers();
                     addLawsuit();
 
                 }
@@ -375,19 +398,54 @@ public class CreateLawsuitController implements Initializable {
 
     }
 
+    // CEVAPLAR
+
+    private void answers() {
+        for (int i = 0; i < toggleGroups.size(); i++) {
+            if (toggleGroups.get(i).getSelectedToggle() == null) {
+                toggleGroups.get(i).setUserData("CEVAPSIZ");
+                System.out.println(toggleGroups.get(i).getUserData());
+            } else {
+                System.out.println(toggleGroups.get(i).getSelectedToggle().getUserData());
+            }
+        }
+    }
+
+
     ///// VERİTABANINA DAVA KAYDI
 
-    private void addLawsuit() {
-
+    public void addLawsuit() {
+        String tax;
+        String tc;
         try {
-            entityManager.persist(new Lawsuit(0,0,0,0,lawsuitType.getSelectionModel().getSelectedItem().toString().trim(),lawsuit_status.getSelectionModel().getSelectedItem().toString().trim(),lawsuit_start_date.getValue(),lawsuitDesc.toString(),"null"));
+            Opponent o1 = new Opponent(MainClass.member.getIdMember(), defandant_name.toString(), defandant_surname.toString(), opponentType.getSelectionModel().getSelectedItem().toString(), LocalDate.now());
+            if (customer_type.getText().equals("Bireysel")) {
+
+                tax = null;
+                tc = kimlikNo.getText().trim();
+            } else {
+                tc = null;
+                tax =kimlikNo.getText().trim();
+            }
+
+
+            Customer c1 = new Customer(Long.valueOf(tc), Long.valueOf(tax), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
+            entityManager.persist(o1);
+            Lawsuit l1 = new Lawsuit(MainClass.member.getIdMember(), c1.getIdCustomer(), o1.getIdOpponent(), lawsuitType.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_status.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_start_date.getValue(), lawsuitDesc.toString());
+            entityManager.persist(l1);
+
+            for (int i = 0; i < tmpDb.size(); i++) {
+                entityManager.persist(new Question(l1.getIdLawsuit(), tmpDb.get(i), toggleGroups.get(i).getUserData().toString()));
+            }
+            for (int i = 0; i < tmpDbEvidence.size(); i++) {
+                entityManager.persist(new Evidence(l1.getIdLawsuit(), tmpDbEvidence.get(i).getFromWho(), tmpDbEvidence.get(i).getType(), tmpDbEvidence.get(i).getDesc(), tmpDbEvidence.get(i).getDate()));
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-
-
 
 
     }
@@ -397,6 +455,8 @@ public class CreateLawsuitController implements Initializable {
 
     private boolean validationForNumericInput() {
         try {
+            Integer.valueOf(customerkapino.getText().trim());
+            Long.valueOf(phoneNumber.getText().trim());
             Integer.valueOf(customerpostakodu.getText().trim());
             Integer.valueOf(payOfLawsuit.getText().trim());
             Long.valueOf(kimlikNo.getText().trim());
@@ -410,7 +470,7 @@ public class CreateLawsuitController implements Initializable {
     ///  INPUT DOLU-BOS KONTROLU
 
     private boolean validationForEmpty() {
-        if (lawsuitDesc.getText().isEmpty() || customeril.getSelectionModel().getSelectedItem() == null || customerilce.getSelectionModel().getSelectedItem() == null || customerkapino.getText().isEmpty() || customerMahalle.getText().isEmpty() || customerpostakodu.getText().isEmpty() || customersokak.getText().isEmpty() || payOfLawsuit.getText().isEmpty() || kimlikNo.getText().isEmpty() || name.getText().isEmpty() || numara.getText().isEmpty() || t1.getSelectedToggle() == null || defandant_name.getText().isEmpty() || complainant_name.getText().isEmpty() || defandant_surname.getText().isEmpty() || complainant_surname.getText().isEmpty() || defandant_name.getText().isEmpty() || lawsuitType.getSelectionModel().getSelectedItem() == null || lawsuit_status.getSelectionModel().getSelectedItem() == null || opponentType.getSelectionModel().getSelectedItem() == null || typePay.getSelectionModel().getSelectedItem() == null) {
+        if (phoneNumber.getText().isEmpty() || lawsuitDesc.getText().isEmpty() || customeril.getSelectionModel().getSelectedItem() == null || customerilce.getSelectionModel().getSelectedItem() == null || customerkapino.getText().isEmpty() || customerMahalle.getText().isEmpty() || customerpostakodu.getText().isEmpty() || customersokak.getText().isEmpty() || payOfLawsuit.getText().isEmpty() || kimlikNo.getText().isEmpty() || name.getText().isEmpty() || numara.getText().isEmpty() || t1.getSelectedToggle() == null || defandant_name.getText().isEmpty() || complainant_name.getText().isEmpty() || defandant_surname.getText().isEmpty() || complainant_surname.getText().isEmpty() || defandant_name.getText().isEmpty() || lawsuitType.getSelectionModel().getSelectedItem() == null || lawsuit_status.getSelectionModel().getSelectedItem() == null || opponentType.getSelectionModel().getSelectedItem() == null || typePay.getSelectionModel().getSelectedItem() == null) {
             wrongForValidate.setText("Az çok demeyelim boş geçmeyelim :)");
             return false;
 
@@ -431,8 +491,8 @@ public class CreateLawsuitController implements Initializable {
 
     }
 
-
     // KANIT TİKİ SONRASI EKLEME PANE AÇILIŞI
+
     @FXML
     void add_evidence() {
 
@@ -441,6 +501,7 @@ public class CreateLawsuitController implements Initializable {
     }
 
     // KANIT TİKİ
+
     @FXML
     void checkbox_evidence() {
         if (checkbox_evidence.isSelected()) {
@@ -478,11 +539,17 @@ public class CreateLawsuitController implements Initializable {
     }
 
     // KANI PANEDE EKLEME
+
     @FXML
     void add_evidence_hide() {
-        tmpDbEvidence.add(info_evidence.getText());
-        EvidenceDetailsController.tmpEvidencesDb.add(info_evidence.getText());
-        evidence_count.setText(EvidenceDetailsController.tmpEvidencesDb.size() + "");
+        if (info_evidence.getText().isEmpty() || type_evidence.getSelectionModel().getSelectedItem() == null || fromwho.getText().isEmpty()) {
+            wrongForValidate.setText("Kanıt Bölümündeki girdileri Tamamlayınız");
+
+        } else {
+
+            tmpDbEvidence.add(new EvidenceModel(fromwho.getText(), date_evidence.getValue(), type_evidence.getSelectionModel().getSelectedItem().toString(), info_evidence.getText()));
+            evidence_count.setText(tmpDbEvidence.size() + "");
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
