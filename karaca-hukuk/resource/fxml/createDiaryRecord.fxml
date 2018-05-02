@@ -2,10 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,12 +18,6 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTreeTableView focusTraversable="false" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0">
-               <columns>
-                  <TreeTableColumn minWidth="50.0" prefWidth="200.0" text="Konu" />
-                  <TreeTableColumn minWidth="100.0" prefWidth="400.0" text="İçerik" />
-               </columns>
-            </JFXTreeTableView>
             <Label layoutX="25.0" layoutY="30.0" text="Yapılacaklar">
                <font>
                   <Font size="20.0" />
@@ -33,6 +27,12 @@
                   <FontAwesomeIconView glyphName="PLUS" size="20" />
                </graphic>
             </JFXButton>
+            <TableView fx:id="tableView" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="columnTitle" prefWidth="250.0" text="Konu" />
+                <TableColumn fx:id="columnContent" prefWidth="350.0" text="İçerik" />
+              </columns>
+            </TableView>
          </children>
         </Pane>
     </children>
