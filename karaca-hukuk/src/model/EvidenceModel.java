@@ -1,14 +1,15 @@
 package model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class EvidenceModel {
     private String fromWho;
-    private LocalDate date;
+    private Date date;
     private String type;
     private String desc;
 
-    public EvidenceModel(String fromWho, LocalDate date, String type, String desc) {
+    public EvidenceModel(String fromWho, Date date, String type, String desc) {
         this.fromWho = fromWho;
         this.date = date;
         this.type = type;
@@ -23,11 +24,11 @@ public class EvidenceModel {
         this.fromWho = fromWho;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

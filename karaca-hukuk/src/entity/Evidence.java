@@ -1,36 +1,42 @@
 package entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Evidence")
 public class Evidence {
 
+    @Column(name = "idEvidence")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEvidence;
 
+    @Column(name = "idLawsuit")
     private int idLawsuit;
 
-    private String type;
+    @Column(name = "atype")
+    private String atype;
 
-    private String desc;
+    @Column(name = "adesc")
+    private String adesc;
 
+    @Column(name = "fromWho")
     private String fromWho;
 
-    private LocalDate date;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createDate")
+    private Date adate;
 
     public Evidence() {
     }
 
-    public Evidence(int idLawsuit, String fromWho, String type, String desc, LocalDate date) {
+    public Evidence(int idLawsuit, String fromWho, String atype, String adesc, Date adate) {
         this.idLawsuit = idLawsuit;
         this.fromWho = fromWho;
-        this.date = date;
-        this.desc = desc;
-        this.type = type;
+        this.adate = adate;
+        this.adesc = adesc;
+        this.atype = atype;
     }
 
     public int getIdEvidence() {
@@ -53,31 +59,31 @@ public class Evidence {
         return fromWho;
     }
 
-    public String getType() {
-        return type;
+    public String getAtype() {
+        return atype;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAtype(String atype) {
+        this.atype = atype;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getAdesc() {
+        return adesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setAdesc(String adesc) {
+        this.adesc = adesc;
     }
 
     public void setFromWho(String fromWho) {
         this.fromWho = fromWho;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Date getAdate() {
+        return adate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setAdate(Date adate) {
+        this.adate = adate;
     }
 }

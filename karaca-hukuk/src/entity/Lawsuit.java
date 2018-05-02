@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,30 +17,37 @@ public class Lawsuit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Column(name = "idLawsuit")
 	private int idLawsuit;
 
+	@Column(name = "idLawyer")
 	private int idLawyer;
 
+	@Column(name = "idCustomer")
 	private int idCustomer;
 
+	@Column(name = "idOpponent")
 	private int idOpponent;
 
-    private int idQuestionPack;
-
+	@Column(name = "type")
 	private String type;
 
+	@Column(name = "status")
 	private String status;
 
-	private LocalDate date;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date")
+	private Date date;
 
+	@Column(name = "description")
 	private String description;
 
-    private String judicalWay;
 
 	public Lawsuit() {
 	}
 
-    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, String type, String status, LocalDate date, String description) {
+    public Lawsuit(int idLawyer, int idCustomer, int idOpponent, String type, String status, Date date, String description) {
         this.idLawyer = idLawyer;
         this.idCustomer = idCustomer;
         this.idOpponent = idOpponent;
@@ -81,10 +89,6 @@ public class Lawsuit {
 		this.idOpponent = idOpponent;
 	}
 
-    public int getIdQuestionPack() {
-        return idQuestionPack;
-    }
-
     public String getType() {
         return type;
     }
@@ -101,11 +105,11 @@ public class Lawsuit {
 		this.status = status;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -116,12 +120,4 @@ public class Lawsuit {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-    public String getJudicalWay() {
-        return judicalWay;
-    }
-
-    public void setJudicalWay(String judicalWay) {
-        this.judicalWay = judicalWay;
-    }
 }

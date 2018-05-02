@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -8,25 +9,28 @@ import java.time.LocalDateTime;
 @Table(name = "Opponent")
 public class Opponent {
 
+    @Column(name = "idOpponent")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOpponent;
 
-    private int idLawsuit;
-
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "surname")
     private String surname;
 
+    @Column(name = "type")
     private String type;
 
-    private LocalDate createDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createDate")
+    private Date createDate;
 
     public Opponent() {
     }
 
-    public Opponent(int idLawsuit, String name, String surname, String type, LocalDate createDate) {
-        this.idLawsuit = idLawsuit;
+    public Opponent(String name, String surname, String type, Date createDate) {
         this.name = name;
         this.surname = surname;
         this.type = type;
@@ -39,14 +43,6 @@ public class Opponent {
 
     public void setIdOpponent(int idOpponent) {
         this.idOpponent = idOpponent;
-    }
-
-    public int getIdLawsuit() {
-        return idLawsuit;
-    }
-
-    public void setIdLawsuit(int idLawsuit) {
-        this.idLawsuit = idLawsuit;
     }
 
     public String getName() {
@@ -73,11 +69,11 @@ public class Opponent {
         this.type = type;
     }
 
-    public LocalDate getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 }

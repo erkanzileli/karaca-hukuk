@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import model.EvidenceModel;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -111,7 +112,7 @@ public class EvidenceDetailsController implements Initializable {
 
         } else {
             wrong.setText("");
-            tmpEvidencesDb.add(new EvidenceModel(fromwho.getText(), date.getValue(), type.getSelectionModel().getSelectedItem().toString(), desc.getText()));
+            tmpEvidencesDb.add(new EvidenceModel(fromwho.getText(),Date.valueOf(date.getValue()), type.getSelectionModel().getSelectedItem().toString(), desc.getText()));
             fillGridPane();
             pane.setVisible(false);
         }

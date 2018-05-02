@@ -6,14 +6,18 @@ import javax.persistence.*;
 @Table(name = "Question")
 public class Question {
 
+    @Column(name = "idQuestion")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idQuestion;
 
+    @Column(name = "idLawsuit")
     private int idLawsuit;
 
+    @Column(name = "question")
     private String question;
 
+    @Column(name = "ansver")
     private String ansver;
 
     public Question() {
