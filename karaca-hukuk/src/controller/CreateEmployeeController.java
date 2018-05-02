@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import main.MainClass;
 import utility.EntityManagerUtility;
 
 import javax.persistence.EntityManager;
@@ -69,7 +68,7 @@ public class CreateEmployeeController implements Initializable {
             long tc = 0;
             try {
                 tc = Long.parseLong(txtTC.getText().trim());
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             long phoneNumber = 0;
             if (txtMobilePhone.getText().trim().length() > 0) {
@@ -79,8 +78,8 @@ public class CreateEmployeeController implements Initializable {
                     createAlertDialog(Alert.AlertType.ERROR, "Girdi Hatası", null, "Telefon numarası nümerik olmalıdır.").show();
                 }
             }
-            if (txtMobilePhone.getText().trim().length() > 12) {
-                createAlertDialog(Alert.AlertType.ERROR, "Girdi Hatası", null, "Telefon numarası 12 haneyi geçemez.").show();
+            if (txtMobilePhone.getText().trim().length() > 13) {
+                createAlertDialog(Alert.AlertType.ERROR, "Girdi Hatası", null, "Telefon numarası 13 haneyi geçemez.").show();
             }
             if (tc != 0) {
                 Query query = entityManager.createNativeQuery("SELECT * FROM Member WHERE tc=?1");

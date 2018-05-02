@@ -64,17 +64,14 @@ public class HomeController implements Initializable {
         //Butonların ayarlanması
         /** if lawyer
          * agenda -> 0,273
-         * quit ->
+         * quit -> 314
          */
-        if ("LAWYER".equals(member.getType()) || "SECRETARY".equals(member.getType())) {
+        if ("Avukat".equals(member.getType()) || "Sekreter".equals(member.getType())) {
             btnReports.setVisible(false);
             btnAgenda.setLayoutY(273);
             btnEmployees.setVisible(false);
             btnQuit.setLayoutY(314);
         }
-        /** if secretary
-         *
-         */
     }
 
     @FXML

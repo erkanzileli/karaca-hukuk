@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeDetailsController">
+<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeDetailsController">
     <children>
         <Pane prefHeight="400.0" prefWidth="400.0">
             <children>
@@ -19,12 +19,12 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="txtName" editable="false" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="İsim" />
-                <JFXTextField fx:id="txtSurname" editable="false" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="Soyisim" />
-                <JFXTextField fx:id="txtTC" editable="false" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="T.C." />
-                <JFXTextField fx:id="txtEmail" editable="false" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="E-Posta Adresi" />
-                <JFXTextField fx:id="txtMobilePhone" editable="false" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="225.0" prefHeight="25.0" prefWidth="150.0" promptText="Cep Telefon" />
-                <JFXButton focusTraversable="false" layoutX="50.0" layoutY="325.0" onAction="#save" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #9FA8DA;" text="Kaydet">
+                <JFXTextField fx:id="txtName" editable="false" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="İsim" />
+                <JFXTextField fx:id="txtSurname" editable="false" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" promptText="Soyisim" />
+                <JFXTextField fx:id="txtTC" editable="false" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="T.C." />
+                <JFXTextField fx:id="txtEmail" editable="false" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" promptText="E-Posta Adresi" />
+                <JFXTextField fx:id="txtMobilePhone" editable="false" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="225.0" prefHeight="25.0" prefWidth="150.0" promptText="Cep Telefonu" />
+                <JFXButton fx:id="btnSave" disable="true" focusTraversable="false" layoutX="200.0" layoutY="300.0" onAction="#save" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #9FA8DA;" text="Kaydet" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -34,9 +34,14 @@
                         <MaterialDesignIconView glyphName="WINDOW_CLOSE" size="25" />
                     </graphic>
                 </JFXButton>
-                <JFXComboBox fx:id="comboPosition" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Pozisyon" />
-                <JFXComboBox fx:id="comboSex" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Cinsiyet" />
+                <JFXComboBox fx:id="comboPosition" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Pozisyon" />
+                <JFXComboBox fx:id="comboSex" focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Cinsiyet" />
                 <JFXToggleButton fx:id="tglCorrection" layoutX="225.0" onAction="#changeCorrectionMode" text="Düzenleme" toggleColor="#9fa8da" toggleLineColor="#9fa8da" />
+            <JFXButton focusTraversable="false" layoutX="75.0" layoutY="300.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: red;" text="Sil" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
             </children>
         </Pane>
     </children>

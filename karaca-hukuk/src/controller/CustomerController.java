@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import utility.EntityManagerUtility;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +66,6 @@ public class CustomerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("CustomerController.initialize");
         entityManager = EntityManagerUtility.getEntityManager();
 
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -86,45 +86,39 @@ public class CustomerController implements Initializable {
     }
 
     private void fillTable() {
-        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer",
-                Customer.class);
-        customers = query.getResultList();
+        getData();
         tableView.getItems().clear();
         tableView.getItems().addAll(customers);
     }
 
     private void getData() {
-        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer",
-                Customer.class);
+        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer",Customer.class);
         customers = query.getResultList();
     }
 
-    void showCustomerDetails() {
+    private void showCustomerDetails() {
         Parent details = null;
         try {
             details = FXMLLoader.load(getClass().getResource("/fxml/customerDetail.fxml"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setBody(details);
         JFXDialog dialog = new JFXDialog(root, dialogLayout, DialogTransition.CENTER);
         dialog.setOverlayClose(false);
-        dialog.setOnDialogClosed(e -> {
-            fillTable();
-        });
+        dialog.setOnDialogClosed(e-> fillTable());
         dialog.show();
         customerDetailsDialog = dialog;
     }
 
     @FXML
-    void search() {
+    private void search() {
 
     }
 
     @FXML
-    void create() {
+    private void create() {
         Parent createCustomer = null;
         try {
             createCustomer = FXMLLoader.load(getClass().getResource("/fxml/createCustomer.fxml"));
