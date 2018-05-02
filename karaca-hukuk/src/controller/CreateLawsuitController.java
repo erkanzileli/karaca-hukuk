@@ -237,6 +237,12 @@ public class CreateLawsuitController implements Initializable {
         if (kimlikNo.getText().equals("12345678910")) {
             name.setText("admin");
             numara.setText("10");
+            phoneNumber.setText("05350248022");
+            defandant_name.setText("asdas");
+            defandant_surname.setText("asdasdas");
+            payOfLawsuit.setText("123");
+            lawsuitDesc.setText("asdasd");
+
         } else {
 
             uyari.setVisible(true);
@@ -419,8 +425,10 @@ public class CreateLawsuitController implements Initializable {
                 tc = kimlikNo.getText().trim();
             } else {
                 tc = null;
-                tax = kimlikNo.getText().trim();
+                tax =kimlikNo.getText().trim();
             }
+
+
             Customer c1 = new Customer(Long.valueOf(tc), Long.valueOf(tax), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
             entityManager.persist(o1);
             Lawsuit l1 = new Lawsuit(MainClass.member.getIdMember(), c1.getIdCustomer(), o1.getIdOpponent(), lawsuitType.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_status.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_start_date.getValue(), lawsuitDesc.toString());
@@ -536,6 +544,7 @@ public class CreateLawsuitController implements Initializable {
     void add_evidence_hide() {
         if (info_evidence.getText().isEmpty() || type_evidence.getSelectionModel().getSelectedItem() == null || fromwho.getText().isEmpty()) {
             wrongForValidate.setText("Kanıt Bölümündeki girdileri Tamamlayınız");
+
         } else {
 
             tmpDbEvidence.add(new EvidenceModel(fromwho.getText(), date_evidence.getValue(), type_evidence.getSelectionModel().getSelectedItem().toString(), info_evidence.getText()));
