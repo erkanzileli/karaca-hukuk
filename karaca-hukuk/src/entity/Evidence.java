@@ -24,7 +24,6 @@ public class Evidence {
     @Column(name = "fromWho")
     private String fromWho;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createDate")
     private Date adate;
 

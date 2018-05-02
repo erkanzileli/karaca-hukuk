@@ -36,7 +36,6 @@ public class Lawsuit {
 	@Column(name = "status")
 	private String status;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date")
 	private Date date;
 

@@ -23,7 +23,6 @@ public class Opponent {
     @Column(name = "type")
     private String type;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createDate")
     private Date createDate;
 
