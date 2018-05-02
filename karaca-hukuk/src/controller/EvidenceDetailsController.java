@@ -11,6 +11,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import model.EvidenceModel;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EvidenceDetailsController implements Initializable {
-    public static ArrayList<String> tmpEvidencesDb = new ArrayList<>();
+    public  ArrayList<EvidenceModel> tmpEvidencesDb = CreateLawsuitController.tmpDbEvidence;
     public static JFXDialog fxd2;
     public static Label lbl;
 
@@ -43,12 +44,21 @@ public class EvidenceDetailsController implements Initializable {
         pane.setPrefSize(570, 30);
         Label lbl = new Label();
         lbl.setLayoutX(10);
-        lbl.setFont(new Font(13));
-        lbl.setText(i + 1 + " - " + tmpEvidencesDb.get(i));
+        lbl.setFont(new Font(10));
+        lbl.setText(i + 1 + " - " + tmpEvidencesDb.get(i).getDesc());
         lbl.setId("lbl" + i);
+        Label lbl2=new Label();
+        lbl2.setLayoutX(230);
+        lbl2.setFont(new Font(10));
+        lbl2.setText("Tipi: "+tmpEvidencesDb.get(i).getType());
+        Label lbl3=new Label();
+        lbl3.setLayoutX(375);
+        lbl3.setFont(new Font(10));
+        lbl3.setText("Kanıt Sahibi: "+tmpEvidencesDb.get(i).getFromWho());
 
 
-        pane.getChildren().add(lbl);
+
+        pane.getChildren().addAll(lbl,lbl2,lbl3);
         evidences_in_scroll.add(pane, 0, i + 1);
 
     }
@@ -77,7 +87,7 @@ public class EvidenceDetailsController implements Initializable {
     @FXML
     void e_add() {
 
-        TextInputDialog dialog = new TextInputDialog();
+    /*    TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Kanıt ekleme kısmı");
         dialog.setHeaderText("Lütfen kanıt bilgisi giriniz ");
         Optional<String> result = dialog.showAndWait();
@@ -85,9 +95,9 @@ public class EvidenceDetailsController implements Initializable {
             tmpEvidencesDb.add(result.get());
             addRowInGrid(tmpEvidencesDb.size() - 1);
             scrollPane.vvalueProperty().bind(evidences_in_scroll.heightProperty());
-
+*/
         }
     }
 
 
-}
+

@@ -117,9 +117,9 @@
                     </font>
                 </Label>
                 <JFXTextField fx:id="payOfLawsuit" layoutX="758.0" layoutY="325.0" prefHeight="26.0" prefWidth="170.0" promptText="Dava Ücreti" AnchorPane.leftAnchor="758.0" AnchorPane.topAnchor="325.0" />
-                <JFXComboBox fx:id="typePay" layoutX="667.0" layoutY="362.0" prefHeight="27.0" prefWidth="107.0" promptText="Ödeme Türü" AnchorPane.leftAnchor="667.0" AnchorPane.topAnchor="362.0" />
+                <JFXComboBox fx:id="typePay" layoutX="667.0" layoutY="366.0" prefHeight="27.0" prefWidth="107.0" promptText="Ödeme Türü" AnchorPane.leftAnchor="667.0" AnchorPane.topAnchor="366.0" />
             <FontAwesomeIconView glyphName="PENCIL_SQUARE_ALT" layoutX="14.0" layoutY="26.0" onMouseClicked="#editForLawsuit" size="19" />
-            <JFXComboBox fx:id="opponentType" layoutX="522.0" layoutY="362.0" prefHeight="27.0" prefWidth="127.0" promptText="Karşı Taraf Tipi" AnchorPane.leftAnchor="522.0" AnchorPane.topAnchor="362.0" />
+            <JFXComboBox fx:id="opponentType" layoutX="522.0" layoutY="365.0" prefHeight="27.0" prefWidth="127.0" promptText="Karşı Taraf Tipi" AnchorPane.leftAnchor="522.0" AnchorPane.topAnchor="365.0" />
             <JFXComboBox fx:id="lawsuitType" layoutX="760.0" layoutY="290.0" prefHeight="27.0" prefWidth="163.0" promptText="Dava Tipi" />
             <JFXTextArea fx:id="lawsuitDesc" layoutX="124.0" layoutY="358.0" prefHeight="30.0" prefWidth="377.0" promptText="Dava Ayrıntıları" unFocusColor="BLACK">
                <font>
@@ -142,7 +142,7 @@
                   <Font name="Times New Roman Bold" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="phoneNumber" alignment="CENTER" layoutX="383.0" layoutY="168.0" prefHeight="27.0" prefWidth="205.0" promptText="Numara" />
+            <JFXTextField fx:id="phoneNumber" alignment="CENTER" layoutX="383.0" layoutY="163.0" prefHeight="27.0" prefWidth="205.0" promptText="Numara" />
             </children>
         </AnchorPane>
     </children>
