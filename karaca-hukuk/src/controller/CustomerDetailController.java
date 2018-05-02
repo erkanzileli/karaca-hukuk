@@ -89,9 +89,13 @@ public class CustomerDetailController implements Initializable {
         radioEnterprise.setToggleGroup(individualOrEnterprise);
         radioSingular.setToggleGroup(individualOrEnterprise);
         comboSex.getItems().addAll("Kadın", "Erkek");
+        radioSingular.setDisable(true);
+        radioEnterprise.setDisable(true);
         if ("Bireysel".equals(selectedCustomer.getType())) {
             individualOrEnterprise.selectToggle(radioSingular);
             selectIndividual();
+            radioEnterprise.setDisable(true);
+            radioSingular.setDisable(true);
             textName.setText(selectedCustomer.getName());
             textSurname.setText(selectedCustomer.getSurname());
             textPhone.setText(String.valueOf(selectedCustomer.getPhoneNumber()));
@@ -183,8 +187,8 @@ public class CustomerDetailController implements Initializable {
     void save() {
         RadioButton selected = (RadioButton) individualOrEnterprise.selectedToggleProperty().getValue();
         // adress
-        String province = comboProvince.getValue();
-        String district = comboDistrict.getValue();
+        String province = comboProvince.getValue() != null ? comboProvince.getValue() : selectedCustomerAdress.getCounty();
+        String district = comboDistrict.getValue() != null ? comboDistrict.getValue() : selectedCustomerAdress.getCity();
         String street = textStreet.getText().trim();
         String doorNumber = textDoorNumber.getText().trim();
         int postalCode = 0;
@@ -228,7 +232,7 @@ public class CustomerDetailController implements Initializable {
             // T.C. 11 haneli olmalı
             if (tcString.length() != 11) {
                 createAlertDialog(Alert.AlertType.INFORMATION, "Bilgi", null,
-                        "T.C. numarası 11 haneli olmalı nümerik olmalıdır.").show();
+                        "T.C. numarası 11 rakamdan oluşmalıdır.").show();
             } else { // T.C. 11 haneli
                 long tc = 0;
                 String gender = comboSex.getValue();
@@ -265,7 +269,7 @@ public class CustomerDetailController implements Initializable {
         } else { // kurumsal
             String taxNumberString = txtIdentityNo.getText().trim();
             if (taxNumberString.length() != 10) {
-                createAlertDialog(Alert.AlertType.ERROR, "Eksik bilgi.", null, "Vergi numarası 10 haneden daha az olamaz.")
+                createAlertDialog(Alert.AlertType.ERROR, "Eksik bilgi.", null, "Vergi numarası 10 rakamdan oluşmalıdır.")
                         .show();
             } else {
                 long taxNumber = 0;

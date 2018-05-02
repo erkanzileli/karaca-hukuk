@@ -102,7 +102,7 @@ public class LoginScreenController implements Initializable {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Anasayfa");
-		stage.initStyle(StageStyle.UNIFIED);
+		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.setResizable(false);
 		stage.setWidth(1200);
 		stage.setHeight(700);

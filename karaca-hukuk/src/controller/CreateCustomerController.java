@@ -254,7 +254,6 @@ public class CreateCustomerController implements Initializable {
     }
 
     private void fillComboProvinces() {
-        System.out.println("fillcomboprovinces");
         Query query = entityManager.createNativeQuery("SELECT DISTINCT il_isim FROM Provinces ORDER BY il_isim ASC");
         provinces = query.getResultList();
         comboProvince.getItems().setAll(provinces);
