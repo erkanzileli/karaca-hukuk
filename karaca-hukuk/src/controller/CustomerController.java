@@ -110,7 +110,6 @@ public class CustomerController implements Initializable {
         JFXDialog dialog = new JFXDialog(root, dialogLayout, DialogTransition.CENTER);
         dialog.setOverlayClose(false);
         dialog.setOnDialogClosed(e -> {
-            System.out.println("test");
             fillTable();
         });
         dialog.show();

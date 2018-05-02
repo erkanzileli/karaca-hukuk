@@ -101,6 +101,7 @@ public class CustomerDetailController implements Initializable {
             textPhone.setText(String.valueOf(selectedCustomer.getPhoneNumber()));
             txtIdentityNo.setText(String.valueOf(selectedCustomer.getTc()));
             comboSex.setPromptText(selectedCustomer.getGender());
+            comboSex.setValue(selectedCustomer.getGender());
             comboSex.setDisable(true);
         } else {
             individualOrEnterprise.selectToggle(radioEnterprise);
@@ -119,9 +120,11 @@ public class CustomerDetailController implements Initializable {
             selectedCustomerAdress = result.get(0);
 
             comboProvince.setPromptText(selectedCustomerAdress.getCounty());
+            comboProvince.setValue(selectedCustomerAdress.getCounty());
             comboProvince.setDisable(true);
 
             comboDistrict.setPromptText(selectedCustomerAdress.getCity());
+            comboDistrict.setValue(selectedCustomerAdress.getCity());
             comboDistrict.setDisable(true);
 
             textAdressPhone.setText(String.valueOf(selectedCustomerAdress.getPhoneNumber()));
@@ -187,8 +190,11 @@ public class CustomerDetailController implements Initializable {
     void save() {
         RadioButton selected = (RadioButton) individualOrEnterprise.selectedToggleProperty().getValue();
         // adress
-        String province = comboProvince.getValue() != null ? comboProvince.getValue() : selectedCustomerAdress.getCounty();
-        String district = comboDistrict.getValue() != null ? comboDistrict.getValue() : selectedCustomerAdress.getCity();
+        String province = comboProvince.getValue();
+        String district = comboDistrict.getValue();
+
+        System.out.println(district);
+
         String street = textStreet.getText().trim();
         String doorNumber = textDoorNumber.getText().trim();
         int postalCode = 0;

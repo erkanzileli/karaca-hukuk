@@ -3,7 +3,6 @@ package entity;
 import com.sun.istack.internal.Nullable;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "Customer")
@@ -13,7 +12,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCustomer;
 
-    @Nullable
     private long tc;
 
     private long taxNumber;

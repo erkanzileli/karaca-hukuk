@@ -1,10 +1,6 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Adress")
@@ -12,22 +8,30 @@ public class Adress {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idAdress")
 	private int idAdress;
 
 	private int idCustomer;
 
+	@Column(name = "city")
 	private String city;
 
+	@Column(name = "county")
 	private String county;
 
+	@Column(name = "street")
 	private String street;
 
+	@Column(name = "postalCode")
 	private int postalCode;
 
+	@Column(name = "phoneNumber")
 	private long phoneNumber;
 
+	@Column(name = "doorNumber")
 	private String doorNumber;
 
+	@Column(name = "type")
 	private String type;
 
 	public Adress() {
