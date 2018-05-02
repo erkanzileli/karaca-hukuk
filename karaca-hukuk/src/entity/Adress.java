@@ -16,8 +16,6 @@ public class Adress {
 
 	private int idCustomer;
 
-	private String country;
-
 	private String city;
 
 	private String county;
@@ -35,9 +33,8 @@ public class Adress {
 	public Adress() {
 	}
 
-	public Adress(String country, String city, String county, String street, int postalCode, long phoneNumber,
+	public Adress(String city, String county, String street, int postalCode, long phoneNumber,
 			String doorNumber, String type, int idCustomer) {
-		this.country = country;
 		this.city = city;
 		this.county = county;
 		this.street = street;
@@ -54,14 +51,6 @@ public class Adress {
 
 	public void setIdAdress(int idAdress) {
 		this.idAdress = idAdress;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getCity() {

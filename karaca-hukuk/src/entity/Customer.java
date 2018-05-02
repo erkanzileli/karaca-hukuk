@@ -1,97 +1,112 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Customer")
 public class Customer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCustomer;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idCustomer;
 
-	private long tc;
+    private long tc;
 
-	private long taxNumber;
+    private long taxNumber;
 
-	private String type;
+    private String type;
 
-	private String name;
+    private String name;
 
-	private String surname;
+    private String surname;
 
-	private long phoneNumber;
+    private long phoneNumber;
 
-	public Customer() {
-	}
+    private String gender;
 
-	public Customer(long tc, long taxNumber, String type, String name, String surname, long phoneNumber) {
-		this.tc = tc;
-		this.taxNumber = taxNumber;
-		this.type = type;
-		this.name = name;
-		this.surname = surname;
-		this.setPhoneNumber(phoneNumber);
-	}
+    public Customer() {
+    }
 
-	public int getIdCustomer() {
-		return idCustomer;
-	}
+    public Customer(long tc, String type, String name, String surname, long phoneNumber,
+                    String gender) {
+        this.tc = tc;
+        this.type = type;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+    }
 
-	public void setIdCustomer(int idCustomer) {
-		this.idCustomer = idCustomer;
-	}
+    public Customer(long taxNumber, String type, String name, String surname, long phoneNumber) {
+        this.taxNumber = taxNumber;
+        this.type = type;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+    }
 
-	public long getTc() {
-		return tc;
-	}
+    public int getIdCustomer() {
+        return idCustomer;
+    }
 
-	public void setTc(long tc) {
-		this.tc = tc;
-	}
+    public void setIdCustomer(int idCustomer) {
+        this.idCustomer = idCustomer;
+    }
 
-	public long getTaxNumber() {
-		return taxNumber;
-	}
+    public long getTc() {
+        return tc;
+    }
 
-	public void setTaxNumber(long taxNumber) {
-		this.taxNumber = taxNumber;
-	}
+    public void setTc(long tc) {
+        this.tc = tc;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public long getTaxNumber() {
+        return taxNumber;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setTaxNumber(long taxNumber) {
+        this.taxNumber = taxNumber;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public long getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setPhoneNumber(long phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

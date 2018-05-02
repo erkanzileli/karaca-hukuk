@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.time.LocalDateTime;
+
 public class MainClass extends Application {
 
     public static Member member;
@@ -18,6 +20,7 @@ public class MainClass extends Application {
 
     @Override
     public void start(Stage arg0) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
         Scene scene = new Scene(root);
         arg0.setScene(scene);
