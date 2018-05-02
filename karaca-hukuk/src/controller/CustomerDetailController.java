@@ -3,10 +3,12 @@ package controller;
 import com.jfoenix.controls.*;
 import entity.Adress;
 import entity.Customer;
+import entity.Lawsuit;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import main.MainClass;
 import utility.EntityManagerUtility;
 
 import javax.persistence.EntityManager;
@@ -75,6 +77,9 @@ public class CustomerDetailController implements Initializable {
     @FXML
     private JFXToggleButton toggleCorrection;
 
+    @FXML
+    private JFXButton btnDelete;
+
     public static Customer selectedCustomer;
 
     private List<String> provinces = null;
@@ -94,6 +99,10 @@ public class CustomerDetailController implements Initializable {
         comboSex.getItems().addAll("Kadın", "Erkek");
         radioSingular.setDisable(true);
         radioEnterprise.setDisable(true);
+        if(MainClass.member.getType().equals("Sekreter")) {
+            btnDelete.setVisible(false);
+            toggleCorrection.setVisible(false);
+        }
         if ("Bireysel".equals(selectedCustomer.getType())) {
             individualOrEnterprise.selectToggle(radioSingular);
             selectIndividual();
@@ -336,10 +345,27 @@ public class CustomerDetailController implements Initializable {
                     System.out.println("Adres bilgisi kayıtlı değil.");
                     entityManager.getTransaction().commit();
                 }
-                Customer customer = entityManager.find(Customer.class, selectedCustomer.getIdCustomer());
-                entityManager.getTransaction().begin();
-                entityManager.remove(customer);
-                entityManager.getTransaction().commit();
+                String isRemoved="NO";
+                try{
+
+                    Query query = entityManager.createNativeQuery("SELECT * FROM Lawsuit Where idCustomer=?1",Lawsuit.class);
+                    query.setParameter(1,selectedCustomer.getIdCustomer());
+                    if (!query.getResultList().isEmpty()){
+                        Customer customer = entityManager.find(Customer.class,selectedCustomer.getIdCustomer());
+                        entityManager.getTransaction().begin();
+                        customer.setIsRemoved("YES");
+                        entityManager.getTransaction().commit();
+                        isRemoved="YES";
+                    }
+                }catch(Exception e){
+
+                }
+                if (isRemoved.equals("NO")){
+                    Customer customer = entityManager.find(Customer.class, selectedCustomer.getIdCustomer());
+                    entityManager.getTransaction().begin();
+                    entityManager.remove(customer);
+                    entityManager.getTransaction().commit();
+                }
                 closeDialog();
                 //refreshData
             }

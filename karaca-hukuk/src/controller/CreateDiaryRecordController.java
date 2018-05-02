@@ -85,8 +85,9 @@ public class CreateDiaryRecordController implements Initializable {
     }
 
     private void fillTable() {
-        Query query = entityManager.createNativeQuery("Select * from Agenda Where Agenda.date=?1", Agenda.class);
+        Query query = entityManager.createNativeQuery("Select * from Agenda Where Agenda.date=?1 AND idMember=?2", Agenda.class);
         query.setParameter(1, selectedPaneModel.getDate());
+        query.setParameter(2,MainClass.member.getIdMember());
         List<Agenda> result = query.getResultList();
         if (!result.isEmpty()) {
             tableView.getItems().clear();

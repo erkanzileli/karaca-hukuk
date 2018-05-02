@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import entity.Agenda;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,8 +14,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import main.MainClass;
 import model.CalendarPaneModel;
+import utility.EntityManagerUtility;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -22,6 +27,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DiaryController implements Initializable {
@@ -56,9 +62,11 @@ public class DiaryController implements Initializable {
 
     private HashMap<Integer, String> months;
 
+    private EntityManager entityManager;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("DiaryController.initialize");
+        entityManager = EntityManagerUtility.getEntityManager();
         months = new HashMap<>();
         months.put(1, "Ocak");
         months.put(2, "Şubat");
@@ -101,12 +109,20 @@ public class DiaryController implements Initializable {
             Text text = new Text(5, 90, String.valueOf(localDate.getDayOfMonth()));
             // bugünün yeşil yazılması
             if (localDate.equals(today)) {
-                text.setFill(Color.GREEN);
+                text.setFill(Color.RED);
                 text.setFont(new Font(26));
             } else {
                 text.setFont(new Font(20));
             }
-            pane.getChildren().setAll(text);
+            Query query = entityManager.createNativeQuery("SELECT * FROM Agenda WHERE idMember=?1 and date=?2", Agenda.class);
+            query.setParameter(1,MainClass.member.getIdMember());
+            query.setParameter(2,localDate);
+            List<Agenda> result = query.getResultList();
+            if(!result.isEmpty()){
+                Text countText = new Text(40, 35, result.size()+" Kayıt");
+                pane.getChildren().add(countText);
+            }
+            pane.getChildren().add(text);
             pane.setDate(Date.valueOf(localDate));
             pane.setOnMouseClicked(e -> {
                 CreateDiaryRecordController.selectedPaneModel = pane;
@@ -114,7 +130,6 @@ public class DiaryController implements Initializable {
                 try {
                     createDiaryRecord = FXMLLoader.load(getClass().getResource("/fxml/createDiaryRecord.fxml"));
                 } catch (IOException ignored) {
-                    System.out.println(ignored.getMessage());
                 }
                 JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
                 jfxDialogLayout.setBody(createDiaryRecord);

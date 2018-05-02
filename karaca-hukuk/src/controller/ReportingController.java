@@ -1,17 +1,19 @@
 package controller;
 
-import com.jfoenix.controls.JFXCheckBox;
+import entity.Customer;
+import entity.Lawsuit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
+import utility.EntityManagerUtility;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReportingController implements Initializable {
@@ -20,118 +22,70 @@ public class ReportingController implements Initializable {
     private StackPane root;
 
     @FXML
-    private PieChart pieChart;
+    private PieChart pieChartCustomers;
 
     @FXML
-    private LineChart<Number, Number> lineChart;
+    private PieChart pieChartLawsuits;
 
-    @FXML
-    private NumberAxis axisX;
+    private EntityManager entityManager;
 
-    @FXML
-    private NumberAxis axisY;
-
-    @FXML
-    private JFXCheckBox checkLawsuits;
-
-    @FXML
-    private JFXCheckBox checkIncoming;
-
-    @FXML
-    private JFXCheckBox checkCustomers;
-
-    private XYChart.Series<Number, Number> lawsuitSeries;
-
-    private XYChart.Series<Number, Number> incomingSeries;
-
-    private XYChart.Series<Number, Number> customerSeries;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("ReportingController.initialize");
-
-        generatePieChart();
-
-        axisX.setLabel("Zaman");
-        axisY.setLabel("Miktar");
-
-        lawsuitSeries = new XYChart.Series<>();
-        lawsuitSeries.setName("Davalar");
-
-        incomingSeries = new XYChart.Series<>();
-        incomingSeries.setName("Gelir");
-
-        customerSeries = new XYChart.Series<>();
-        customerSeries.setName("Müşteriler");
+        entityManager = EntityManagerUtility.getEntityManager();
+        generateCustomersPieChart();
+        generateLawsuitsPieChart();
     }
 
-    private void generatePieChart() {
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("1 Yönetici", 1),
-                        new PieChart.Data("4 Avukat", 4),
-                        new PieChart.Data("2 Sekreter", 2),
-                        new PieChart.Data("12 Bireysel Müşteri", 12),
-                        new PieChart.Data("5 Kurumsal Müşteri", 5));
-        pieChart.setTitle("Sistemdeki Kullanıcılar");
-        pieChart.setLegendVisible(false);
-        pieChart.setData(pieChartData);
-    }
-
-    @FXML
-    public void setCheckLawsuits() {
-        if (checkLawsuits.isSelected()) {
-            setLawsuitSeries();
-            lineChart.getData().add(lawsuitSeries);
-        } else {
-            lineChart.getData().remove(lawsuitSeries);
+    private void generateCustomersPieChart() {
+        Query query = entityManager.createNativeQuery("SELECT * FROM Customer", Customer.class);
+        List<Customer> result = query.getResultList();
+        if (!result.isEmpty()) {
+            int individualCustomer = 0;
+            int enterpriseCustomer = 0;
+            for (Customer customer : result) {
+                if (customer.getType().equals("Bireysel"))
+                    individualCustomer++;
+                else
+                    enterpriseCustomer++;
+            }
+            ObservableList<PieChart.Data> pieChartData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data(individualCustomer + " Bireysel Müşteri", individualCustomer),
+                            new PieChart.Data(enterpriseCustomer + " Kurumsal Müşteri", enterpriseCustomer));
+            pieChartCustomers.setTitle("Sistemdeki Kullanıcılar");
+            pieChartCustomers.setData(pieChartData);
         }
     }
 
-    private void setLawsuitSeries() {
-        //Verilerin çekilmesi ve düzene sokulması
-        lawsuitSeries.getData().add(new XYChart.Data<>(1, 1));
-        lawsuitSeries.getData().add(new XYChart.Data<>(2, 2));
-        lawsuitSeries.getData().add(new XYChart.Data<>(3, 3));
-        lawsuitSeries.getData().add(new XYChart.Data<>(4, 2));
-        lawsuitSeries.getData().add(new XYChart.Data<>(5, 5));
-        lawsuitSeries.getData().add(new XYChart.Data<>(6, 4));
-    }
-
-    @FXML
-    public void setCheckIncoming() {
-        if (checkIncoming.isSelected()) {
-            setIncomingSeries();
-            lineChart.getData().add(incomingSeries);
-        } else {
-            lineChart.getData().remove(incomingSeries);
+    private void generateLawsuitsPieChart() {
+        Query query = entityManager.createNativeQuery("SELECT * FROM Lawsuit", Lawsuit.class);
+        List<Lawsuit> result = query.getResultList();
+        if (!result.isEmpty()) {
+            int active = 0;
+            int passive = 0;
+            int pending = 0;
+            for (Lawsuit lawsuit : result) {
+                switch (lawsuit.getStatus()) {
+                    case "Aktif":
+                        active++;
+                        break;
+                    case "Pasif":
+                        passive++;
+                        break;
+                    default:
+                        pending++;
+                        break;
+                }
+            }
+            ObservableList<PieChart.Data> pieChartData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data(active + " Aktif Dava", active),
+                            new PieChart.Data(pending + " Dava Beklemede", pending),
+                            new PieChart.Data(passive + " Pasif Dava", passive));
+            pieChartLawsuits.setTitle("Davaların Durumu");
+            pieChartLawsuits.setData(pieChartData);
         }
-    }
-
-    private void setIncomingSeries() {
-        incomingSeries.getData().add(new XYChart.Data<>(1, 5));
-        incomingSeries.getData().add(new XYChart.Data<>(2, 10));
-        incomingSeries.getData().add(new XYChart.Data<>(3, 12));
-    }
-
-
-    @FXML
-    public void setCheckCustomers() {
-        if (checkCustomers.isSelected()) {
-            lineChart.getData().add(customerSeries);
-            setCustomerSeries();
-        } else {
-            lineChart.getData().remove(customerSeries);
-        }
-    }
-
-    private void setCustomerSeries() {
-        customerSeries.getData().add(new XYChart.Data<>(1, 2));
-        customerSeries.getData().add(new XYChart.Data<>(2, 4));
-        customerSeries.getData().add(new XYChart.Data<>(3, 5));
-        customerSeries.getData().add(new XYChart.Data<>(4, 6));
-        customerSeries.getData().add(new XYChart.Data<>(5, 7));
-        customerSeries.getData().add(new XYChart.Data<>(6, 10));
     }
 
 }

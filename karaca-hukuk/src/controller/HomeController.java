@@ -9,12 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.MainClass;
-import sun.applet.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +54,8 @@ public class HomeController implements Initializable {
 
     private Member member;
 
+    public static JFXDialog dialogProfile;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         showDashboard();
@@ -67,10 +71,10 @@ public class HomeController implements Initializable {
          * quit -> 314
          */
         if ("Avukat".equals(member.getType()) || "Sekreter".equals(member.getType())) {
-            btnReports.setVisible(false);
             btnAgenda.setLayoutY(273);
-            btnEmployees.setVisible(false);
             btnQuit.setLayoutY(314);
+            btnEmployees.setVisible(false);
+            btnReports.setVisible(false);
         }
     }
 
@@ -121,7 +125,20 @@ public class HomeController implements Initializable {
         alert.headerTextProperty().setValue("Uyarı!");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            System.exit(1);
+            Stage arg0 = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            arg0.setScene(scene);
+            arg0.setTitle("Hukuk Bürosu Otomasyonu");
+            arg0.initStyle(StageStyle.TRANSPARENT);
+            arg0.setResizable(false);
+            arg0.show();
+            borderPane.getScene().getWindow().hide();
         }
     }
 
@@ -149,6 +166,7 @@ public class HomeController implements Initializable {
         jfxDialogLayout.setBody(profile);
         JFXDialog dialog = new JFXDialog(root, jfxDialogLayout, JFXDialog.DialogTransition.LEFT);
         dialog.show();
+        dialogProfile = dialog;
     }
 
     @FXML

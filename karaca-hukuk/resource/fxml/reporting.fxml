@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
@@ -18,18 +15,8 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <PieChart fx:id="pieChart" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="450.0" />
-                <LineChart fx:id="lineChart" animated="false" layoutX="475.0" layoutY="75.0" prefHeight="400.0" prefWidth="500.0" title="Zamana Bağlı İstatistikler">
-                    <xAxis>
-                        <NumberAxis fx:id="axisX" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis fx:id="axisY" side="LEFT" />
-                    </yAxis>
-                </LineChart>
-                <JFXCheckBox fx:id="checkLawsuits" checkedColor="#9fa8da" focusTraversable="false" layoutX="675.0" layoutY="525.0" onAction="#setCheckLawsuits" text="Davalar" />
-                <JFXCheckBox fx:id="checkIncoming" checkedColor="#9fa8da" focusTraversable="false" layoutX="775.0" layoutY="525.0" onAction="#setCheckIncoming" text="Gelir" />
-                <JFXCheckBox fx:id="checkCustomers" checkedColor="#9fa8da" focusTraversable="false" layoutX="850.0" layoutY="525.0" onAction="#setCheckCustomers" text="Müşteriler" />
+                <PieChart fx:id="pieChartCustomers" layoutY="75.0" prefHeight="400.0" prefWidth="500.0" />
+            <PieChart fx:id="pieChartLawsuits" layoutX="500.0" layoutY="75.0" prefHeight="400.0" prefWidth="500.0" />
             </children>
         </Pane>
     </children>

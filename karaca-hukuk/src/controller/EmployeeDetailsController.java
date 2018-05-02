@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import main.MainClass;
 import utility.EntityManagerUtility;
 
 import javax.persistence.EntityManager;
