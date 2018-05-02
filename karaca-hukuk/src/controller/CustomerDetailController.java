@@ -43,6 +43,9 @@ public class CustomerDetailController implements Initializable {
     private JFXTextField txtPostalCode;
 
     @FXML
+    private JFXButton btnUpdate;
+
+    @FXML
     private JFXTextField textName;
 
     @FXML
@@ -120,11 +123,9 @@ public class CustomerDetailController implements Initializable {
             selectedCustomerAdress = result.get(0);
 
             comboProvince.setPromptText(selectedCustomerAdress.getCounty());
-            comboProvince.setValue(selectedCustomerAdress.getCounty());
             comboProvince.setDisable(true);
 
             comboDistrict.setPromptText(selectedCustomerAdress.getCity());
-            comboDistrict.setValue(selectedCustomerAdress.getCity());
             comboDistrict.setDisable(true);
 
             textAdressPhone.setText(String.valueOf(selectedCustomerAdress.getPhoneNumber()));
@@ -146,6 +147,7 @@ public class CustomerDetailController implements Initializable {
             if (provinces == null) {
                 fillComboProvinces();
             }
+            btnUpdate.setDisable(false);
             comboProvince.setDisable(false);
             comboDistrict.setDisable(false);
             textAdressPhone.setEditable(true);
@@ -158,6 +160,7 @@ public class CustomerDetailController implements Initializable {
             txtIdentityNo.setEditable(true);
             comboSex.setDisable(false);
         } else {
+            btnUpdate.setDisable(true);
             comboProvince.setDisable(true);
             comboDistrict.setDisable(true);
             textAdressPhone.setEditable(false);
@@ -325,10 +328,14 @@ public class CustomerDetailController implements Initializable {
         Optional<ButtonType> optional = alert.showAndWait();
         if (optional.isPresent()) {
             if (optional.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                Adress adress = entityManager.find(Adress.class, selectedCustomerAdress.getIdAdress());
-                entityManager.getTransaction().begin();
-                entityManager.remove(adress);
-                entityManager.getTransaction().commit();
+                try {
+                    entityManager.getTransaction().begin();
+                    entityManager.remove(entityManager.find(Adress.class, selectedCustomerAdress.getIdAdress()));
+                    entityManager.getTransaction().commit();
+                }catch (NullPointerException e){
+                    System.out.println("Adres bilgisi kayıtlı değil.");
+                    entityManager.getTransaction().commit();
+                }
                 Customer customer = entityManager.find(Customer.class, selectedCustomer.getIdCustomer());
                 entityManager.getTransaction().begin();
                 entityManager.remove(customer);

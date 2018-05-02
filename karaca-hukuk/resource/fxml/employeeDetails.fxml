@@ -36,7 +36,6 @@
                 </JFXButton>
                 <JFXComboBox fx:id="comboPosition" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Pozisyon" />
                 <JFXComboBox fx:id="comboSex" focusTraversable="false" labelFloat="true" layoutX="25.0" layoutY="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Cinsiyet" />
-                <JFXTextField fx:id="txtPhone" editable="false" focusTraversable="false" labelFloat="true" layoutX="200.0" layoutY="225.0" prefHeight="25.0" prefWidth="150.0" promptText="Sabit Telefon" />
                 <JFXToggleButton fx:id="tglCorrection" layoutX="225.0" onAction="#changeCorrectionMode" text="Düzenleme" toggleColor="#9fa8da" toggleLineColor="#9fa8da" />
             </children>
         </Pane>

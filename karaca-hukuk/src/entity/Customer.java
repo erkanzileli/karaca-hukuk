@@ -10,6 +10,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCustomer")
     private int idCustomer;
 
     private long tc;

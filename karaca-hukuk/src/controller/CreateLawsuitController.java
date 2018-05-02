@@ -429,7 +429,7 @@ public class CreateLawsuitController implements Initializable {
             }
 
 
-            Customer c1 = new Customer(Long.valueOf(tc), Long.valueOf(tax), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
+            Customer c1 = new Customer(Long.valueOf(tc), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
             entityManager.persist(o1);
             Lawsuit l1 = new Lawsuit(MainClass.member.getIdMember(), c1.getIdCustomer(), o1.getIdOpponent(), lawsuitType.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_status.getSelectionModel().getSelectedItem().toString().trim(), lawsuit_start_date.getValue(), lawsuitDesc.toString());
             entityManager.persist(l1);

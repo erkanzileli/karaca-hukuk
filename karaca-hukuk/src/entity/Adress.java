@@ -11,6 +11,7 @@ public class Adress {
 	@Column(name = "idAdress")
 	private int idAdress;
 
+	@Column(name = "idCustomer")
 	private int idCustomer;
 
 	@Column(name = "city")

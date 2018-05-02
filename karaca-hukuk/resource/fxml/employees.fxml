@@ -2,10 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -14,16 +14,6 @@
     <children>
         <Pane prefHeight="700.0" prefWidth="1000.0">
             <children>
-                <JFXTreeTableView fx:id="tableOfEmployees" layoutX="25.0" layoutY="100.0" prefHeight="575.0" prefWidth="950.0">
-                    <columns>
-                        <TreeTableColumn fx:id="columnName" minWidth="50.0" prefWidth="150.0" text="İsim" />
-                        <TreeTableColumn fx:id="columnSurname" minWidth="50.0" prefWidth="150.0" text="Soyisim" />
-                        <TreeTableColumn fx:id="columnTC" minWidth="75.0" prefWidth="150.0" text="T.C." />
-                        <TreeTableColumn fx:id="columnType" minWidth="75.0" prefWidth="150.0" text="Tip" />
-                        <TreeTableColumn fx:id="columnEmail" minWidth="75.0" prefWidth="200.0" text="E-Posta" />
-                        <TreeTableColumn fx:id="columnMobilePhone" minWidth="75.0" prefWidth="150.0" text="Telefon Numarası" />
-                    </columns>
-                </JFXTreeTableView>
                 <Label layoutX="25.0" layoutY="50.0" text="Personeller">
                     <font>
                         <Font size="24.0" />
@@ -43,6 +33,18 @@
                         <FontAwesomeIconView glyphName="SEARCH" size="19" />
                     </graphic>
                 </JFXButton>
+            <TableView fx:id="tableView" layoutX="25.0" layoutY="100.0" prefHeight="575.0" prefWidth="950.0">
+              <columns>
+                  <TableColumn fx:id="columnName" minWidth="75.0" prefWidth="150.0" text="İsim" />
+                  <TableColumn fx:id="columnSurname" minWidth="75.0" prefWidth="150.0" text="Soyisim" />
+                <TableColumn fx:id="columnTC" minWidth="100.0" prefWidth="150.0" text="T.C." />
+                <TableColumn fx:id="columnPhoneNumber" minWidth="75.0" prefWidth="150.0" text="Telefon Numarası" />
+                  <TableColumn fx:id="columnEmail" minWidth="75.0" prefWidth="200.0" text="E-Posta Adresi" />
+                  <TableColumn fx:id="columnGender" minWidth="50.0" prefWidth="75.0" text="Cinsiyet" />
+                  <TableColumn fx:id="columnType" minWidth="50.0" prefWidth="75.0" text="Tip" />
+                  <TableColumn prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
             </children>
         </Pane>
     </children>

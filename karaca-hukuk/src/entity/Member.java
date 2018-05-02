@@ -1,85 +1,123 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Member")
 public class Member {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idMember;
+    @Id
+    @Column(name = "idMember")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idMember;
 
-	private long tc;
+    @Column(name = "tc")
+    private long tc;
 
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	private String surname;
+    @Column(name = "surname")
+    private String surname;
 
-	private String type;
+    @Column(name = "type")
+    private String type;
 
-	private String password;
+    @Column(name = "password")
+    private String password;
 
-	public Member() {
-	}
+    @Column(name = "email")
+    private String email;
 
-	public Member(long tc, String name, String surname, String type, String password) {
-		this.tc = tc;
-		this.name = name;
-		this.surname = surname;
-		this.type = type;
-		this.password = password;
-	}
+    @Column(name = "gender")
+    private String gender;
 
-	public int getIdMember() {
-		return idMember;
-	}
+    @Column(name = "phoneNumber")
+    private long phoneNumber;
 
-	public void setIdMember(int idMember) {
-		this.idMember = idMember;
-	}
+    public Member() {
+    }
 
-	public long getTc() {
-		return tc;
-	}
+    public Member(long tc, String name, String surname, String type, String password, String email, String gender, long phoneNumber) {
+        this.tc = tc;
+        this.name = name;
+        this.surname = surname;
+        this.type = type;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+    }
 
-	public void setTc(long tc) {
-		this.tc = tc;
-	}
+    public int getIdMember() {
+        return idMember;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setIdMember(int idMember) {
+        this.idMember = idMember;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public long getTc() {
+        return tc;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public void setTc(long tc) {
+        this.tc = tc;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

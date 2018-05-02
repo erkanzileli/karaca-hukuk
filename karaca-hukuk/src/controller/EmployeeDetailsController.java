@@ -3,10 +3,13 @@ package controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import entity.Member;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EmployeeDetailsController implements Initializable {
@@ -27,16 +30,25 @@ public class EmployeeDetailsController implements Initializable {
     private JFXTextField txtMobilePhone;
 
     @FXML
-    private JFXComboBox<?> comboPosition;
+    private JFXComboBox<String> comboPosition;
 
     @FXML
-    private JFXComboBox<?> comboSex;
-
-    @FXML
-    private JFXTextField txtPhone;
+    private JFXComboBox<String> comboSex;
 
     @FXML
     private JFXToggleButton tglCorrection;
+
+    public static Member selectedEmployee;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        txtName.setText(selectedEmployee.getName());
+        txtSurname.setText(selectedEmployee.getSurname());
+        txtEmail.setText(selectedEmployee.getEmail());
+        txtMobilePhone.setText(String.valueOf(selectedEmployee.getPhoneNumber()));
+        txtTC.setText(String.valueOf(selectedEmployee.getTc()));
+
+    }
 
     @FXML
     void closeDialog() {
@@ -51,14 +63,12 @@ public class EmployeeDetailsController implements Initializable {
             txtSurname.setEditable(true);
             txtTC.setEditable(true);
             txtMobilePhone.setEditable(true);
-            txtPhone.setEditable(true);
         } else {
             txtEmail.setEditable(false);
             txtName.setEditable(false);
             txtSurname.setEditable(false);
             txtTC.setEditable(false);
             txtMobilePhone.setEditable(false);
-            txtPhone.setEditable(false);
         }
     }
 
@@ -67,8 +77,5 @@ public class EmployeeDetailsController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
 }

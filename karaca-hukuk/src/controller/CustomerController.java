@@ -86,7 +86,9 @@ public class CustomerController implements Initializable {
     }
 
     private void fillTable() {
-        getData();
+        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer",
+                Customer.class);
+        customers = query.getResultList();
         tableView.getItems().clear();
         tableView.getItems().addAll(customers);
     }
