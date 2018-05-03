@@ -131,7 +131,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="customeril" layoutX="187.0" layoutY="195.0" prefHeight="27.0" prefWidth="100.0" promptText="İl" AnchorPane.topAnchor="195.0" />
+            <JFXComboBox fx:id="customeril" layoutX="187.0" layoutY="195.0" onAction="#listDistrictsOfProvince" prefHeight="27.0" prefWidth="100.0" promptText="İl" AnchorPane.topAnchor="195.0" />
             <JFXComboBox fx:id="customerilce" layoutX="296.0" layoutY="195.0" prefHeight="27.0" prefWidth="100.0" promptText="İlçe" AnchorPane.topAnchor="195.0" />
             <JFXTextField fx:id="customerMahalle" layoutX="401.0" layoutY="195.0" prefHeight="27.0" prefWidth="109.0" promptText="Mahalle" AnchorPane.topAnchor="195.0" />
             <JFXTextField fx:id="customersokak" layoutX="515.0" layoutY="195.0" prefHeight="27.0" prefWidth="107.0" promptText="Sokak" AnchorPane.topAnchor="195.0" />
@@ -143,7 +143,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="phoneNumber" alignment="CENTER" layoutX="383.0" layoutY="163.0" prefHeight="27.0" prefWidth="205.0" promptText="Numara" />
-            <JFXComboBox fx:id="gender" layoutX="774.0" layoutY="133.0" promptText="Cinsiyet" />
+            <JFXComboBox fx:id="gender" layoutX="774.0" layoutY="131.0" promptText="Cinsiyet" />
             </children>
         </AnchorPane>
     </children>

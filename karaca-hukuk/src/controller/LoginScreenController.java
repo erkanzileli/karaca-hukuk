@@ -79,9 +79,9 @@ public class LoginScreenController implements Initializable {
                 List<Member> list = query.getResultList();
                 if (!list.isEmpty()) {
                     MainClass.member = list.get(0);
-                    entityManager.getTransaction().begin();
+                   /*entityManager.getTransaction().begin();
                     entityManager.persist(new Log(new Date(), "test"));
-                    entityManager.getTransaction().commit();
+                    entityManager.getTransaction().commit();*/
                     loadHome();
                 } else {
                     // member not found

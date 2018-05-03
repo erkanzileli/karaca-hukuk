@@ -76,6 +76,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void showLawsuits() {
+
         Parent lawsuits = null;
         try {
             lawsuits = FXMLLoader.load(getClass().getResource("/fxml/lawsuits.fxml"));
@@ -83,10 +84,13 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
         LawsuitsController.rootpane = borderPane;
+        CreateLawsuitController.borderPane=LawsuitsController.rootpane;
         borderPane.setCenter(lawsuits);
         System.gc();
+
         //paneCenter.getChildren().setAll(lawsuits);
     }
+
 
     @FXML
     void showDashboard() {
@@ -109,6 +113,7 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
         borderPane.setCenter(customers);
         System.gc();
     }

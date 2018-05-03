@@ -44,11 +44,10 @@
                   <TableColumn fx:id="columnSurname" editable="false" minWidth="50.0" prefWidth="90.0" text="Soyisim" />
                   <TableColumn fx:id="columnTC" editable="false" minWidth="100.0" prefWidth="162.0" text="T.C. / Vergi Numarası" />
                   <TableColumn fx:id="columnPhoneNumber" prefWidth="136.0" text="Telefon Numarası" />
-                  <TableColumn fx:id="columnCustomerType" prefWidth="100.0" text="Müsteri Tipi" />
-                  <TableColumn fx:id="columnLawsuitType" prefWidth="95.0" text="Dava Tipi" />
-                  <TableColumn fx:id="columnLawsuitStatus" prefWidth="106.0" text="Dava Durumu" />
-                  <TableColumn fx:id="columnAddress" prefWidth="85.0" text="İl-İlçe" />
-                  <TableColumn fx:id="columnEvidence" prefWidth="97.0" text="Kanıt Sayısı" />
+                  <TableColumn fx:id="columnLawsuitType" prefWidth="124.0" text="Dava Tipi" />
+                  <TableColumn fx:id="columnLawsuitStatus" prefWidth="124.0" text="Dava Durumu" />
+                  <TableColumn fx:id="columnCustomerType" prefWidth="126.0" text="Müşteri Tipi" />
+                  <TableColumn fx:id="columnCreateDate" prefWidth="139.0" text="Oluşma Tarihi" />
                </columns>
             </TableView>
             </children>

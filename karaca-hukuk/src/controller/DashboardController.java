@@ -85,10 +85,10 @@ public class DashboardController implements Initializable {
 
         setAgendaTableSettings();
         fillAgendaTable();
-
+/*
         setLogTableSettings();
         fillLogTable();
-    }
+  */  }
 
     private void setLogTableSettings() {
         columnLogDate.setCellValueFactory(new PropertyValueFactory<>("date"));
