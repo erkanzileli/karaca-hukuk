@@ -27,6 +27,8 @@ public class Customer {
 
     private String gender;
 
+    private String isRemoved;
+
     public Customer() {
     }
 
@@ -110,5 +112,13 @@ public class Customer {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getIsRemoved() {
+        return isRemoved;
+    }
+
+    public void setIsRemoved(String isRemoved) {
+        this.isRemoved = isRemoved;
     }
 }

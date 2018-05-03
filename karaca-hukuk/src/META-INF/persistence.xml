@@ -20,6 +20,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
         <class>entity.Payment</class>
         <class>entity.Question</class>
         <class>entity.Log</class>
+        <class>entity.Gelir</class>
+        <class>entity.Gider</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url"

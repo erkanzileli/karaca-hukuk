@@ -47,7 +47,7 @@ public class CreateEmployeeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         entityManager = EntityManagerUtility.getEntityManager();
-        comboPosition.getItems().addAll("Avukat", "Sekreter");
+        comboPosition.getItems().addAll("Avukat", "Sekreter","Yönetici");
         comboSex.getItems().addAll("Kadın", "Erkek");
     }
 
