@@ -87,7 +87,7 @@ public class CreateCustomerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         entityManager = EntityManagerUtility.getEntityManager();
         fillComboProvinces();
-        comboSex.getItems().addAll("Kadın", "Erkek");
+        comboSex.getItems().addAll("Kadin", "Erkek");
         individualOrEnterprise = new ToggleGroup();
         radioEnterprise.setToggleGroup(individualOrEnterprise);
         radioSingular.setToggleGroup(individualOrEnterprise);
@@ -140,16 +140,6 @@ public class CreateCustomerController implements Initializable {
                         "Telefon numarası nümerik olmalıdır.").show();
             }
         }
-        long adressPhoneNumber = 0;
-        if (textAdressPhone.getText().trim().length() > 0) {
-            try {
-                adressPhoneNumber = Long.parseLong(textAdressPhone.getText().trim());
-            } catch (Exception e) {
-                // long değil
-                createAlertDialog(AlertType.ERROR, "Hata", "Hatalı değer girildi.",
-                        "Telefon numarası nümerik olmalıdır.").show();
-            }
-        }
         // bireysel
         if ("Bireysel".equals(type)) {
             String tcString = txtIdentityNo.getText().trim();
@@ -185,7 +175,6 @@ public class CreateCustomerController implements Initializable {
                         adress.setDoorNumber(doorNumber);
                         adress.setPostalCode(postalCode);
                         adress.setIdCustomer(result.get(0));
-                        adress.setPhoneNumber(adressPhoneNumber);
                         adress.setType(type);
                         // adres bilgisinin kaydedilmesi
                         entityManager.getTransaction().begin();
@@ -229,7 +218,6 @@ public class CreateCustomerController implements Initializable {
                         adress.setDoorNumber(doorNumber);
                         adress.setPostalCode(postalCode);
                         adress.setIdCustomer(result.get(0));
-                        adress.setPhoneNumber(adressPhoneNumber);
                         adress.setType(type);
                         // adres bilgisinin kaydedilmesi
                         entityManager.getTransaction().begin();

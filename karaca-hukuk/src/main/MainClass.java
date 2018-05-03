@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 public class MainClass extends Application {
 
+
     public static Member member;
 
     public static void main(String[] args) {
