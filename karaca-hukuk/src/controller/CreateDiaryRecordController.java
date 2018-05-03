@@ -149,7 +149,6 @@ public class CreateDiaryRecordController implements Initializable {
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
         result.ifPresent(pair -> {
-
             String titleText = pair.getKey().trim();
             String contentText = pair.getValue().trim();
 

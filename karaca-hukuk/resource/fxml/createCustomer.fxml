@@ -36,12 +36,12 @@
                     </font>
                 </Label>
                 <JFXComboBox fx:id="comboDistrict" layoutX="175.0" layoutY="175.0" prefWidth="200.0" />
-                <Label layoutX="25.0" layoutY="225.0" text="Telefon">
+                <Label layoutX="25.0" layoutY="225.0" text="Mahalle">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <JFXTextField fx:id="textAdressPhone" focusColor="#9fa8da" layoutX="175.0" layoutY="225.0" prefWidth="200.0" />
+                <JFXTextField fx:id="textMahalle" focusColor="#9fa8da" layoutX="175.0" layoutY="225.0" prefWidth="200.0" />
                 <Label layoutX="25.0" layoutY="275.0" text="Sokak">
                     <font>
                         <Font size="18.0" />

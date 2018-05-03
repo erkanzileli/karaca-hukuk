@@ -98,7 +98,7 @@ public class DashboardController implements Initializable {
     }
 
     private void fillLogTable() {
-        TypedQuery<Log> query = (TypedQuery<Log>) entityManager.createNativeQuery("SELECT * FROM Log WHERE createDate BETWEEN ?1 AND ?2 ORDER BY createDate DESC", Log.class);
+        TypedQuery<Log> query = (TypedQuery<Log>) entityManager.createNativeQuery("SELECT * FROM Log WHERE createDate BETWEEN ?1 AND ?2 ORDER BY createDate DESC ", Log.class);
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Date dt = new Date();
@@ -150,9 +150,7 @@ public class DashboardController implements Initializable {
     }
 
     private void fillAgendaTable() {
-        TypedQuery<Agenda> query = (TypedQuery<Agenda>) entityManager.createNativeQuery("SELECT * FROM Agenda WHERE idMember=?3 AND Agenda.date BETWEEN ?1 AND ?2 ORDER BY Agenda.date ASC", Agenda.class);
-        query.setParameter(1, java.sql.Date.valueOf(LocalDate.now().minusDays(7)));
-        query.setParameter(2, java.sql.Date.valueOf(LocalDate.now().plusDays(1)));
+        TypedQuery<Agenda> query = (TypedQuery<Agenda>) entityManager.createNativeQuery("SELECT * FROM Agenda WHERE idMember=?3 ORDER BY Agenda.date DESC", Agenda.class);
         query.setParameter(3,MainClass.member.getIdMember());
         List<Agenda> agendaList = query.getResultList();
         tableAgenda.getItems().clear();

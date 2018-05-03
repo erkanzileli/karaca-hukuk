@@ -99,8 +99,9 @@ public class CustomerDetailController implements Initializable {
         comboSex.getItems().addAll("Kadın", "Erkek");
         radioSingular.setDisable(true);
         radioEnterprise.setDisable(true);
-        if(MainClass.member.getType().equals("Sekreter")) {
+        if (MainClass.member.getType().equals("Sekreter")) {
             btnDelete.setVisible(false);
+            btnUpdate.setVisible(false);
             toggleCorrection.setVisible(false);
         }
         if ("Bireysel".equals(selectedCustomer.getType())) {
@@ -205,8 +206,6 @@ public class CustomerDetailController implements Initializable {
         String province = comboProvince.getValue();
         String district = comboDistrict.getValue();
 
-        System.out.println(district);
-
         String street = textStreet.getText().trim();
         String doorNumber = textDoorNumber.getText().trim();
         int postalCode = 0;
@@ -268,19 +267,24 @@ public class CustomerDetailController implements Initializable {
                     customer.setTc(tc);
                     customer.setGender(gender);
                     entityManager.getTransaction().commit();
-
-                    Adress adress = entityManager.find(Adress.class, selectedCustomerAdress.getIdAdress());
-                    // update address
-                    entityManager.getTransaction().begin();
-                    adress.setCounty(province);
-                    adress.setCity(district);
-                    adress.setStreet(street);
-                    adress.setDoorNumber(doorNumber);
-                    adress.setPostalCode(postalCode);
-                    adress.setPhoneNumber(adressPhoneNumber);
-                    adress.setType(type);
-                    // save the address
-                    entityManager.getTransaction().commit();
+                    if (selectedCustomerAdress==null){
+                        entityManager.getTransaction().begin();
+                        entityManager.persist(new Adress(district, province, street, postalCode, phoneNumber, doorNumber, type, selectedCustomer.getIdCustomer()));
+                        entityManager.getTransaction().commit();
+                    } else {    //var ise
+                        // update address
+                        Adress adress = entityManager.find(Adress.class,selectedCustomerAdress.getIdAdress());
+                        entityManager.getTransaction().begin();
+                        adress.setCounty(province);
+                        adress.setCity(district);
+                        adress.setStreet(street);
+                        adress.setDoorNumber(doorNumber);
+                        adress.setPostalCode(postalCode);
+                        adress.setPhoneNumber(adressPhoneNumber);
+                        adress.setType(type);
+                        // save the address
+                        entityManager.getTransaction().commit();
+                    }
                     successNotification();
                 }
             }
@@ -341,26 +345,25 @@ public class CustomerDetailController implements Initializable {
                     entityManager.getTransaction().begin();
                     entityManager.remove(entityManager.find(Adress.class, selectedCustomerAdress.getIdAdress()));
                     entityManager.getTransaction().commit();
-                }catch (NullPointerException e){
-                    System.out.println("Adres bilgisi kayıtlı değil.");
+                } catch (NullPointerException e) {
                     entityManager.getTransaction().commit();
                 }
-                String isRemoved="NO";
-                try{
+                String isRemoved = "NO";
+                try {
 
-                    Query query = entityManager.createNativeQuery("SELECT * FROM Lawsuit Where idCustomer=?1",Lawsuit.class);
-                    query.setParameter(1,selectedCustomer.getIdCustomer());
-                    if (!query.getResultList().isEmpty()){
-                        Customer customer = entityManager.find(Customer.class,selectedCustomer.getIdCustomer());
+                    Query query = entityManager.createNativeQuery("SELECT * FROM Lawsuit Where idCustomer=?1", Lawsuit.class);
+                    query.setParameter(1, selectedCustomer.getIdCustomer());
+                    if (!query.getResultList().isEmpty()) {
+                        Customer customer = entityManager.find(Customer.class, selectedCustomer.getIdCustomer());
                         entityManager.getTransaction().begin();
                         customer.setIsRemoved("YES");
                         entityManager.getTransaction().commit();
-                        isRemoved="YES";
+                        isRemoved = "YES";
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
 
                 }
-                if (isRemoved.equals("NO")){
+                if (isRemoved.equals("NO")) {
                     Customer customer = entityManager.find(Customer.class, selectedCustomer.getIdCustomer());
                     entityManager.getTransaction().begin();
                     entityManager.remove(customer);

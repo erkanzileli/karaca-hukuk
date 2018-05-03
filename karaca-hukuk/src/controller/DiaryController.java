@@ -87,6 +87,9 @@ public class DiaryController implements Initializable {
 
     private void fillGridPane() {
         // GridPane içine 35 adet Pane yerleştirme
+        calendarGridPane.getChildren().clear();
+        allCalendarDays.clear();
+        calendarGridPane.setGridLinesVisible(true);
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 CalendarPaneModel pane = new CalendarPaneModel();
@@ -106,7 +109,7 @@ public class DiaryController implements Initializable {
         LocalDate today = LocalDate.now();
         // Takvimi günlerin numaraları ile doldurma
         for (CalendarPaneModel pane : allCalendarDays) {
-            Text text = new Text(5, 90, String.valueOf(localDate.getDayOfMonth()));
+            Text text = new Text(5, 30, String.valueOf(localDate.getDayOfMonth()));
             // bugünün yeşil yazılması
             if (localDate.equals(today)) {
                 text.setFill(Color.RED);
@@ -145,24 +148,28 @@ public class DiaryController implements Initializable {
     @FXML
     void minusMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
+        fillGridPane();
         updateCalendar(currentYearMonth);
     }
 
     @FXML
     void minusYear() {
         currentYearMonth = currentYearMonth.minusYears(1);
+        fillGridPane();
         updateCalendar(currentYearMonth);
     }
 
     @FXML
     void plusMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
+        fillGridPane();
         updateCalendar(currentYearMonth);
     }
 
     @FXML
     void plusYear() {
         currentYearMonth = currentYearMonth.plusYears(1);
+        fillGridPane();
         updateCalendar(currentYearMonth);
     }
 }
