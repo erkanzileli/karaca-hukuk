@@ -144,18 +144,7 @@ public class LawsuitsController implements Initializable {
         }
 
         tableView.getItems().addAll(lawsuitListModelList);
-        /*
 
-        SELECT name,surname,Customer.type as customerType,tc,phoneNumber,L.type as lawsuitType,status,date from Customer inner join Lawsuit L ON Customer.idCustomer = L.idCustomer
-        Query q2 = entityManager.createQuery("SELECT c.name,c.surname,c.type,c.tc,c.phoneNumber,l.type,l.status,l.date from Customer c inner join Lawsuit l ON c.idCustomer = l.idCustomer");
-        System.out.println("BAYRAK 5");
-
-        models=q2.getResultList();
-
-        System.out.println(String.valueOf(models.get(0)));
-
-        System.out.println(models.size()+"");
-*/
         System.out.println("BAYRAK 6");
         tableView.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
