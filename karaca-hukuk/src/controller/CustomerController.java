@@ -1,15 +1,27 @@
 package controller;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialog.DialogTransition;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXTextField;
+import entity.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
+import utility.EntityManagerUtility;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -24,29 +36,90 @@ public class CustomerController implements Initializable {
     private JFXButton btnCreate;
 
     @FXML
-    private JFXTreeTableView<?> tableView;
+    private TableView<Customer> tableView;
 
     @FXML
-    private TreeTableColumn<?, ?> columnCustomerName;
+    private TableColumn<Customer, String> columnName;
 
     @FXML
-    private TreeTableColumn<?, ?> columnCustomerPhone;
+    private TableColumn<Customer, String> columnSurname;
 
     @FXML
-    private TreeTableColumn<?, ?> columnCustomerType;
+    private TableColumn<Customer, String> columnType;
 
     @FXML
-    private TreeTableColumn<?, ?> columnDate;
+    private TableColumn<Customer, Long> columnPhone;
+
+    @FXML
+    private TableColumn<Customer, Long> columnTC;
+
+    @FXML
+    private TableColumn<Customer, Long> columnTaxNumber;
 
     public static JFXDialog createCustomerDialog;
 
+    public static JFXDialog customerDetailsDialog;
+
+    private EntityManager entityManager;
+
+    private List<Customer> customers;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        entityManager = EntityManagerUtility.getEntityManager();
+
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        columnTC.setCellValueFactory(new PropertyValueFactory<>("tc"));
+        columnTaxNumber.setCellValueFactory(new PropertyValueFactory<>("taxNumber"));
+
+        fillTable();
+
+        tableView.setOnMouseClicked(e -> {
+            if (e.getClickCount() == 2) {
+                CustomerDetailController.selectedCustomer = tableView.getSelectionModel().getSelectedItem();
+                showCustomerDetails();
+            }
+        });
+    }
+
+    private void fillTable() {
+        getData();
+        tableView.getItems().clear();
+        tableView.getItems().addAll(customers);
+    }
+
+    private void getData() {
+        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer WHERE isRemoved=?1",Customer.class);
+        query.setParameter(1,"NO");
+        customers = query.getResultList();
+    }
+
+    private void showCustomerDetails() {
+        Parent details = null;
+        try {
+            details = FXMLLoader.load(getClass().getResource("/fxml/customerDetail.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        dialogLayout.setBody(details);
+        JFXDialog dialog = new JFXDialog(root, dialogLayout, DialogTransition.CENTER);
+        dialog.setOverlayClose(false);
+        dialog.setOnDialogClosed(e-> fillTable());
+        dialog.show();
+        customerDetailsDialog = dialog;
+    }
+
     @FXML
-    void search() {
+    private void search() {
 
     }
 
     @FXML
-    void create() {
+    private void create() {
         Parent createCustomer = null;
         try {
             createCustomer = FXMLLoader.load(getClass().getResource("/fxml/createCustomer.fxml"));
@@ -61,8 +134,4 @@ public class CustomerController implements Initializable {
         dialog.show();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("CustomerController.initialize");
-    }
 }

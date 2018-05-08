@@ -1,121 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.*?>
-<StackPane fx:id="root" fx:controller="controller.HomeController" maxHeight="-Infinity" maxWidth="-Infinity"
-           minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0"
-           xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
         <BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1200.0">
             <left>
-                <Pane prefHeight="650.0" prefWidth="200.0" style="-fx-background-color: #2F6599;"
-                      BorderPane.alignment="CENTER">
+                <Pane prefHeight="650.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" BorderPane.alignment="CENTER">
                     <children>
-                        <FontAwesomeIconView fill="#e8e8e8" fontSmoothingType="LCD" glyphName="USER" layoutX="75.0"
-                                             layoutY="100.0" onMouseClicked="#showProfile" size="75"/>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="150.0" onAction="#showDashboard" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Anasayfa" textFill="WHITE">
+                        <FontAwesomeIconView fill="#e8e8e8" fontSmoothingType="LCD" glyphName="USER" layoutX="75.0" layoutY="100.0" onMouseClicked="#showProfile" size="75" />
+                        <JFXButton fx:id="btnHome" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="150.0" onAction="#showDashboard" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Anasayfa" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <graphic>
-                                <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="25"/>
+                                <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="25" />
                             </graphic>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="191.0" onAction="#showLawsuits" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Davalar" textFill="WHITE">
+                        <JFXButton fx:id="btnLawsuits" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="191.0" onAction="#showLawsuits" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Davalar" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="25"/>
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="25" />
                             </graphic>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="232.0" onAction="#showCustomers" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Müşteriler" textFill="WHITE">
+                        <JFXButton fx:id="btnCustomers" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="232.0" onAction="#showCustomers" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Müşteriler" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="25"/>
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="25" />
                             </graphic>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="273.0" onAction="#showReporting" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Raporlar" textFill="WHITE">
+                        <JFXButton fx:id="btnReports" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="273.0" onAction="#showReporting" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Raporlar" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                             <graphic>
-                                <MaterialDesignIconView fill="WHITE" glyphName="FILE_DOCUMENT" size="25"/>
+                                <MaterialDesignIconView fill="WHITE" glyphName="FILE_DOCUMENT" size="25" />
                             </graphic>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="314.0" onAction="#showDiary" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Ajandam" textFill="WHITE">
+                        <JFXButton fx:id="btnAgenda" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="314.0" onAction="#showDiary" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Ajandam" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="25"/>
+                                <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="25" />
                             </graphic>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="396.0" onAction="#powerOff" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Çıkış" textFill="WHITE">
+                        <JFXButton fx:id="btnQuit" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="396.0" onAction="#powerOff" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Çıkış" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25"/>
+                                <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25" />
                             </graphic>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0"
-                                   layoutY="355.0" onAction="#showEmployees" prefHeight="40.0" prefWidth="200.0"
-                                   style="-fx-background-color: #2F6599;" text="Personeller" textFill="WHITE">
+                        <JFXButton fx:id="btnEmployees" alignment="BASELINE_LEFT" focusTraversable="false" graphicTextGap="15.0" layoutY="355.0" onAction="#showEmployees" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2F6599;" text="Personeller" textFill="WHITE">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                             <padding>
-                                <Insets left="15.0"/>
+                                <Insets left="15.0" />
                             </padding>
                             <graphic>
-                                <OctIconView fill="WHITE" glyphName="ORGANIZATION" size="25"/>
+                                <OctIconView fill="WHITE" glyphName="ORGANIZATION" size="25" />
                             </graphic>
                         </JFXButton>
                     </children>
                     <effect>
-                        <DropShadow height="0.0" radius="4.01" spread="0.28" width="18.04"/>
+                        <DropShadow height="0.0" radius="4.01" spread="0.28" width="18.04" />
                     </effect>
                 </Pane>
             </left>

@@ -1,5 +1,6 @@
 package main;
 
+import entity.Member;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,27 +8,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.time.LocalDateTime;
+
 public class MainClass extends Application {
+
+    public static Member member;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage arg0) throws Exception {
-        /*
-        kötü kod
-        Parent splashParent = FXMLLoader.load(getClass().getResource("/fxml/splash.fxml"));
-        Scene splashScene = new Scene(splashParent);
-        Stage splashStage = new Stage();
-        splashStage.setScene(splashScene);
-        splashStage.setWidth(400);
-        splashStage.setHeight(400);
-        splashStage.initStyle(StageStyle.TRANSPARENT);
-        splashStage.show();
-        Thread.sleep(3000);
-        splashStage.hide();
-        System.gc();
-        */
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
         Scene scene = new Scene(root);

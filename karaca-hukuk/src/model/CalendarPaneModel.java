@@ -2,14 +2,17 @@ package model;
 
 import javafx.scene.layout.Pane;
 
-public class CalendarPaneModel extends Pane {
-    private int day;
+import java.sql.Date;
 
-    public int getDay() {
-        return this.day;
+public class CalendarPaneModel extends Pane {
+
+    private Date date;
+
+    public Date getDate() {
+        return date;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

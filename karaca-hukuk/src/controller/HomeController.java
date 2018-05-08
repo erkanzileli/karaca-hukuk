@@ -1,16 +1,22 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import entity.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import main.MainClass;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +30,53 @@ public class HomeController implements Initializable {
 
     @FXML
     private StackPane root;
+
+    @FXML
+    private JFXButton btnHome;
+
+    @FXML
+    private JFXButton btnLawsuits;
+
+    @FXML
+    private JFXButton btnCustomers;
+
+    @FXML
+    private JFXButton btnReports;
+
+    @FXML
+    private JFXButton btnAgenda;
+
+    @FXML
+    private JFXButton btnQuit;
+
+    @FXML
+    private JFXButton btnEmployees;
+
+    private Member member;
+
+    public static JFXDialog dialogProfile;
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        showDashboard();
+        member = MainClass.member;
+        System.out.println("HomeController.initialize");
+        setButtonsForUser();
+    }
+
+    private void setButtonsForUser() {
+        //Butonların ayarlanması
+        /** if lawyer
+         * agenda -> 0,273
+         * quit -> 314
+         */
+        if ("Avukat".equals(member.getType()) || "Sekreter".equals(member.getType())) {
+            btnAgenda.setLayoutY(273);
+            btnQuit.setLayoutY(314);
+            btnEmployees.setVisible(false);
+            btnReports.setVisible(false);
+        }
+    }
 
     @FXML
     void showLawsuits() {
@@ -72,7 +125,20 @@ public class HomeController implements Initializable {
         alert.headerTextProperty().setValue("Uyarı!");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            System.exit(1);
+            Stage arg0 = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            arg0.setScene(scene);
+            arg0.setTitle("Hukuk Bürosu Otomasyonu");
+            arg0.initStyle(StageStyle.TRANSPARENT);
+            arg0.setResizable(false);
+            arg0.show();
+            borderPane.getScene().getWindow().hide();
         }
     }
 
@@ -100,6 +166,7 @@ public class HomeController implements Initializable {
         jfxDialogLayout.setBody(profile);
         JFXDialog dialog = new JFXDialog(root, jfxDialogLayout, JFXDialog.DialogTransition.LEFT);
         dialog.show();
+        dialogProfile = dialog;
     }
 
     @FXML
@@ -124,12 +191,6 @@ public class HomeController implements Initializable {
         }
         borderPane.setCenter(diary);
         System.gc();
-    }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        showDashboard();
-        System.out.println("HomeController.initialize");
     }
 
 

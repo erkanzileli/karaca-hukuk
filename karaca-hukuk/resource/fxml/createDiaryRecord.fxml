@@ -2,29 +2,38 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                 prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141"
-                 xmlns:fx="http://javafx.com/fxml/1">
+
+<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateDiaryRecordController">
     <children>
-        <Pane prefHeight="200.0" prefWidth="200.0">
-            <children>
-                <Label layoutX="50.0" layoutY="15.0" text="Yeni Hatırlatma">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <JFXTextField focusColor="#9fa8da" focusTraversable="false" labelFloat="true" layoutX="50.0"
-                              layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Konu"/>
-                <TextArea focusTraversable="false" layoutX="50.0" layoutY="125.0" prefHeight="100.0" prefWidth="300.0"
-                          promptText="Açıklama"/>
-                <JFXButton focusTraversable="false" layoutX="50.0" layoutY="250.0" prefHeight="25.0" prefWidth="300.0"
-                           style="-fx-background-color: #9FA8DA;" text="Kaydet"/>
-            </children>
+        <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lblToday" alignment="CENTER" prefWidth="650.0" text="27 Nisan Salı">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="30.0" text="Yapılacaklar">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <JFXButton focusTraversable="false" graphicTextGap="6.0" layoutX="550.0" layoutY="40.0" onAction="#createNote" prefWidth="75.0" style="-fx-background-color: #9FA8DA;" text="Yeni">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="20" />
+               </graphic>
+            </JFXButton>
+            <TableView fx:id="tableView" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="columnTitle" prefWidth="250.0" text="Konu" />
+                <TableColumn fx:id="columnContent" prefWidth="350.0" text="İçerik" />
+              </columns>
+            </TableView>
+         </children>
         </Pane>
     </children>
 </JFXDialogLayout>

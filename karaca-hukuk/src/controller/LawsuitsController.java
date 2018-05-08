@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -34,25 +36,35 @@ public class LawsuitsController implements Initializable {
     private JFXButton btnSearch;
 
     @FXML
-    private JFXTreeTableView<?> tableViewDavalar;
+    private TableView<?> tableView;
 
     @FXML
-    private TreeTableColumn<?, ?> columnBeginDate;
+    private TableColumn<?, ?> columnName;
 
     @FXML
-    private TreeTableColumn<?, ?> columnStatus;
+    private TableColumn<?, ?> columnSurname;
 
     @FXML
-    private TreeTableColumn<?, ?> columnCourt;
+    private TableColumn<?, ?> columnTC;
 
     @FXML
-    private TreeTableColumn<?, ?> columnLawsuitType;
+    private TableColumn<?, ?> columnPhoneNumber;
 
     @FXML
-    private TreeTableColumn<?, ?> columnAlly;
+    private TableColumn<?, ?> columnCustomerType;
 
     @FXML
-    private TreeTableColumn<?, ?> columnOpponent;
+    private TableColumn<?, ?> columnLawsuitType;
+
+    @FXML
+    private TableColumn<?, ?> columnLawsuitStatus;
+
+    @FXML
+    private TableColumn<?, ?> columnAddress;
+
+    @FXML
+    private TableColumn<?, ?> columnEvidence;
+
 
     @FXML
     void create() {

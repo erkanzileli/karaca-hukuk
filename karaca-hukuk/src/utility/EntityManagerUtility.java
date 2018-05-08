@@ -6,10 +6,9 @@ import javax.persistence.Persistence;
 
 public class EntityManagerUtility {
 
-    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("MySQLPersistenceUnit");
+    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("test");
 
-    private EntityManagerUtility(){
-        System.out.println("çalıştı");
+    private EntityManagerUtility() {
     }
 
     public static EntityManager getEntityManager() {
