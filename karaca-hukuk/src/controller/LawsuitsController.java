@@ -148,7 +148,6 @@ public class LawsuitsController implements Initializable {
         System.out.println("BAYRAK 6");
         tableView.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
-
                 showLawsuitDetails(tableView.getSelectionModel().getSelectedItem().getTc(),tableView.getSelectionModel().getSelectedItem().getCreateDate());
             }
         });
