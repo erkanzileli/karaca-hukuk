@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -34,22 +35,29 @@ public class CreateLawsuitController implements Initializable {
     private ArrayList<String> tmpDb = new ArrayList<>();
     private ArrayList<ToggleGroup> toggleGroups = new ArrayList<>();
     public static ArrayList<EvidenceModel> tmpDbEvidence = new ArrayList<>();
+    List<Lawsuit> lawsuitList=new ArrayList<>();
     JFXDialog dialog;
+    public static BorderPane borderPane;
+    public static long selectedItemTc;
+    public static Date selectedItemDate;
+    Parent lawsuits = null;
+
 
     @FXML
     private StackPane rootStack;
+
 
     @FXML
     private JFXToggleButton customer_type;
 
     @FXML
-    private JFXComboBox<?> lawsuitType;
+    private JFXComboBox<String> lawsuitType;
 
     @FXML
     private JFXTextField kimlikNo;
 
     @FXML
-    private FontAwesomeIconView search_customer;
+    private FontAwesomeIconView editForLawsuit;
 
     @FXML
     private JFXTextField name;
@@ -78,10 +86,10 @@ public class CreateLawsuitController implements Initializable {
     private JFXDatePicker lawsuit_start_date;
 
     @FXML
-    private JFXComboBox<?> lawsuit_status;
+    private JFXComboBox<String> lawsuit_status;
 
     @FXML
-    private JFXComboBox<?> opponentType;
+    private JFXComboBox<String> opponentType;
 
     @FXML
     private JFXCheckBox checkbox_evidence;
@@ -133,13 +141,13 @@ public class CreateLawsuitController implements Initializable {
     private Label evidence_count;
 
     @FXML
-    private JFXComboBox<?> typePay;
+    private JFXComboBox<String> typePay;
 
     @FXML
     private FontAwesomeIconView show_evidence;
 
     @FXML
-    private JFXComboBox<?> customeril;
+    private JFXComboBox<String> customeril;
 
     @FXML
     private JFXComboBox<String> customerilce;
@@ -149,7 +157,7 @@ public class CreateLawsuitController implements Initializable {
 
 
     @FXML
-    private JFXComboBox<?> gender;
+    private JFXComboBox<String> gender;
 
     @FXML
     private JFXTextField customersokak;
@@ -173,31 +181,95 @@ public class CreateLawsuitController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        kimlikNo.setText("12345678910");
-        entityManager = EntityManagerUtility.getEntityManager();
-        lawsuit_start_date.setValue(LocalDate.now());
-        date_evidence.setValue(LocalDate.now());
-        ObservableList observableListGender = FXCollections.observableArrayList("Erkek", "Kadın");
-        ObservableList observableListTmpil = FXCollections.observableArrayList("İstanbul", "Ankara", "İzmir");
-        ObservableList observableListTmpilce = FXCollections.observableArrayList("Zeytinburnu", "Esenler", "Mamak", "Kızılay");
-        ObservableList observableListStatus = FXCollections.observableArrayList("Aktif", "Beklemede", "Pasif");
-        ObservableList observableListOpponentType = FXCollections.observableArrayList("Bireysel", "Kurumsal");
-        ObservableList observableListLawsuitType = FXCollections.observableArrayList("Ceza", "İcra", "Hukuk");
-        ObservableList observableListTypePay = FXCollections.observableArrayList("Nakit", "KrediKartı (Tek Çekim)", "KrediKartı (3 Taksit)", "KrediKartı (6 Taksit)", "KrediKartı (9 Taksit)");
-        ObservableList observableListEvidenceType = FXCollections.observableArrayList("Döküman", "Görüntü", "Ses Kaydı", "Suç Aleti");
-        gender.setItems(observableListGender);
-        customeril.setItems(observableListTmpil);
-        customerilce.setItems(observableListTmpilce);
-       // type_evidence.setItems(observableListEvidenceType);
-        type_evidence.getItems().addAll("Döküman", "Görüntü", "Ses Kaydı", "Suç Aleti");
-        lawsuitType.setItems(observableListLawsuitType);
-        opponentType.setItems(observableListOpponentType);
-        lawsuit_status.setItems(observableListStatus);
-        typePay.setItems(observableListTypePay);
-        //davalı-davacı secimi için
         which_customer_defendant.setUserData("davalıId");
         which_customer_complainant.setUserData("davacıId");
-        // Tasarım icin gecici db
+
+        System.gc();
+        // Combobox dolumu
+        gender.getItems().addAll("Erkek", "Kadın");
+        type_evidence.getItems().addAll("Döküman", "Görüntü", "Ses Kaydı", "Suç Aleti");
+        lawsuitType.getItems().addAll("Ceza", "İcra", "Hukuk");
+        opponentType.getItems().addAll("Bireysel", "Kurumsal");
+        lawsuit_status.getItems().addAll("Aktif", "Beklemede", "Pasif");
+        typePay.getItems().addAll("Nakit", "KrediKartı (Tek Çekim)", "KrediKartı (3 Taksit)", "KrediKartı (6 Taksit)", "KrediKartı (9 Taksit)");
+
+        try {
+            lawsuits = FXMLLoader.load(getClass().getResource("/fxml/lawsuits.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        entityManager = EntityManagerUtility.getEntityManager();
+            fillComboProvinces();
+        if(selectedItemDate!=null){
+            System.out.println("bu bir edit ekranıdır");
+            editForLawsuit.setVisible(true);
+            System.out.println("BAYRAK 0");
+            Query query1 = entityManager.createNativeQuery("SELECT * FROM Lawsuit WHERE date=?1", Lawsuit.class);
+            System.out.println("BAYRAK 11");
+            query1.setParameter(1,selectedItemDate);
+            System.out.println("BAYRAK 22");
+            System.out.println(query1.getResultList().size()+"----------");
+            Lawsuit l1=new Lawsuit();
+            lawsuitList=  query1.getResultList();
+            System.out.println("BAYRAK 33");
+            Query query2=entityManager.createNativeQuery("SELECT * FROM Customer WHERE tc=?2",Customer.class);
+            System.out.println("BAYRAK 44");
+            query2.setParameter(2,selectedItemTc);
+            System.out.println("BAYRAK 55");
+            Customer c1= (Customer) query2.getResultList().get(0);
+            System.out.println("BAYRAK 66");
+            for (Lawsuit lawsuit : lawsuitList) {
+                if (lawsuit.getIdCustomer()==c1.getIdCustomer()){
+                    l1=lawsuit;
+                }
+            }
+            System.out.println("BAYRAK 77");
+            Query query3=entityManager.createNativeQuery("SELECT * FROM Adress WHERE idCustomer=?3",Adress.class);
+            System.out.println("BAYRAK 88");
+            query3.setParameter(3,c1.getIdCustomer());
+            System.out.println("BAYRAK 99");
+            Adress a1= (Adress) query3.getResultList().get(0);
+            System.out.println("BAYRAK 1010");
+            Query query4=entityManager.createNativeQuery("SELECT * FROM Opponent WHERE idOpponent=?4",Opponent.class);
+            System.out.println("BAYRAK 1111");
+            query4.setParameter(4,l1.getIdOpponent());
+            System.out.println("BAYRAK 1212");
+            Opponent o1= (Opponent) query4.getResultList().get(0);
+            System.out.println("BAYRAK 1313");
+            name.setText(c1.getName());
+            numara.setText(c1.getSurname());
+            phoneNumber.setText(String.valueOf(c1.getPhoneNumber()));
+            gender.getSelectionModel().select(c1.getGender());
+            customeril.getSelectionModel().select(a1.getCounty());
+            customerMahalle.setText("Resadiye Mah.");
+            customersokak.setText(a1.getStreet());
+            customerkapino.setText(a1.getDoorNumber() + "");
+            customerpostakodu.setText(a1.getPostalCode() + "");
+            lawsuit_start_date.setValue(l1.getDate().toLocalDate());
+            opponentType.setValue(o1.getType());
+            kimlikNo.setText(selectedItemTc+"");
+            Query query5 = entityManager.createNativeQuery("SELECT ilce_isim FROM Provinces WHERE il_isim = ?1");
+            query5.setParameter(1, customeril.getValue());
+            customerilce.getItems().clear();
+            customerilce.getItems().addAll(query5.getResultList());
+            customerilce.getSelectionModel().select(a1.getCity());
+            which_customer_complainant.setVisible(false);
+            which_customer_defendant.setVisible(false);
+
+
+
+            selectedItemDate=null;
+            //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        }
+        else{
+            System.out.println("bu bir create ekranıdır");
+            editForLawsuit.setVisible(false);
+            lawsuit_start_date.setValue(LocalDate.now());
+            date_evidence.setValue(LocalDate.now());
+        }
+
+       // Tasarım icin gecici db
         String tmpString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 
         tmpDb.add(tmpString);
@@ -207,6 +279,33 @@ public class CreateLawsuitController implements Initializable {
         tmpDb.add(tmpString);
         // Sorular kısmı için gridpane oluşturma
         fillGridPane();
+
+/*
+        if(selectedItemDate==null){
+
+        }else{
+            Lawsuit l1= (Lawsuit) query1.getResultList().get(0);
+
+
+            Query query3=entityManager.createNativeQuery("SELEC");
+
+
+            name.setText(c1.getName());
+            numara.setText(c1.getSurname());
+            phoneNumber.setText(String.valueOf(c1.getPhoneNumber()));
+            gender.setPromptText(c1.getGender());
+            gender.getSelectionModel().select(c1.getGender());
+            customeril.getSelectionModel().select(a1.getCounty());
+            customerilce.getSelectionModel().select(a1.getCity());
+            customerMahalle.setText("Resadiye Mah.");
+            customersokak.setText(a1.getStreet());
+            customerkapino.setText(a1.getDoorNumber() + "");
+            customerpostakodu.setText(a1.getPostalCode() + "");
+
+
+        }
+*/
+
     }
 
     // Bireysel - Kurumsal seçimi
@@ -227,31 +326,34 @@ public class CreateLawsuitController implements Initializable {
     // Kayıtlı müşteri araması
     @FXML
     void search_customer() {
-        if (kimlikNo.getText().equals("12345678910")) {
-            name.setText("admin");
-            numara.setText("10");
-            customerMahalle.setText("123");
-            customersokak.setText("123");
-            customerpostakodu.setText("123");
-            customerkapino.setText("123");
-            payOfLawsuit.setText("123");
-            customerilce.getSelectionModel().select(0);
-            customeril.getSelectionModel().select(0);
-            lawsuit_status.getSelectionModel().select(0);
-            lawsuitType.getSelectionModel().select(0);
-            opponentType.getSelectionModel().select(0);
-            typePay.getSelectionModel().select(0);
-            gender.getSelectionModel().select(0);
-            phoneNumber.setText("05350248022");
-            defandant_name.setText("asdas");
-            defandant_surname.setText("asdasdas");
-            payOfLawsuit.setText("123");
-            defandant_name.setText("123");
-            defandant_surname.setText("123");
-            lawsuitDesc.setText("asdasd");
+
+        Query query = entityManager.createNativeQuery("SELECT * FROM Customer WHERE tc=?1", Customer.class);
+
+        query.setParameter(1, Long.valueOf(kimlikNo.getText()));
+        if (!query.getResultList().isEmpty()) {
+            System.out.println("1");
+            Customer n1 = (Customer) query.getResultList().get(0);
+            System.out.println("2");
+            Query q = entityManager.createNativeQuery("SELECT * FROM Adress WHERE idCustomer=?1", Adress.class);
+            System.out.println("3");
+            q.setParameter(1, n1.getIdCustomer());
+            System.out.println("4");
+            Adress a1 = (Adress) q.getResultList().get(0);
+            System.out.println("5");
+            name.setText(n1.getName());
+            numara.setText(n1.getSurname());
+            phoneNumber.setText(String.valueOf(n1.getPhoneNumber()));
+            gender.setPromptText(n1.getGender());
+            gender.getSelectionModel().select(n1.getGender());
+            customeril.getSelectionModel().select(a1.getCounty());
+            customerilce.getSelectionModel().select(a1.getCity());
+            customerMahalle.setText("Resadiye Mah.");
+            customersokak.setText(a1.getStreet());
+            customerkapino.setText(a1.getDoorNumber() + "");
+            customerpostakodu.setText(a1.getPostalCode() + "");
+
 
         } else {
-
             uyari.setVisible(true);
             uyari.setText("-->  BULUNAMADI ");
             Timer timer = new Timer();
@@ -262,7 +364,6 @@ public class CreateLawsuitController implements Initializable {
                 }
             }, 3000);
         }
-
 
     }
 
@@ -393,6 +494,9 @@ public class CreateLawsuitController implements Initializable {
                     wrongForValidate.setText("");
                     answers();
                     addLawsuit();
+                    System.gc();
+                    screenSwitch();
+
 
                 }
             }
@@ -402,6 +506,11 @@ public class CreateLawsuitController implements Initializable {
             submit.setStyle("-fx-border-color: red");
         }
 
+
+    }
+
+    private void screenSwitch() {
+        borderPane.setCenter(lawsuits);
 
     }
 
@@ -422,13 +531,24 @@ public class CreateLawsuitController implements Initializable {
     ///// VERİTABANINA DAVA KAYDI
 
     public void addLawsuit() {
+
         Customer c1;
+        Query query = entityManager.createNativeQuery("SELECT * FROM Customer WHERE tc=?1", Customer.class);
+        query.setParameter(1, Long.valueOf(kimlikNo.getText()));
+        if (!query.getResultList().isEmpty()) {
+
+            System.out.println("1");
+            c1 = (Customer) query.getResultList().get(0);
+        } else {
+            c1 = null;
+        }
+
         Date a = Date.valueOf(lawsuit_start_date.getValue());
 
 
         try {
             entityManager.getTransaction().begin();
-            Opponent o1 = new Opponent(defandant_name.getText().trim(), defandant_surname.getText().trim(), opponentType.getSelectionModel().getSelectedItem().toString(), Date.valueOf(LocalDate.now()));
+            Opponent o1 = new Opponent(defandant_name.getText().trim(), defandant_surname.getText().trim(), opponentType.getSelectionModel().getSelectedItem(), Date.valueOf(LocalDate.now()));
             System.out.println("BAYRAK  1");
             entityManager.persist(o1);
             System.out.println("BAYRAK 1.1");
@@ -436,15 +556,25 @@ public class CreateLawsuitController implements Initializable {
             entityManager.getTransaction().commit();
             entityManager.getTransaction().begin();
             if (customer_type.getText().equals("Bireysel")) {
-                c1 = new Customer(Long.valueOf(kimlikNo.getText()), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()), gender.getSelectionModel().getSelectedItem().toString());
+                if (c1 != null) {
+///
+                } else {
+                    c1 = new Customer(Long.valueOf(kimlikNo.getText()), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()), gender.getValue());
+                    entityManager.persist(c1);
+                }
                 System.out.println("BAYRAK  2");
             } else {
-                c1 = new Customer(Long.valueOf(kimlikNo.getText()), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
+                if (c1 != null) {
+///
+                } else {
+                    c1 = new Customer(Long.valueOf(kimlikNo.getText()), customer_type.getText().trim(), name.getText().trim(), numara.getText().trim(), Long.valueOf(phoneNumber.getText().trim()));
+                    entityManager.persist(c1);
+                }
                 System.out.println("BAYRAK  3");
             }
 
             System.out.println("BAYRAK  4");
-            entityManager.persist(c1);
+
 
             entityManager.getTransaction().commit();
             entityManager.getTransaction().begin();
@@ -453,8 +583,12 @@ public class CreateLawsuitController implements Initializable {
             System.out.println("BAYRAK  6");
             entityManager.persist(l1);
             entityManager.getTransaction().commit();
+            Adress a1 = new Adress(customerilce.getSelectionModel().getSelectedItem(), customeril.getSelectionModel().getSelectedItem(), customersokak.getText(), Integer.valueOf(customerpostakodu.getText()), Long.valueOf(phoneNumber.getText()), customerkapino.getText(), "", c1.getIdCustomer());
             System.out.println("BAYRAK  7");
-            System.out.println(""+l1.getIdLawsuit());
+            entityManager.getTransaction().begin();
+            entityManager.persist(a1);
+            entityManager.getTransaction().commit();
+            System.out.println("" + l1.getIdLawsuit());
             for (int i = 0; i < tmpDb.size() - 1; i++) {
                 entityManager.getTransaction().begin();
                 System.out.println("BAYRAK 7.1");
@@ -463,12 +597,12 @@ public class CreateLawsuitController implements Initializable {
             }
 
             System.out.println("BAYRAK  8");
-            System.out.println(tmpDbEvidence.size()+"   ///////////////");
+            System.out.println(tmpDbEvidence.size() + "   ///////////////");
             for (int i = 0; i < tmpDbEvidence.size(); i++) {
                 System.out.println("BAYRAK 8.1");
                 entityManager.getTransaction().begin();
-                System.out.println(l1.getIdLawsuit() +"--"+ tmpDbEvidence.get(i).getFromWho() +"--"+ tmpDbEvidence.get(i).getType() +"--"+ tmpDbEvidence.get(i).getDesc() + "--"+ tmpDbEvidence.get(i).getDate().toString());
-                 entityManager.persist(new Evidence(l1.getIdLawsuit(), tmpDbEvidence.get(i).getFromWho(), tmpDbEvidence.get(i).getType().trim(), tmpDbEvidence.get(i).getDesc(), tmpDbEvidence.get(i).getDate()));
+                System.out.println(l1.getIdLawsuit() + "--" + tmpDbEvidence.get(i).getFromWho() + "--" + tmpDbEvidence.get(i).getType() + "--" + tmpDbEvidence.get(i).getDesc() + "--" + tmpDbEvidence.get(i).getDate().toString());
+                entityManager.persist(new Evidence(l1.getIdLawsuit(), tmpDbEvidence.get(i).getFromWho(), tmpDbEvidence.get(i).getType().trim(), tmpDbEvidence.get(i).getDesc(), tmpDbEvidence.get(i).getDate()));
                 System.out.println("BAYRAK 8.2");
                 entityManager.getTransaction().commit();
             }
@@ -575,7 +709,7 @@ public class CreateLawsuitController implements Initializable {
 
     @FXML
     void add_evidence_hide() {
-        Date b=Date.valueOf(date_evidence.getValue());
+        Date b = Date.valueOf(date_evidence.getValue());
         if (info_evidence.getText().isEmpty() || type_evidence.getSelectionModel().getSelectedItem() == null || fromwho.getText().isEmpty()) {
             wrongForValidate.setText("Kanıt Bölümündeki girdileri Tamamlayınız");
 
@@ -587,34 +721,21 @@ public class CreateLawsuitController implements Initializable {
     }
 
     ////////////////////////////////////////////////////////////////////////////
+
+
+
+    private void fillComboProvinces() {
+        Query query = entityManager.createNativeQuery("SELECT DISTINCT il_isim FROM Provinces ORDER BY il_isim ASC");
+        customeril.getItems().setAll(query.getResultList());
+    }
+
     @FXML
-    void editForLawsuit() {
-
-        kimlikNo.setText("12345678910");
-        name.setText("Admin");
-        numara.setText("02122123212");
-        which_customer_complainant.setSelected(true);
-        toogle();
-        defandant_name.setText("Mod");
-        defandant_surname.setText("02824329921");
-        lawsuit_start_date.setValue(LocalDate.of(2018, 01, 12));
-        payOfLawsuit.setText("7000");
-        checkbox_evidence.setSelected(true);
-        checkbox_evidence();
-        evidence_count.setText("" + 3);
-        typePay.getSelectionModel().select(2);
-        lawsuit_status.getSelectionModel().select(0);
-        for (int i = 0; i < toggleGroups.size(); i++) {
-            if (i % 2 == 0) {
-                toggleGroups.get(i).getToggles().get(0).setSelected(true);
-
-            } else {
-
-                toggleGroups.get(i).getToggles().get(1).setSelected(true);
-            }
-        }
-
-
+    public void listDistrictsOfProvince() {
+        // ile göre ilçe listeleme
+        Query query = entityManager.createNativeQuery("SELECT ilce_isim FROM Provinces WHERE il_isim = ?1");
+        query.setParameter(1, customeril.getValue());
+        customerilce.getItems().clear();
+        customerilce.getItems().addAll(query.getResultList());
     }
 
 

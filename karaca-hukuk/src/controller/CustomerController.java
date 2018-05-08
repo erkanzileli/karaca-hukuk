@@ -92,8 +92,7 @@ public class CustomerController implements Initializable {
     }
 
     private void getData() {
-        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer WHERE isRemoved=?1",Customer.class);
-        query.setParameter(1,"NO");
+        TypedQuery<Customer> query = (TypedQuery<Customer>) entityManager.createNativeQuery("SELECT * FROM Customer ",Customer.class);
         customers = query.getResultList();
     }
 
