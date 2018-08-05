@@ -1,0 +1,12 @@
+<sql-result-set-mapping name="BookValueMappingXml">
+    <constructor-result target-class="org.thoughts.on.java.jpa.value.model.LawsuitListModel">
+        <column name="name"/>
+        <column name="surname"/>
+        <column name="tc" class="java.lang.Long"/>
+        <column name="phoneNumber" class="java.lang.Long"/>
+        <column name="lawsuitType"/>
+        <column name="lawsuitStatus"/>
+        <column name="customerType"/>
+        <column name="createDate" class="java.sql.Date"/>
+    </constructor-result>
+</sql-result-set-mapping>

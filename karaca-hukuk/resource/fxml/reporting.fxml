@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportingController">
+    <children>
+        <Pane prefHeight="650.0" prefWidth="1000.0">
+            <children>
+                <Label layoutX="25.0" layoutY="25.0" text="Sistem Raporu">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            <TabPane layoutY="75.0" prefHeight="575.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Grafikler">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                                  <PieChart fx:id="pieChartCustomers" prefHeight="400.0" prefWidth="500.0" />
+                              <PieChart fx:id="pieChartLawsuits" layoutX="500.0" prefHeight="400.0" prefWidth="500.0" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+                <Tab text="Gelir - Gider">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="50.0" layoutY="20.0" text="Gelirler">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tableGelir" layoutX="50.0" layoutY="50.0" prefHeight="400.0" prefWidth="350.0">
+                                <columns>
+                                  <TableColumn fx:id="columnGelirDate" minWidth="75.0" prefWidth="150.0" text="Tarih" />
+                                  <TableColumn fx:id="columnGelirAmount" prefWidth="200.0" text="Miktar" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="450.0" layoutY="20.0" text="Giderler">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tableGider" layoutX="450.0" layoutY="50.0" prefHeight="400.0" prefWidth="350.0">
+                                 <columns>
+                                    <TableColumn fx:id="columnGiderDate" minWidth="75.0" prefWidth="150.0" text="Tarih" />
+                                    <TableColumn fx:id="columnGiderAmount" prefWidth="200.0" text="Miktar" />
+                                 </columns>
+                              </TableView>
+                              <Label fx:id="lblTotalGelir" layoutX="50.0" layoutY="475.0" text="Toplam Gelir :" textFill="GREEN">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblTotalGider" layoutX="450.0" layoutY="475.0" text="Toplam Gider :" textFill="RED">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXDatePicker fx:id="dateStart" focusTraversable="false" layoutX="825.0" layoutY="150.0" prefHeight="25.0" prefWidth="150.0" />
+                              <Label layoutX="849.0" layoutY="75.0" text="Tarih Filtresi" />
+                              <Label layoutX="825.0" layoutY="125.0" text="Başlangıç" />
+                              <JFXDatePicker fx:id="dateEnd" focusTraversable="false" layoutX="825.0" layoutY="225.0" prefHeight="25.0" prefWidth="150.0" />
+                              <Label layoutX="825.0" layoutY="200.0" text="Bitiş" />
+                              <JFXButton focusTraversable="false" layoutX="850.0" layoutY="275.0" onAction="#doFilter" prefWidth="100.0" style="-fx-background-color: #009688;" text="Uygula" />
+                              <JFXButton focusTraversable="false" layoutX="700.0" layoutY="20.0" onAction="#createGider" prefWidth="100.0" style="-fx-background-color: #009688;" text="Yeni" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            </children>
+        </Pane>
+    </children>
+</StackPane>

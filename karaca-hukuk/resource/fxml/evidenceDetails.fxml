@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<JFXDialogLayout maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EvidenceDetailsController">
+    <children>
+        <AnchorPane prefHeight="555.0" prefWidth="750.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em;">
+            <children>
+                <Label layoutX="326.0" layoutY="14.0" text="Mevcut Kanıtlar">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXButton fx:id="e_add_button" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="3.0" layoutX="598.0" layoutY="275.0" onAction="#e_add" text="Kanıt Ekle">
+                    <graphic>
+                        <FontAwesomeIconView fx:id="q_add_icon" glyphName="PLUS_CIRCLE" size="12" />
+                    </graphic>
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </JFXButton>
+                <ScrollPane fx:id="scrollPane" layoutX="109.0" layoutY="78.0" prefHeight="200.0" prefWidth="570.0" style="-fx-border-color: black; -fx-border-radius: 1em; -fx-background-radius: 1em;">
+                    <content>
+                        <GridPane fx:id="evidences_in_scroll" style="-fx-border-radius: 1em; -fx-background-radius: 1em;">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+                    </content>
+                </ScrollPane>
+                <JFXButton fx:id="submit" layoutX="341.0" layoutY="381.0" onAction="#submit" prefHeight="33.0" prefWidth="107.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-border-color: #000;" text="KAYDET" />
+            <Pane fx:id="pane" layoutX="35.0" layoutY="307.0" prefHeight="42.0" prefWidth="688.0" visible="false" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="27.0">
+               <children>
+                  <JFXTextField fx:id="desc" layoutX="18.0" layoutY="8.0" prefHeight="27.0" prefWidth="126.0" promptText="Kanıt Ön Bilgisi" />
+                  <JFXComboBox fx:id="type" layoutX="162.0" layoutY="8.0" prefHeight="27.0" prefWidth="95.0" promptText="Kanıt Türü" />
+                  <JFXDatePicker fx:id="date" layoutX="277.0" layoutY="8.0" prefHeight="27.0" prefWidth="142.0" promptText="Kanıt Tarihi" />
+                  <JFXTextField fx:id="fromwho" layoutX="425.0" layoutY="8.0" prefHeight="27.0" prefWidth="126.0" promptText="Kanıt Sahibi" />
+                  <JFXButton buttonType="RAISED" layoutX="563.0" layoutY="8.0" onAction="#ekle" prefHeight="27.0" prefWidth="95.0" style="-fx-border-color: black;" text="EKLE" />
+               </children>
+            </Pane>
+            <Label fx:id="wrong" layoutX="294.0" layoutY="357.0" text="Lütfen eksik yerleri doldurunuz !" textAlignment="CENTER" textFill="RED" visible="false">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</JFXDialogLayout>
